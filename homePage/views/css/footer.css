@@ -1,0 +1,64 @@
+/*==============================================
+ FOOTER
+/*=============================================*/
+
+footer.footer-area{
+    width: 100%;
+    height: 80vh;
+    background: linear-gradient(135deg, rgba(49,23,131,0.9) 0%, rgba(72,56,149,0.8) 100%), url(../images/testimonials-bg.jpg) center no-repeat;
+    background-size: cover;
+    position: relative;
+    z-index: -1;
+}
+
+footer.footer-area::before{
+    content: '';
+    position: absolute;
+    top: -3px;
+    left: 0;
+    width: 100%;
+    height: 4.7rem;
+    background: url(../images/wave/wave-small-reversed.png) center no-repeat;
+    background-size: cover;
+}
+
+footer .contentFooter{
+    position: relative;
+    top: 185px;
+}
+
+footer.footer-area .social h5{
+    font: normal 500 23px/ 30px var(--roboto);
+    color: white;
+}
+
+footer.footer-area .social a > i{
+    font-size:22px;
+    padding: 2rem;
+    color: rgb(194, 185, 185);
+}
+
+footer.footer-area .social a:hover > i{
+    color: #fff;
+}
+
+footer .logo-footer{
+    width: 100px;
+    height: 100px;
+    margin-top: 40px;
+}
+
+footer .move-up{
+    position: absolute;
+    right: 6%;
+    top: 80%;
+}
+
+footer .move-up span{
+    color: rgb(194, 185, 185);
+}
+
+footer .move-up span:hover{
+    color: white;
+    cursor: pointer;
+}

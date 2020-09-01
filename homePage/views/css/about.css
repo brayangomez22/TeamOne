@@ -1,0 +1,154 @@
+/*==============================================
+ ABOUT
+/*=============================================*/
+
+.about{
+  padding: 0;
+}
+
+.title-heading{
+  text-align: center;
+  text-transform: uppercase;
+  margin-bottom: 5rem;
+  color: rgba(0, 0, 0, .7);
+}
+
+.title-heading h3{
+  font-size: 1.4rem;
+  margin-top: 5px;
+  font: normal 500 21px/ 20px var(--roboto);
+}
+
+.title-heading h1{
+  font-size: 2rem;
+  font-weight: 800;
+  margin: .5rem 0 1rem;
+}
+
+.title-heading p{
+  text-transform: lowercase;
+  color: #333;
+}
+
+.about-grid{
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(25rem, 1fr));
+  grid-gap: 2.5rem;
+}
+
+.about-grid-item{
+  height: 40rem;
+  padding: 5rem;
+  color: #fafafa;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 1;
+  box-shadow: 0 30px 50px rgba(0, 0, 0, .5);
+}
+
+.about-grid-item::before{
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: linear-gradient(135deg, rgba(49,23,131,0.9) 0%, rgba(72,56,149,0.8) 100%);
+  z-index: -1;
+}
+
+.star-gazing{
+  background: url(../images/about/stars.jpg) center no-repeat;
+  z-index: -1;
+}
+
+.hiking{
+  background: url(../images/about/hiking.jpg) center no-repeat;
+  z-index: -1;
+}
+
+.camping{
+  background: url(../images/about/camping.jpg) center no-repeat;
+  z-index: -1;
+}
+
+.about-grid-item i{
+  font-size: 4rem;
+  color: #eb648c;
+}
+
+.about-grid-item h1{
+  font-size: 1.7rem;
+  text-transform: uppercase;
+  margin: 2rem 0;
+}
+
+/*  Section 2  */
+
+.section-2 .cover {
+  width: 100%;
+  height: 55vmin;
+  background: url("../images/pexels-photo-452738.jpeg");
+  background-position: -24rem -19rem;
+  background-size: 150%;
+  position: relative;
+  margin-top: 100px;
+  z-index: -2;
+}
+
+.section-2 .cover .overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 999;
+}
+
+.section-2 .cover .content {
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.7);
+  padding-top: 14vmin;
+}
+
+.section-2 .cover .content > h1 {
+  font-family: var(--openSans);
+  font-size: 6vmin;
+  color: whitesmoke;
+}
+
+.section-2 .cover .content > p {
+  font-family: var(--openSans);
+  font-size: 2vmin;
+  color: #e5e5e5;
+}
+
+.section-2 .numbers .rect {
+  position: relative;
+  z-index: -1;
+  background: white;
+  width: 270px;
+  height: 200px;
+  padding-top: 3.5vmin;
+  margin: 1rem;
+  border-radius: 0.5em;
+  box-shadow: 1px 2px 34px 0px rgba(72,56,149,0.8);
+}
+
+.section-2 .numbers {
+  margin-top: -15vmin;
+}
+
+.section-2 .numbers .rect h1 {
+  font-size: 8rem;
+  color: rgba(72,56,149,0.8);
+  font-family: var(--openSans);
+}
+
+.section-2 .numbers .rect > p {
+  font-family: var(--openSans);
+}

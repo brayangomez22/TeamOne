@@ -1,0 +1,127 @@
+/*==============================================
+ SERVICES
+/*=============================================*/
+
+.navbar_fixed{
+    z-index: 10000;
+}
+
+.services .contenedor{
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    margin: 20px 10px;
+}
+
+.services .contenedor .card{
+    position: relative;
+    height: 270px;
+    display: flex;
+    background: #fff;
+    width: 45%;
+    margin: 30px 0;
+    transition: 0.5s ease;
+}
+
+.services .contenedor .card .imgBx{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #333;
+    z-index: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;   
+    transition: 0.5s ease-in-out;
+}
+
+.services .contenedor .card:hover{
+    box-shadow: -2px 0 8px 8px rgb(197, 194, 194);
+}
+
+.services .contenedor .card:hover .imgBx{
+    width: 150px;
+    height: 150px;
+    left: -75px;
+    top: calc(50% - 75px);
+    transition: 0.5s ease-in-out;
+    background: linear-gradient(135deg, rgba(49,23,131,0.9) 0%, rgba(72,56,149,0.8) 100%);
+}
+
+.services .contenedor .card .imgBx::before{
+    content: attr(data-text);
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    text-align: center;
+    font-size: 6em;
+    color: rgba(255, 255, 255, .05);
+    font-weight: 700;
+}
+
+.services .contenedor .card .imgBx img{
+    max-width: 100px;
+    transition: 0.5s ease-in-out;
+}
+
+.services .contenedor .card:hover .imgBx img{
+    max-width: 75px;
+}
+
+.services .contenedor .card .content{
+    position: absolute;
+    right: 0;
+    width: calc(100% - 75px);
+    height: 100%;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.services .contenedor .card .content h3{
+    margin-bottom: 5px;
+    font-size: 24px;
+    font-family: var(--openSans);
+}
+
+@media (max-width: 992px){
+    .services .contenedor{
+        width: 100%;
+        flex-direction: column;
+        align-items: center;
+    }
+    .services .contenedor .card{
+        width: 400px;
+    }
+}
+
+@media (max-width: 768px){
+    .services .contenedor .card{
+        max-width: 300px;
+        flex-direction: column;
+        height: auto;
+    }
+    .services .contenedor .card .imgBx{
+        position: relative;
+    }
+    .services .contenedor .card .imgBx,
+    .services .contenedor .card:hover .imgBx{
+        width: 100%;
+        height: 200px;
+        left: 0;
+    }
+    .services .contenedor .card .imgBx img,
+    .services .contenedor .card:hover .imgBx img{
+        max-width: 100px;   
+    }
+    .services .contenedor .card .content{
+        position: relative;
+        width: 100%;
+    }
+}

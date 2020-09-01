@@ -1,0 +1,19 @@
+/* @font-face */ 
+
+/*==============================================
+ ROBOTO 
+/*=============================================*/
+
+@font-face{
+    font-family: Roboto;
+    src: '../fonts/Roboto/Roboto-Regular.ttf';
+}
+
+/*==============================================
+ OPEN SANS
+/*=============================================*/
+
+@font-face{
+    font-family: OpenSans;
+    src: '../fonts/Open_Sans/OpenSans-Regular.ttf';
+}

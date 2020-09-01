@@ -1,0 +1,74 @@
+/*==============================================
+ HERO
+/*=============================================*/
+
+.hero{
+    width: 100%;
+    height: 80vh;
+    background: linear-gradient(135deg, rgba(49,23,131,0.9) 0%, rgba(72,56,149,0.8) 100%), url(../images/header-bg.jpg) center no-repeat;
+    background-size: cover;
+    position: relative;
+}
+
+.hero::before{
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -3px;
+    width: 100%;
+    height: 4.7rem;
+    background: url(../images/wave/wave-small.png) center no-repeat;
+    background-size: cover;
+}
+
+.hero .info{
+    display: flex;
+    justify-content: space-between;
+}
+
+.hero .info .imgS {
+    position: absolute;
+    max-width: 400px;
+    height: 400px;
+    right: 200px;
+    top: 120px;
+}
+
+.main-message{
+    width: 100%;
+    max-width: 50rem;
+    color: #fafafa;
+    text-transform: uppercase;
+    transform: translateY(20%);
+}
+
+.main-message h3{
+    font-size: 2.1rem;
+    letter-spacing: 2px;
+    font: normal 500 21px/ 20px var(--roboto);
+}
+
+.main-message h1{
+    font-size: 4rem;
+    margin: 1rem 0;
+    font-weight: 700;
+}
+
+.main-message p{
+    text-transform: lowercase;
+}
+
+.hero .btn{
+    background-color: #eb648c;
+    border-radius: 2rem;
+    color: #fafafa;
+    display: inline-block;
+    margin-top: 2rem;
+    padding: 1rem 2.5rem;
+    text-transform: uppercase;
+    transition: background-color 650ms;
+}
+
+.hero .btn:hover{
+    background-color: #ce587b;
+}

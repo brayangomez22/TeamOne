@@ -1,0 +1,122 @@
+/* import fonts from fonts.css file */ 
+@import url(./fonts.css);
+
+/* css variables */ 
+@import url(./partials/_variables.css);
+
+/* import global styling */ 
+@import url(./partials/_global.css);
+
+/*Start*/
+*,
+*::before,
+*::after{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+}
+
+html{
+  font-size: 10px;
+  box-sizing: border-box;
+}
+
+a{
+  text-decoration: none;
+  color: #333;
+  font-family: var(--openSans);
+}
+
+ul{
+  list-style: none;
+}
+
+p{
+  font-size: 1.6rem;
+  font-family: var(--openSans);
+}
+
+img{
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+}
+
+section{
+  padding: 5rem 0;
+}
+
+p::selection,a::selection,h1::selection,h2::selection,h3::selection,h4::selection,h5::selection,h6::selection,span::selection,img::selection {
+  background: rgba(72,56,149,0.8);
+  color: #fff;
+}
+
+/*==============================================
+ CURSOR
+/*=============================================*/
+
+.cursor{
+  position: fixed;
+  width: 50px;
+  height: 50px;
+  border: 1px solid #c6c6c6;
+  border-radius: 50%;
+  left: 0;
+  top: 0;
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+  transition: .1s;
+  z-index: 2000;
+}
+
+.cursor2{
+  position: fixed;
+  width: 8px;
+  height: 8px;
+  background-color: #c6c6c6;
+  border-radius: 50%;
+  left: 0;
+  top: 0;
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+  transition: .15s;
+  z-index: 2000;
+}
+
+header:hover ~ .cursor,
+main:hover ~ .cursor{
+  transform: translate(-50%, -50%) scale(1.5);
+  background-color: #c6c6c6;
+  opacity: .5;
+}
+
+/*==============================================
+ ERROR 404
+/*=============================================*/
+
+.contenedor-background{
+	width: 100vw;
+	height: 100vh;
+	overflow: hidden;
+	background: url(../img/background.jpg);
+	background-attachment: fixed;
+}
+
+.contenedor-titulo{
+  margin-top: 250px;
+}
+
+.contenedor-background .titulo{
+	color: white;
+  display: flex;
+  justify-content: center;
+}
+
+.planeta1{
+  margin-top: -500px;
+}
+
+.astronaut{
+  margin-top: -70px;
+}

@@ -1,0 +1,307 @@
+/*==============================================
+ MEDIA QUERIES
+/*=============================================*/
+
+@media screen and (min-width: 350px){
+    .main-message{
+        transform: translateY(20px);
+    }
+
+    .owl-carousel{
+        margin-top: 55px;
+    }
+
+    footer .contentFooter{
+        position: relative;
+        top: 85px;
+    }
+
+    footer .move-up{
+        position: absolute;
+        right: 6%;
+        top: 85%;
+    }
+}
+
+@media screen and (min-width: 470px){
+    .main-message{
+        transform: translateY(32%);
+    }
+
+    .hero::before{
+        height: 9.4rem;
+        background: url(../images/wave/wave-medium.png);
+        background-size: cover;
+    }
+
+    .testimonials{
+        width: 100%;
+        height: 130vh;
+    }
+
+    .testimonials::before{
+        height: 9.4rem;
+        background: url(../images/wave/wave-medium-reversed.png);
+        background-size: cover;
+    }   
+
+    footer.footer-area::before{
+        height: 9.4rem;
+        background: url(../images/wave/wave-medium-reversed.png);
+        background-size: cover;
+    } 
+}
+
+@media screen and (min-width: 700px){
+    header{
+        height: 8rem;
+    }
+
+    .testimonials{
+        width: 100%;
+        height: 140vh;
+    }
+
+    .nav-brand{
+        width: 5.5rem;
+    }
+
+    .nav-link,
+    .current{
+        color: #fff;
+        position: relative;
+        font-size: 1.3rem;
+    }
+
+    .nav-link::before,
+    .current::before{
+        content: '';
+        position: absolute;
+        left: 0;
+        bottom: -.5rem;
+        background-color: #eb648c;
+        width: 100%;
+        height: 2px;
+        transform: scaleX(0);
+        transform-origin: left;
+        transition: transform 650ms;
+        color: #fff;
+    }
+
+    .current::before{
+        transform: scaleX(1);
+    }
+
+    .nav-link:hover::before{
+        transform: scaleX(1);
+    }
+
+    .hero{
+        height: 100vh;
+    }
+
+    .main-message{
+        transform: translateY(35%);
+    }
+
+    .title-heading h1{
+        font-size: 2.5rem;
+    }
+
+    .owl-carousel{
+        margin-top: 130px;
+    }
+
+    footer .contentFooter{
+        position: relative;
+        top: 165px;
+    }
+}
+
+@media screen and (min-width: 991px){
+    .testimonials{
+        width: 100%;
+        height: 80vh;
+    }
+}   
+
+@media screen and (min-width: 950px){
+    .hero::before{
+        height: 29.7rem;
+        background: url(../images/wave/wave-large.png);
+        background-size: cover;
+    }
+
+    .testimonials::before{
+        height: 22.7rem;
+        background: url(../images/wave/wave-large-reversed.png);
+        background-size: cover;
+    } 
+
+    footer.footer-area::before{
+        height: 22.7rem;
+        background: url(../images/wave/wave-large-reversed.png);
+        background-size: cover;
+    } 
+}
+
+@media screen and (min-width: 1200px){
+    .nav-list{
+        width: initial;
+        height: initial;
+        background-color: transparent;
+        position: initial;
+        top: initial;
+        right: initial;
+        flex-direction: row;
+        transition: initial;
+    }
+
+    .menu-icons{
+        display: none;
+    }
+
+    .nav-item{
+        margin: 0 2.5rem;
+    }
+
+    .hero{
+        height: 100vh;
+    }
+}
+
+
+/*==============================================
+  SIGN UP AND LOGIN  
+/*=============================================*/
+
+@media (max-width: 870px) {
+  .containerSignUpLogin {
+    min-height: 800px;
+    height: 100vh;
+  }
+  .containerSignUpLogin .signin-signup {
+    width: 100%;
+    top: 95%;
+    transform: translate(-50%, -100%);
+    transition: 1s 0.8s ease-in-out;
+  }
+
+  .containerSignUpLogin .signin-signup,
+  .containerSignUpLogin.sign-up-mode .signin-signup {
+    left: 50%;
+  }
+
+  .containerSignUpLogin .panels-container {
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 2fr 1fr;
+  }
+
+  .containerSignUpLogin .panel {
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    padding: 2.5rem 8%;
+    grid-column: 1 / 2;
+  }
+
+  .containerSignUpLogin .right-panel {
+    grid-row: 3 / 4;
+  }
+
+  .containerSignUpLogin .left-panel {
+    grid-row: 1 / 2;
+  }
+
+  .containerSignUpLogin .image {
+    width: 200px;
+    transition: transform 0.9s ease-in-out;
+    transition-delay: 0.6s;
+  }
+
+  .containerSignUpLogin .panel .content {
+    padding-right: 15%;
+    transition: transform 0.9s ease-in-out;
+    transition-delay: 0.8s;
+  }
+
+  .containerSignUpLogin .panel h3 {
+    font-size: 1.9rem;
+  }
+
+  .containerSignUpLogin .panel p {
+    font-size: 1.4rem;
+    padding: 0.5rem 0;
+  }
+
+  .containerSignUpLogin .btn.transparent {
+    width: 110px;
+    height: 35px;
+    font-size: 1.2rem;
+  }
+
+  .containerSignUpLogin:before {
+    width: 1500px;
+    height: 1500px;
+    transform: translateX(-50%);
+    left: 30%;
+    bottom: 68%;
+    right: initial;
+    top: initial;
+    transition: 2s ease-in-out;
+  }
+
+  .containerSignUpLogin.sign-up-mode:before {
+    transform: translate(-50%, 100%);
+    bottom: 32%;
+    right: initial;
+  }
+
+  .containerSignUpLogin.sign-up-mode .left-panel .image,
+  .containerSignUpLogin.sign-up-mode .left-panel .content {
+    transform: translateY(-300px);
+  }
+
+  .containerSignUpLogin.sign-up-mode .right-panel .image,
+  .containerSignUpLogin.sign-up-mode .right-panel .content {
+    transform: translateY(0px);
+  }
+
+  .containerSignUpLogin .right-panel .image,
+  .containerSignUpLogin .right-panel .content {
+    transform: translateY(300px);
+  }
+
+  .containerSignUpLogin.sign-up-mode .signin-signup {
+    top: 5%;
+    transform: translate(-50%, 0);
+  }
+}
+
+@media (max-width: 570px) {
+  .containerSignUpLogin form {
+    padding: 0 1.5rem;
+  }
+
+  .containerSignUpLogin .image {
+    display: none;
+  }
+
+  .containerSignUpLogin .panel .content {
+    padding: 0.5rem 1rem;
+  }
+
+  .containerSignUpLogin {
+    padding: 1.5rem;
+  }
+
+  .containerSignUpLogin:before {
+    bottom: 72%;
+    left: 50%;
+  }
+
+  .containerSignUpLogin.sign-up-mode:before {
+    bottom: 28%;
+    left: 50%;
+  }
+}
