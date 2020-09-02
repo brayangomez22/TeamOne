@@ -85,7 +85,9 @@ p::selection,a::selection,h1::selection,h2::selection,h3::selection,h4::selectio
 }
 
 header:hover ~ .cursor,
-main:hover ~ .cursor{
+main:hover ~ .cursor,
+.productQuote:hover ~ .cursor,
+footer:hover ~ .cursor{
   transform: translate(-50%, -50%) scale(1.5);
   background-color: #c6c6c6;
   opacity: .5;

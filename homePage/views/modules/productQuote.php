@@ -43,32 +43,74 @@
      FEATURES 
     ================================================-->
 
-    <section class="features">
-        <div class="wrapper">
-            <div class="features-grid">
-            <article class="feature-item">
-                <img src="<?php echo $url; ?>views/images/productQuote/icon-access-anywhere.svg" alt="">
-                <h2>Accede a tus tareas desde cualquier lugar</h2>
-                <p>TLa capacidad de usar un teléfono inteligente, tableta o computadora para acceder a su cuenta significa que todo lo que quiere lo siguen a todas partes.</p>
-            </article>
-            <article class="feature-item">
-                <img src="<?php echo $url; ?>views/images/productQuote/icon-security.svg" alt="">
-                <h2>Seguridad en la que puede confiar</h2>
-                <p>La autenticación de 2 factores y el cifrado controlado por el usuario son solo algunas de las características de seguridad que permitimos para ayudar a proteger todo lo que quieres.</p>
-            </article>
-            <article class="feature-item">
-                <img src="<?php echo $url; ?>views/images/productQuote/icon-collaboration.svg" alt="">
-                <h2>Colaboración en tiempo real</h2>
-                <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quia optio vero expedita veritatis ullam temporibus officia iure aut placeat doloribus!</p>
-            </article>
-            <article class="feature-item">
-                <img src="<?php echo $url; ?>views/images/productQuote/icon-any-file.svg" alt="">
-                <h2>Almacene cualquier tipo de archivo</h2>
-                <p>Ya sea que esté compartiendo fotos de vacaciones o documentos de trabajo, Fylo lo tiene cubierto permitiendo que todos los tipos de archivos se almacenen y compartan de forma segura.</p>
-            </article>
+    <h2 class="text-center" style="font-size: 27px;">Algunas caracteristicas que hacen este maravilloso servicio unico.</h2>
+    <div class="containerFeatures">
+        <div class="card">
+            <div class="box">
+                <div class="content">
+                    <h2>1</h2>
+                    <h3>Accede a tus tareas desde cualquier lugar</h3>
+                    <p>La capacidad de usar un teléfono inteligente, tableta o computadora para acceder a su cuenta significa que todo lo que quiere lo siguen a todas partes.</p>
+                    <a href="#">Read More</a>
+                </div>
             </div>
         </div>
-    </section>
+
+        <div class="card">
+            <div class="box">
+                <div class="content">
+                    <h2>2</h2>
+                    <h3>Seguridad en la que puede confiar</h3>
+                    <p>La autenticación de 2 factores y el cifrado controlado por el usuario son solo algunas de las características de seguridad que permitimos para ayudar a proteger todo lo que quieres.</p>
+                    <a href="#">Read More</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="box">
+                <div class="content">
+                    <h2>3</h2>
+                    <h3>Colaboración en tiempo real</h3>
+                    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quia optio vero expedita veritatis ullam temporibus officia iure aut placeat doloribus!</p>
+                    <a href="#">Read More</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="box">
+                <div class="content">
+                    <h2>4</h2>
+                    <h3>Almacene cualquier tipo de archivo</h3>
+                    <p>Ya sea que esté compartiendo fotos de vacaciones o documentos de trabajo, Fylo lo tiene cubierto permitiendo que todos los tipos de archivos se almacenen y compartan de forma segura.</p>
+                    <a href="#">Read More</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="box">
+                <div class="content">
+                    <h2>5</h2>
+                    <h3>Almacene cualquier tipo de archivo</h3>
+                    <p>Ya sea que esté compartiendo fotos de vacaciones o documentos de trabajo, Fylo lo tiene cubierto permitiendo que todos los tipos de archivos se almacenen y compartan de forma segura.</p>
+                    <a href="#">Read More</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="box">
+                <div class="content">
+                    <h2>6</h2>
+                    <h3>Almacene cualquier tipo de archivo</h3>
+                    <p>Ya sea que esté compartiendo fotos de vacaciones o documentos de trabajo, Fylo lo tiene cubierto permitiendo que todos los tipos de archivos se almacenen y compartan de forma segura.</p>
+                    <a href="#">Read More</a>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <!--==============================================
      PRODUCTIVE 
@@ -97,50 +139,129 @@
     </section>
 
     <!--==============================================
-     PRICES
+     PRICES containerPrices
     ================================================-->
 
     <h2 class="text-center" style="font-size: 27px;">Precios</h2>
-    <div class="containerPrices">
-        <div class="card">
-            <div class="box">
-                <div class="content">
-                    <h2>$10</h2>
-                    <h3>Card One</h3>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae hic fugiat ipsa aut! Aliquid odit exercitationem, doloremque possimus dicta consequatur.</p>
-                    <a href="#">Read More</a>
+    <section class="price-comparison">
+        <div class="price-column">
+            <div class="price-header" style="color: #333;">
+                <div class="price" >
+                    <div class="dollar-sign">$</div>
+                    10
+                    <div class="per-month">/mo</div>
                 </div>
+                <div class="plan-name">Basic</div>
             </div>
+            <div class="divider"></div>
+            <div class="feature" style="color: #333;">
+                <img src="<?php echo $url; ?>views/images/productQuote/check-circle.svg">
+                Feature A
+            </div>
+            <div class="feature" style="color: #333;">
+                <img src="<?php echo $url; ?>views/images/productQuote/check-circle.svg">
+                Feature B
+            </div>
+            <div class="feature inactive">
+                <img src="<?php echo $url; ?>views/images/productQuote/x-square.svg">
+                Feature C
+            </div>
+            <div class="feature inactive">
+                <img src="<?php echo $url; ?>views/images/productQuote/x-square.svg">
+                Feature D
+            </div>
+            <div class="feature inactive">
+                <img src="<?php echo $url; ?>views/images/productQuote/x-square.svg">
+                Feature E
+            </div>
+            <div class="feature inactive">
+                <img src="<?php echo $url; ?>views/images/productQuote/x-square.svg">
+                Feature F
+            </div>
+            <button class="cta">Start Today</button>
         </div>
 
-        <div class="card">
-            <div class="box">
-                <div class="content">
-                    <h2>$30</h2>
-                    <h3>Card Two</h3>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae hic fugiat ipsa aut! Aliquid odit exercitationem, doloremque possimus dicta consequatur.</p>
-                    <a href="#">Read More</a>
+        <div class="price-column popular">
+            <div class="most-popular">Most Popular</div>
+            <div class="price-header">
+                <div class="price">
+                <div class="dollar-sign">$</div>
+                20
+                <div class="per-month">/mo</div>
                 </div>
+                <div class="plan-name">Professional</div>
             </div>
+            <div class="divider"></div>
+            <div class="feature">
+                <img src="<?php echo $url; ?>views/images/productQuote/check-circle.svg">
+                Feature A
+            </div>
+            <div class="feature">
+                <img src="<?php echo $url; ?>views/images/productQuote/check-circle.svg">
+                Feature B
+            </div>
+            <div class="feature">
+                <img src="<?php echo $url; ?>views/images/productQuote/check-circle.svg">
+                Feature C
+            </div>
+            <div class="feature">
+                <img src="<?php echo $url; ?>views/images/productQuote/check-circle.svg">
+                Feature D
+            </div>
+            <div class="feature inactive">
+                <img src="<?php echo $url; ?>views/images/productQuote/x-square.svg">
+                Feature E
+            </div>
+            <div class="feature inactive">
+                <img src="<?php echo $url; ?>views/images/productQuote/x-square.svg">
+                Feature F
+            </div>
+            <button class="cta">Start Today</button>
         </div>
 
-        <div class="card">
-            <div class="box">
-                <div class="content">
-                    <h2>$70</h2>
-                    <h3>Card Three</h3>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae hic fugiat ipsa aut! Aliquid odit exercitationem, doloremque possimus dicta consequatur.</p>
-                    <a href="#">Read More</a>
+        <div class="price-column">
+            <div class="price-header" style="color: #333;">
+                <div class="price">
+                <div class="dollar-sign">$</div>
+                50
+                <div class="per-month">/mo</div>
                 </div>
+                <div class="plan-name">Enterprise</div>
             </div>
+            <div class="divider"></div>
+            <div class="feature" style="color: #333;">
+                <img src="<?php echo $url; ?>views/images/productQuote/check-circle.svg">
+                Feature A
+            </div>
+            <div class="feature" style="color: #333;">
+                <img src="<?php echo $url; ?>views/images/productQuote/check-circle.svg">
+                Feature B
+            </div>
+            <div class="feature" style="color: #333;">
+                <img src="<?php echo $url; ?>views/images/productQuote/check-circle.svg">
+                Feature C
+            </div>
+            <div class="feature" style="color: #333;">
+                <img src="<?php echo $url; ?>views/images/productQuote/check-circle.svg">
+                Feature D
+            </div>
+            <div class="feature" style="color: #333;">
+                <img src="<?php echo $url; ?>views/images/productQuote/check-circle.svg">
+                Feature E
+            </div>
+            <div class="feature" style="color: #333;">
+                <img src="<?php echo $url; ?>views/images/productQuote/check-circle.svg">
+                Feature F
+            </div>
+            <button class="cta">Start Today</button>
         </div>
-    </div>
+    </section>
 
     <!--==============================================
      REVIEWS TESTIMONIALS
     ================================================-->
 
-    <h2 class="text-center" style="font-size: 27px;">Testimonios</h2>
+    <h2 class="text-center" style="font-size: 27px;margin-top:40px;">Testimonios</h2>
     <section class="reviews">
         <div class="wrapper">
             <div class="reviews-grid">
