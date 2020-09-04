@@ -243,7 +243,7 @@
   align-items: center;
 }
 
-.price-column {
+.price-comparison .price-column {
   background-color: white;
   box-shadow: 0 7px 30px rgba(52, 31, 97, 0.1);
   padding: 2rem;
@@ -253,7 +253,7 @@
   border-radius: 8px;
 }
 
-.price-column.popular {
+.price-comparison .price-column.popular {
   position: relative;
   background-color: var(--accent-color);
   box-shadow: 0 7px 30px rgba(52, 13, 135, 0.3);
@@ -264,17 +264,17 @@
   padding-bottom: 3.5rem;
 }
 
-.price-column:first-child {
+.price-comparison .price-column:first-child {
   border-top-right-radius: 0; 
   border-bottom-right-radius: 0; 
 }
 
-.price-column:last-child {
+.price-comparison .price-column:last-child {
   border-top-left-radius: 0; 
   border-bottom-left-radius: 0; 
 }
 
-.price-header {
+.price-comparison .price-header {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -283,32 +283,32 @@
   padding: 20px;
 }
 
-.price {
+.price-comparison .price {
   font-size: 5.5rem;
   display: flex;
 }
 
-.dollar-sign {
+.price-comparison .dollar-sign {
   font-size: 3.5rem;
   margin-top: .5rem;
   margin-right: .25rem;
 }
 
-.per-month {
+.price-comparison .per-month {
   font-size: 1.4rem;
   align-self: flex-end;
   margin-bottom: 1.1rem;
   text-transform: uppercase;
 }
 
-.plan-name {
+.price-comparison .plan-name {
   text-transform: uppercase;
   font-size: 1.5rem;
   margin-top: 1rem;
   margin-bottom: 0;
 }
 
-.divider {
+.price-comparison .divider {
   height: 1px;
   width: 100%;
   background-color: rgba(0, 0, 0, .2);
@@ -316,29 +316,29 @@
   margin-bottom: 2rem;
 }
 
-.price-column.popular .divider {
+.price-comparison .price-column.popular .divider {
   background-color: rgba(255, 255, 255, .2);
 }
 
-.feature {
+.price-comparison .feature {
   display: flex;
   align-items: center;
   margin: .5rem;
   font-size: 1.5rem;
 }
 
-.feature img {
+.price-comparison .feature img {
   height: 1.1em;
   width: 1.1em;
   margin-right: .5rem;
 }
 
-.feature.inactive {
+.price-comparison .feature.inactive {
   color: #999;
   text-decoration-line: line-through;
 }
 
-.most-popular {
+.price-comparison .most-popular {
   position: absolute;
   top: .5rem;
   left: .5rem;
@@ -350,7 +350,7 @@
   font-size: 1.5rem;
 }
 
-.cta {
+.price-comparison .cta {
   border: none;
   background-color: var(--accent-color);
   color: white;
@@ -366,12 +366,12 @@
   transform: scale(1);
 }
 
-.price-column.popular .cta {
+.price-comparison .price-column.popular .cta {
   background-color: white;
   color: var(--accent-color);
 }
 
-.cta:hover, .cta:focus {
+.price-comparison .cta:hover, .cta:focus {
   transform: scale(1.1);
 }
 

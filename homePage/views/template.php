@@ -18,7 +18,7 @@
 
         if(isset($_GET["route"])){
 
-            $routes = explode("/", $_GET["route"]);
+            $routes = explode("/", $_GET["route"]); 
 
             if($routes[0] == "productQuote" || $routes[0] == "verify" || $routes[0] == "home" || $routes[0] == "signUpLogin"){
 
@@ -112,7 +112,7 @@
 /*=============================================*/
    
 if(isset($_GET["route"])){
-    
+
     if($routes[0] == "home"){
 
         include "modules/header.php";
@@ -128,10 +128,6 @@ if(isset($_GET["route"])){
         include "modules/error404.php";
 
     }
-
-    /*==============================================
-     pepe 
-    /*=============================================*/
     
 }else{
 
