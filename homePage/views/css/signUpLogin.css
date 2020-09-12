@@ -89,6 +89,18 @@
   font-size: 18px;
 }
 
+.containerSignUpLogin .contenedor-condiciones {
+  max-width: 380px;
+  position: relative;
+  left: 1%;
+  top: 3%;
+}
+
+.containerSignUpLogin .contenedor-condiciones label{
+  font-size: 14px;
+  margin-bottom: 10px;
+}
+
 .containerSignUpLogin .social-text {
   padding: 0.7rem 0;
   font-size: 1.7rem;
@@ -135,6 +147,7 @@
   cursor: pointer;
   transition: 0.5s;
   font-family: var(--openSans);
+  margin-top: 40px;
 }
 
 .containerSignUpLogin .btn:hover {

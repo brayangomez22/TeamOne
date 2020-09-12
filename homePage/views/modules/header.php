@@ -3,6 +3,7 @@
 $url = Route::ctrRoute();
 $urlServidor = Route::ctrRouteLearningManagementSystem();
 $urlBlog = Route::ctrRouteBlog();
+$urlPresentation = Route::ctrRoutePresentation();
 
 /*=============================================*/
 /* USER LOGIN */
@@ -115,10 +116,13 @@ if($cliente->getAccessToken()){
                     <a href="#services" class="nav-link">Servicios</a>
                 </li>
                 <li class="nav-item">
+                    <a href="#contact" class="nav-link">Contacto</a>
+                </li>
+                <li class="nav-item">
                     <a href="<?php echo $urlBlog; ?>" target="_blank" class="nav-link">Blog</a>
                 </li>
                 <li class="nav-item">
-                    <a href="#contact" class="nav-link">Contacto</a>
+                    <a href="<?php echo $urlPresentation; ?>" target="_blank" class="nav-link">Presentación</a>
                 </li>
                 
                 <?php
@@ -212,8 +216,7 @@ if($cliente->getAccessToken()){
                     }else{
 
                         echo '
-                        <li class="nav-item"><a href="signUpLogin" class="nav-link">Iniciar sesión</a></li>
-                        <li class="nav-item"><a href="signUpLogin" class="nav-link">Registrate</a></li>';
+                        <li class="nav-item"><a href="signUpLogin" class="nav-link">Iniciar sesión</a></li>';
 
                     }
 
@@ -222,9 +225,3 @@ if($cliente->getAccessToken()){
         </nav>
     </div>
 </header>
-
-<?php
-
-    include "modalWindows.php";
-
-?>

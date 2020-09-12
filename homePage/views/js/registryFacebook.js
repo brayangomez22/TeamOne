@@ -93,7 +93,7 @@ function testApi(){
 
 			$.ajax({
 
-				url:rutaOculta+"ajax/usuarios.ajax.php",
+				url:hiddenRoute+"ajax/users.ajax.php",
 				method:"POST",
 				data:datos,
 				cache:false,

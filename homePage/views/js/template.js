@@ -2,16 +2,6 @@ $(document).ready(function(){
 
     // WOW Instance
 	new WOW().init();
-
-	//=============================================
-	// CURSOR 
-	//=============================================
-
-	var cursor = document.querySelector(".cursor");
-    var cursor2 = document.querySelector(".cursor2");
-    document.addEventListener("mousemove",function(e){
-      cursor.style.cssText = cursor2.style.cssText = "left: " + e.clientX + "px; top: " + e.clientY + "px;";
-	});
 	
 	//=============================================
 	// NUMBERS
@@ -91,7 +81,7 @@ $(document).ready(function(){
 	// HIDDEN ROUTE
 	//=============================================
 
-	var rutaOculta = $("#rutaOculta").val();
+	var hiddenRoute = $("#hiddenRoute").val(); 
 	
 	//=============================================
 	// SIGN UP AND LOGIN

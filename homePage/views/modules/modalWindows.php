@@ -73,10 +73,8 @@
                     </div>
 
                     <?php
-                    
                         $registro = new ControladorUsuario();
                         $registro -> ctrRegistroUsuario();
-
                     ?>
 
                     <div class="button">

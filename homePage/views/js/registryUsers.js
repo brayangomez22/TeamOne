@@ -1,68 +1,12 @@
 //=============================================
-// SHOW INPUT FOR TEACHERS
+// HIDDEN ROUTE
 //=============================================
 
-function activarCodigoSeguridad(evento){
+var hiddenRoute = $("#hiddenRoute").val(); 
 
-    if(evento == "profesor"){
-
-		$(".mostrarDatos").show();
-		$(".mostrarGrupo").hide();
-		$('#codigo').prop("required", true);
-		$('#grupo').removeAttr("required");
-
-    }else{
-
-		$(".mostrarGrupo").parent().before('<div class="alert alert-warning"><strong>Ejemplo:</strong> 11-1</div>')
-		$(".mostrarDatos").hide();
-		$(".mostrarGrupo").show();
-		$('#codigo').removeAttr("required");
-		$('#grupo').prop("required", true);
-
-	}
-
-}
-
-$(".labor").change(function(){
-
-    activarCodigoSeguridad($(this).val());
-
-})
-
-//=====================================================
-//  SHOW INPUT FOR TEACHERS FOR REGISTERED WITH SOCIAL NETWORKS
-//=====================================================
-
-function activarCodigoSeguridadRedes(evento){
-
-    if(evento == "profesor"){
-
-		$(".mostrarDatosRedes").show();
-		$(".mostrarGrupoRedes").hide();
-		$('#codigoRedes').prop("required", true);
-		$('#grupoRedes').removeAttr("required");
-
-    }else{
-
-		$(".mostrarGrupoRedes").parent().before('<div class="alert alert-warning"><strong>Ejemplo:</strong> 11-1</div>')
-		$(".mostrarDatosRedes").hide();
-		$(".mostrarGrupoRedes").show();
-		$('#codigoRedes').removeAttr("required");
-		$('#grupoRedes').prop("required", true);
-
-	}
-
-}
-
-$(".laborRedes").change(function(){
-
-    activarCodigoSeguridadRedes($(this).val());
-
-})
-
-/*=============================================
-  FORMAT THE IPUNT
-=============================================*/
+//=============================================
+// FORMAT THE INPUT 
+//=============================================
 
 $("input").focus(function(){
 	$(".alert").remove();
@@ -72,32 +16,36 @@ $("input").focus(function(){
 //  VALIDATE REPEATED EMAIL
 //=============================================
 
-var validarEmailRepetido = false;
+var validateRepeatedEmail = false;
 
 $("#regEmail").change(function(){
 
 	var email = $("#regEmail").val();
 
-	var datos = new FormData();
-	datos.append("validarEmail", email);
+	var data = new FormData();
+	data.append("validateEmail", email);
+
+	console.log(hiddenRoute);
 
 	$.ajax({
-		url: rutaOculta+"ajax/usuarios.ajax.php",
+		url: hiddenRoute+"ajax/users.ajax.php",
 		method: "POST",
-		data: datos,
+		data: data, 
 		cache: false,
 		contentType: false,
 		processData: false,
-		success: function(respuesta){
+		success: function(reply){
 
-			if(respuesta == "false"){
+			console.log(reply);
+
+			if(reply == "false"){
 
 				$(".alert").remove();
-				validarEmailRepetido = false;
+				validateRepeatedEmail = false;  
 
 			}else{
 
-				var modo = JSON.parse(respuesta).modo;
+				var modo = JSON.parse(reply).modo;
 				
 				if(modo == "directo"){
 
@@ -107,7 +55,7 @@ $("#regEmail").change(function(){
 
 				$("#regEmail").parent().before('<div class="alert alert-warning"><strong>ERROR:</strong> El correo electrónico ya existe en la base de datos, fue registrado a través de '+modo+', por favor ingrese otro diferente</div>')
 
-				validarEmailRepetido = true;
+				validateRepeatedEmail = true;
 
 			}
 
@@ -121,21 +69,21 @@ $("#regEmail").change(function(){
 // VALIDATING THE USER REGISTRATION 
 //=============================================
 
-function registroUsuario(){
+function registryUser(){
 
 	/*=============================================
 	VALIDATE THE NAME
 	=============================================*/
 
-	var nombre = $("#regUsuario").val();
+	var name = $("#regUser").val();
 
-	if(nombre != ""){
+	if(name != ""){
 
 		var expresion = /^[a-zA-ZñÑáéíóúÁÉÍÓÚ ]*$/;
 
-		if(!expresion.test(nombre)){
+		if(!expresion.test(name)){
 
-			$("#regUsuario").parent().before('<div class="alert alert-warning"><strong>ERROR:</strong> No se permiten números ni caracteres especiales</div>')
+			$("#regUser").parent().before('<div class="alert alert-warning"><strong>ERROR:</strong> No se permiten números ni caracteres especiales</div>')
 
 			return false;
 
@@ -143,7 +91,7 @@ function registroUsuario(){
 
 	}else{
 
-		$("#regUsuario").parent().before('<div class="alert alert-warning"><strong>ATENCIÓN:</strong> Este campo es obligatorio</div>')
+		$("#regUser").parent().before('<div class="alert alert-warning"><strong>ATENCIÓN:</strong> Este campo es obligatorio</div>')
 
         return false;
         
@@ -167,7 +115,7 @@ function registroUsuario(){
 
 		}
 
-		if(validarEmailRepetido){
+		if(validateRepeatedEmail){
 
 			$("#regEmail").parent().before('<div class="alert alert-danger"><strong>ERROR:</strong> El correo electrónico ya existe en la base de datos, por favor ingrese otro diferente</div>')
 

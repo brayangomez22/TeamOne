@@ -94,7 +94,6 @@
     <!-- Unpkg js Library js Library -->
     <script src="https://unpkg.com/web-animations-js@2.3.2/web-animations.min.js"></script>
 	<script src="https://unpkg.com/muuri@0.8.0/dist/muuri.min.js"></script>
-	<script src="main.js"></script>
 
     <!--==============================================
      SCRIPT OF FONT AWESOME  
@@ -139,7 +138,7 @@ if(isset($_GET["route"])){
 
 ?>
 
-<input type="hidden" value="<?php echo $url; ?>" id="rutaOculta">
+<input type="hidden" value="<?php echo $url; ?>" id="hiddenRoute">
 
 <!--==============================================
  CUSTOM JAVASCRIPT  

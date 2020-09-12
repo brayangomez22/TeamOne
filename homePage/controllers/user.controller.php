@@ -1,79 +1,41 @@
 <?php
 
-class ControladorUsuario{
+class ControllerUser{
 
     /*=============================================
 	REGISTRO DE USUARIO
     =============================================*/
     
-    public function ctrRegistroUsuario(){
+    public function ctrRegistryUser(){
 
-        if(isset($_POST["regUsuario"])){
+        if(isset($_POST["regUser"])){
 
-			if(preg_match('/^[a-zA-ZñÑáéíóúÁÉÍÓÚ ]+$/', $_POST["regUsuario"]) &&
+			if(preg_match('/^[a-zA-ZñÑáéíóúÁÉÍÓÚ ]+$/', $_POST["regUser"]) &&
 			   preg_match('/^[^0-9][a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[@][a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[.][a-zA-Z]{2,4}$/', $_POST["regEmail"]) &&
 			   preg_match('/^[a-zA-Z0-9]+$/', $_POST["regPassword"])){
-				   
-				$respuesta = ControladorCodigo::ctrMostrarCodigo();
 
-				$codigo = $respuesta["codigo"];
+				$encrypt = crypt($_POST["regPassword"], '$2a$07$asxx54ahjppf45sd87a5a4dDDGsystemdev$');
 
-				if($codigo != $_POST["codigo"] && $_POST["labor"] == "profesor"){
-
-					echo '<script> 
-
-						swal({
-							title: "¡ERROR!",
-							text: "¡Error codigo de seguridad invalido!",
-							type:"error",
-							confirmButtonText: "Cerrar",
-							closeOnConfirm: false
-							},
-
-							function(isConfirm){
-
-								if(isConfirm){
-									history.back();
-								}
-
-						});
-
-					</script>';
-
-				}else{
-
-					$encriptar = crypt($_POST["regPassword"], '$2a$07$asxx54ahjppf45sd87a5a4dDDGsystemdev$');
-
-					$encriptarEmail = md5($_POST["regEmail"]);
-
-					if($_POST["labor"] == "profesor"){
-						$grupo = "null";
-					}else{
-						$grupo = $_POST["grupo"];
-					}
-
-					/*------- LABOR --------*/
-					if($_POST["labor"] == "profesor"){
-						$labor = "null";
-					}else{
-						$labor = $_POST["labor"];
-					}
+				$encryptEmail = md5($_POST["regEmail"]);
 	
-					$datos = array("nombre"=>$_POST["regUsuario"],
-											"labor"=>$labor,
-											"grupo"=>$grupo,
-											"password"=> $encriptar,
-											"email"=> $_POST["regEmail"],
-											"foto"=>"",
-											"modo"=> "directo",
-											"verificacion"=> 1,
-											"emailEncriptado"=>$encriptarEmail);
+				$data = array("id_institucion"=>0,
+								"nombre"=>$_POST["regUser"],
+								"labor"=>"",
+								"grupo"=>"",
+								"password"=> $encrypt,
+								"email"=> $_POST["regEmail"],
+								"foto"=>"",
+								"modo"=> "directo",
+								"verificacion"=> 1,
+								"emailEncriptado"=>$encryptEmail,
+								"session_actual"=>0,
+								"en_linea"=>0);
+
+				$table = "usuarios";
+
+				$reply = ModeloUsuarios::mdlRegistroUsuario($table, $data);
 	
-					$tabla = "usuarios";
-	
-					$respuesta = ModeloUsuarios::mdlRegistroUsuario($tabla, $datos);
-	
-					if($respuesta == "ok"){
+					if($reply == "ok"){
 	
 						/*=============================================
 						VERIFICACIÓN CORREO ELECTRÓNICO
@@ -117,7 +79,7 @@ class ControladorUsuario{
 	
 								<h4 style="font-weight:100; color:#999; padding:0 20px">Para comenzar a usar su cuenta de TeamOne, debe confirmar su dirección de correo electrónico</h4>
 	
-								<a href="'.$url.'verify/'.$encriptarEmail.'" target="_blank" style="text-decoration:none">
+								<a href="'.$url.'verify/'.$encryptEmail.'" target="_blank" style="text-decoration:none">
 	
 								<div style="line-height:60px; background:#0aa; width:60%; color:white">Verifique su dirección de correo electrónico</div>
 	
@@ -183,7 +145,7 @@ class ControladorUsuario{
 	
 					}
 
-				}
+				
                 
             }else{
 
@@ -220,11 +182,11 @@ class ControladorUsuario{
 
 	static public function ctrMostrarUsuario($item, $valor){
 
-		$tabla = "usuarios";
+		$table = "usuarios";
 
-		$respuesta = ModeloUsuarios::mdlMostrarUsuario($tabla, $item, $valor);
+		$reply = ModeloUsuarios::mdlMostrarUsuario($table, $item, $valor);
 
-		return $respuesta;
+		return $reply;
 
 	}
 
@@ -234,11 +196,11 @@ class ControladorUsuario{
 
 	static public function ctrActualizarUsuario($id, $item, $valor){
 
-		$tabla = "usuarios";
+		$table = "usuarios";
 
-		$respuesta = ModeloUsuarios::mdlActualizarUsuario($tabla, $id, $item, $valor);
+		$reply = ModeloUsuarios::mdlActualizarUsuario($table, $id, $item, $valor);
 
-		return $respuesta;
+		return $reply;
 
 	}
 
@@ -253,23 +215,23 @@ class ControladorUsuario{
 			if(preg_match('/^[^0-9][a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[@][a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[.][a-zA-Z]{2,4}$/', $_POST["ingEmail"]) &&
 			   preg_match('/^[a-zA-Z0-9]+$/', $_POST["ingPassword"])){
 
-				$encriptar = crypt($_POST["ingPassword"], '$2a$07$asxx54ahjppf45sd87a5a4dDDGsystemdev$');
+				$encrypt = crypt($_POST["ingPassword"], '$2a$07$asxx54ahjppf45sd87a5a4dDDGsystemdev$');
 
-				$tabla = "usuarios";
+				$table = "usuarios";
 				$item = "email";
 				$valor = $_POST["ingEmail"];
 
-				$respuesta = ModeloUsuarios::mdlMostrarUsuario($tabla, $item, $valor);
+				$reply = ModeloUsuarios::mdlMostrarUsuario($table, $item, $valor);
 
-				if($respuesta["email"] == $_POST["ingEmail"] && $respuesta["password"] == $encriptar){
+				if($reply["email"] == $_POST["ingEmail"] && $reply["password"] == $encrypt){
 
-					if($respuesta["verificacion"] == 1){
+					if($reply["verificacion"] == 1){
 
 						echo'<script>
 
 							swal({
 								  title: "¡NO HA VERIFICADO SU CORREO ELECTRÓNICO!",
-								  text: "¡Por favor revise la bandeja de entrada o la carpeta de SPAM de su correo para verififcar la dirección de correo electrónico '.$respuesta["email"].'!",
+								  text: "¡Por favor revise la bandeja de entrada o la carpeta de SPAM de su correo para verififcar la dirección de correo electrónico '.$reply["email"].'!",
 								  type: "error",
 								  confirmButtonText: "Cerrar",
 								  closeOnConfirm: false
@@ -286,14 +248,14 @@ class ControladorUsuario{
 					}else{
 
 						$_SESSION["validarSesion"] = "ok";
-						$_SESSION["id"] = $respuesta["id"];
-						$_SESSION["nombre"] = $respuesta["nombre"];
-						$_SESSION["labor"] = $respuesta["labor"];
-						$_SESSION["grupo"] = $respuesta["grupo"];
-						$_SESSION["foto"] = $respuesta["foto"];
-						$_SESSION["email"] = $respuesta["email"];
-						$_SESSION["password"] = $respuesta["password"];
-						$_SESSION["modo"] = $respuesta["modo"];
+						$_SESSION["id"] = $reply["id"];
+						$_SESSION["nombre"] = $reply["nombre"];
+						$_SESSION["labor"] = $reply["labor"];
+						$_SESSION["grupo"] = $reply["grupo"];
+						$_SESSION["foto"] = $reply["foto"];
+						$_SESSION["email"] = $reply["email"];
+						$_SESSION["password"] = $reply["password"];
+						$_SESSION["modo"] = $reply["modo"];
 
 						echo '<script>
 							
@@ -385,24 +347,24 @@ class ControladorUsuario{
 
 				$nuevaPassword = generarPassword(11);
 
-				$encriptar = crypt($nuevaPassword, '$2a$07$asxx54ahjppf45sd87a5a4dDDGsystemdev$');
+				$encrypt = crypt($nuevaPassword, '$2a$07$asxx54ahjppf45sd87a5a4dDDGsystemdev$');
 
-				$tabla = "usuarios";
+				$table = "usuarios";
 				
 				$item1 = "email";
 				$valor1 = $_POST["passEmail"];
 
-				$respuesta1 = ModeloUsuarios::mdlMostrarUsuario($tabla, $item1, $valor1);
+				$reply1 = ModeloUsuarios::mdlMostrarUsuario($table, $item1, $valor1);
 
-				if($respuesta1){
+				if($reply1){
 
-					$id = $respuesta1["id"];
+					$id = $reply1["id"];
 					$item2 = "password";
-					$valor2 = $encriptar;
+					$valor2 = $encrypt;
 
-					$respuesta2 = ModeloUsuarios::mdlActualizarUsuario($tabla, $id, $item2, $valor2);
+					$reply2 = ModeloUsuarios::mdlActualizarUsuario($table, $id, $item2, $valor2);
 
-					if($respuesta2  == "ok"){
+					if($reply2  == "ok"){
 
 						/*=============================================
 						CAMBIO DE CONTRASEÑA
@@ -567,24 +529,24 @@ class ControladorUsuario{
 	REGISTRO CON REDES SOCIALES
 	=============================================*/
 
-	static public function ctrRegistroRedesSociales($datos){
+	static public function ctrRegistroRedesSociales($data){
 
-		$tabla = "usuarios";
+		$table = "usuarios";
 		$item = "email";
-		$valor = $datos["email"];
+		$valor = $data["email"];
 		$emailRepetido = false;
 
-		$respuesta0 = ModeloUsuarios::mdlMostrarUsuario($tabla, $item, $valor);
+		$reply0 = ModeloUsuarios::mdlMostrarUsuario($table, $item, $valor);
 
-		if($respuesta0){
+		if($reply0){
 
-			if($respuesta0["modo"] != $datos["modo"]){
+			if($reply0["modo"] != $data["modo"]){
 
 				echo '<script> 
 
 						swal({
 							  title: "¡ERROR!",
-							  text: "¡El correo electrónico '.$datos["email"].', ya está registrado en el sistema con un método diferente a Google!",
+							  text: "¡El correo electrónico '.$data["email"].', ya está registrado en el sistema con un método diferente a Google!",
 							  type:"error",
 							  confirmButtonText: "Cerrar",
 							  closeOnConfirm: false
@@ -607,41 +569,41 @@ class ControladorUsuario{
 
 		}else{
 
-			$respuesta1 = ModeloUsuarios::mdlRegistroUsuario($tabla, $datos);
+			$reply1 = ModeloUsuarios::mdlRegistroUsuario($table, $data);
 
 		}
 
-		if($emailRepetido || $respuesta1 == "ok"){
+		if($emailRepetido || $reply1 == "ok"){
 
-			$respuesta2 = ModeloUsuarios::mdlMostrarUsuario($tabla, $item, $valor);
+			$reply2 = ModeloUsuarios::mdlMostrarUsuario($table, $item, $valor);
 
-			if($respuesta2["modo"] == "facebook"){
+			if($reply2["modo"] == "facebook"){
 
 				session_start();
 
 				$_SESSION["validarSesion"] = "ok";
-				$_SESSION["id"] = $respuesta2["id"];
-				$_SESSION["nombre"] = $respuesta2["nombre"];
-				$_SESSION["labor"] = $respuesta2["labor"];
-				$_SESSION["grupo"] = $respuesta2["grupo"];
-				$_SESSION["foto"] = $respuesta2["foto"];
-				$_SESSION["email"] = $respuesta2["email"];
-				$_SESSION["password"] = $respuesta2["password"];
-				$_SESSION["modo"] = $respuesta2["modo"];
+				$_SESSION["id"] = $reply2["id"];
+				$_SESSION["nombre"] = $reply2["nombre"];
+				$_SESSION["labor"] = $reply2["labor"];
+				$_SESSION["grupo"] = $reply2["grupo"];
+				$_SESSION["foto"] = $reply2["foto"];
+				$_SESSION["email"] = $reply2["email"];
+				$_SESSION["password"] = $reply2["password"];
+				$_SESSION["modo"] = $reply2["modo"];
 
 				echo "ok";
 
-			}else if($respuesta2["modo"] == "google"){
+			}else if($reply2["modo"] == "google"){
 
 				$_SESSION["validarSesion"] = "ok";
-				$_SESSION["id"] = $respuesta2["id"];
-				$_SESSION["nombre"] = $respuesta2["nombre"];
-				$_SESSION["labor"] = $respuesta2["labor"];
-				$_SESSION["grupo"] = $respuesta2["grupo"];
-				$_SESSION["foto"] = $respuesta2["foto"];
-				$_SESSION["email"] = $respuesta2["email"];
-				$_SESSION["password"] = $respuesta2["password"];
-				$_SESSION["modo"] = $respuesta2["modo"];
+				$_SESSION["id"] = $reply2["id"];
+				$_SESSION["nombre"] = $reply2["nombre"];
+				$_SESSION["labor"] = $reply2["labor"];
+				$_SESSION["grupo"] = $reply2["grupo"];
+				$_SESSION["foto"] = $reply2["foto"];
+				$_SESSION["email"] = $reply2["email"];
+				$_SESSION["password"] = $reply2["password"];
+				$_SESSION["modo"] = $reply2["modo"];
 
 				echo "<span style='color:white'>ok</span>";
 
@@ -665,9 +627,9 @@ class ControladorUsuario{
 
 		if(isset($_POST["laborRedes"])){
 
-			$respuesta = ControladorCodigo::ctrMostrarCodigo();
+			$reply = ControladorCodigo::ctrMostrarCodigo();
 
-			$codigo = $respuesta["codigo"];
+			$codigo = $reply["codigo"];
 
 			if($codigo != $_POST["codigoRedes"] && $_POST["laborRedes"] == "profesor"){
 
@@ -693,7 +655,7 @@ class ControladorUsuario{
 
 			}else{
 
-				$tabla = "usuarios";
+				$table = "usuarios";
 				$item2 = "labor";
 				$valor2 = $_POST["laborRedes"];
 				$item3 = "grupo";
@@ -704,9 +666,9 @@ class ControladorUsuario{
 					$valor3 = $_POST["grupoRedes"];	
 				}
 
-				$respuesta = ModeloUsuarios::mdlActualizarLabor($tabla, $item1, $valor1, $item2, $valor2,  $item3, $valor3);
+				$reply = ModeloUsuarios::mdlActualizarLabor($table, $item1, $valor1, $item2, $valor2,  $item3, $valor3);
 
-				if($respuesta == "ok"){
+				if($reply == "ok"){
 
 					echo '<script> 
 

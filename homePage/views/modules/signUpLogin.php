@@ -15,7 +15,7 @@
             SIGN IN  
             ================================================-->
 
-            <form action="#" class="sign-in-form">
+            <form class="sign-in-form">
                 <h2 class="title-text">iniciar sesión</h2>
                 <div class="input-field">
                     <i class="fas fa-user"></i>
@@ -48,20 +48,34 @@
             SIGN UP  
             ================================================-->
 
-            <form action="#" class="sign-up-form">
+            <form class="sign-up-form" method="post" onsubmit="return registryUser()">
                 <h2 class="title-text">Regístrate</h2>
                 <div class="input-field">
                     <i class="fas fa-user"></i>
-                    <input type="text" placeholder="Nombre de usuario" />
+                    <input type="text" id="regUser" name="regUser" placeholder="Nombre de usuario" />
                 </div>
                 <div class="input-field">
                     <i class="fas fa-envelope"></i>
-                    <input type="email" placeholder="Email" />
+                    <input type="email" id="regEmail" name="regEmail" placeholder="Correo Electrónico"/>
                 </div>
                 <div class="input-field">
                     <i class="fas fa-lock"></i>
-                    <input type="password" placeholder="Contraseña" />
+                    <input type="password" id="regPassword" name="regPassword" placeholder="Contraseña" />
                 </div>
+                <div class="contenedor-condiciones">
+                    <div class="custom-control custom-checkbox mr-5" style="font-size: 12px;">
+                        <input type="checkbox" name="" id="regPoliticas" class="custom-control-input">
+
+                        <label for="regPoliticas" class="custom-control-label text-muted pl-4">Al registrarse, usted acepta nuestras condiciones de uso y políticas de privacidad</label>
+                    </div>    
+                    <a href="https://www.iubenda.com/privacy-policy/30256595" class="iubenda-white iubenda-embed" title="Privacy Policy ">Privacy Policy</a><script type="text/javascript">(function (w,d) {var loader = function () {var s = d.createElement("script"), tag = d.getElementsByTagName("script")[0]; s.src="https://cdn.iubenda.com/iubenda.js"; tag.parentNode.insertBefore(s,tag);}; if(w.addEventListener){w.addEventListener("load", loader, false);}else if(w.attachEvent){w.attachEvent("onload", loader);}else{w.onload = loader;}})(window, document);</script> 
+                </div>
+
+                <?php
+                    $registry = new ControllerUser(); 
+                    $registry -> ctrRegistryUser();
+                ?>
+
                 <input type="submit" class="btn" value="Regístrate" />
 
                 <p class="social-text">O regístrese con las plataformas sociales</p>

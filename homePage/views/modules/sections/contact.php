@@ -16,8 +16,8 @@
         <div class="contact-info">
             <h3 class="title">Mantengámonos en contacto</h3>
             <p class="text">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe
-                dolorum adipisci recusandae praesentium dicta!
+                Si tiene algún proyecto en mente, <br>
+                no olvides en contactarnos 😏.
             </p>
 
             <div class="info">
@@ -67,12 +67,12 @@
                     <input type="email" name="email" class="inputContact" placeholder="Correo"/>
                 </div>
                 <div class="input-container">
-                    <input type="tel" name="phone" class="inputContact" placeholder="Telefono"/>
+                    <input type="tel" name="phone" class="inputContact" placeholder="Teléfono"/>
                 </div>
                 <div class="input-container textarea">
                     <textarea name="message" class="inputContact" placeholder="Mensaje"></textarea>
                 </div>
-                <input type="submit" value="Send" class="btn" />
+                <input type="submit" value="Enviar" class="btn" />
             </form>
         </div>
     </div>
