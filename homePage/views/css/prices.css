@@ -1,0 +1,89 @@
+/*==============================================
+ PRICES
+/*=============================================*/
+
+.pricing-table{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  width: min(1500px, 100%);
+  margin: auto;
+}
+
+.pricing-card{
+  flex: 1;
+  width: 220px;
+  background-color: #fff;
+  box-shadow: inset 5px 5px 5px rgba(0, 0, 0, 0.2),
+              inset -5px -5px 15px rgba(255, 255, 255, 0.1),
+              5px 5px 15px rgba(0, 0, 0, 0.3),
+              -5px -5px 15px rgba(255, 255, 255, 0.1);
+  margin: 20px 10px;
+  text-align: center;
+  cursor: pointer;
+  overflow: hidden;
+  color: #2d2d2d;
+  transition: .3s linear;
+}
+
+.pricing-card-header{
+  background-color: rgba(72,56,149,0.8);
+  display: inline-block;
+  color: #fff;
+  padding: 12px 30px;
+  border-radius: 0 0 20px 20px;
+  font-size: 16px;
+  text-transform: uppercase;
+  font-weight: 600;
+  transition: .4s linear;
+}
+
+.pricing-card:hover .pricing-card-header{
+  box-shadow: 0 0 0 26em rgba(72,56,149,0.8);
+}
+
+.price{
+  font-size: 70px;
+  color: rgba(72,56,149,0.8);
+  margin: 40px 0;
+  transition: .2s linear;
+}
+
+.price sup, .price span{
+  font-size: 22px;
+  font-weight: 700;
+}
+
+.pricing-card:hover ,.pricing-card:hover .price{
+  color: #fff;
+}
+
+.pricing-card li{
+  font-size: 16px;
+  padding: 10px 0;
+  text-transform: uppercase;
+}
+
+.order-btn{
+  display: inline-block;
+  margin-bottom: 40px;
+  margin-top: 40px;
+  border: 2px solid rgba(72,56,149,0.8);
+  color: rgba(72,56,149,0.8);
+  padding: 18px 40px;
+  border-radius: 8px;
+  text-transform: uppercase;
+  font-weight: 500;
+  transition: .3s linear;
+}
+
+.order-btn:hover{
+  background-color: rgba(72,56,149,0.8);
+  color: #fff;
+}
+
+@media screen and (max-width:1100px){
+  .pricing-card{
+    flex: 50%;
+  }
+}

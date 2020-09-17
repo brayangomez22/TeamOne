@@ -81,3 +81,64 @@ p::selection,a::selection,h1::selection,h2::selection,h3::selection,h4::selectio
 .astronaut{
   margin-top: -70px;
 }
+
+/*==============================================
+ VERIFY
+/*=============================================*/
+
+.containerVerify{
+  background: linear-gradient(45deg, #9500ff, #5acaff);
+  height: 100vh;
+}
+
+#containerBoxVerify{
+  position: absolute;
+  top: 10%;
+  left: 10%;
+  right: 10%;
+  bottom: 10%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: url(../images/p404.png) ,#151729;
+  box-shadow: 0 15px 30px rgba(0, 0, 0, .5);
+}
+
+#containerBoxVerify .content{
+  max-width: 600px;
+  text-align: center;
+}
+
+#containerBoxVerify .content h3{
+  font-size: 15vw;
+  color: #fff;
+  line-height: 1em;
+}
+
+#containerBoxVerify .content h4{
+  position: relative;
+  font-size: 2.1em;
+  margin-bottom: 20px;
+  color: #111; 
+  background: #fff;
+  font-weight: 300;
+  padding: 10px 20px;
+  display: inline-block;
+}
+
+#containerBoxVerify .content p{
+  color: #fff;
+  font-size: 2.2em;
+}
+
+#containerBoxVerify .content a{
+  position: relative;
+  display: inline-block;
+  padding: 10px 25px;
+  background: #ff0562;
+  color: #fff;
+  text-decoration: none;
+  margin-top: 25px;
+  border-radius: 25px;
+  border-bottom: 4px solid #d00d56;
+}

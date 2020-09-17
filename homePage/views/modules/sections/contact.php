@@ -8,6 +8,9 @@
  CONTACT  
 ================================================-->
 
+<div class="title-heading" style="margin: 30px 0 -50px 0;">
+    <h1 class="title-text">Contacto</h1>
+</div>
 <div class="contact mt-5 wow zoomIn delay-1s" id="contact">
     <span class="big-circle"></span>
     <img src="<?php echo $url; ?>views/images/contact/shape.svg" class="square" alt=""/>

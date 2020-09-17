@@ -48,39 +48,3 @@
         </div>
     </div>
 </section>
-
-<!--==============================================
- ABOUT/   
-================================================-->
-
-<section class="section-2 container-fluid p-0">
-    <div class="cover">
-        <div class="overlay"></div>
-        <div class="content text-center">
-            <h1 class="title-text">Algunas características que nos hicieron únicos</h1>
-            <p style="font-size: 18px;">
-                Somos los mejores, si leiste bien "Somos los mejores"
-            </p>
-        </div>
-    </div>
-    <div class="container-fluid text-center wow zoomInUp delay-1s">
-        <div class="numbers d-flex flex-md-row flex-wrap justify-content-center">
-        <div class="rect">
-            <h1>2345</h1>
-            <p>Cliente feliz</p>
-        </div>
-        <div class="rect">
-            <h1>6784</h1>
-            <p>Tazas de café</p>
-        </div>
-        <div class="rect">
-            <h1>1056</h1>
-            <p>Entradas enviadas</p>
-        </div>
-        <div class="rect">
-            <h1>9152</h1>
-            <p>Proyectos totales</p>
-        </div>
-        </div>
-    </div>
-</section>

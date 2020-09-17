@@ -2,42 +2,6 @@ $(document).ready(function(){
 
     // WOW Instance
 	new WOW().init();
-	
-	//=============================================
-	// NUMBERS
-	//=============================================
-
-	let nCount = selector => {
-		$(selector).each(function () {
-			$(this)
-			.animate({
-				Counter: $(this).text()
-			}, {
-				// A string or number determining how long the animation will run.
-				duration: 4000,
-				// A string indicating which easing function to use for the transition.
-				easing: "swing",
-				/**
-				 * A function to be called for each animated property of each animated element. 
-				 * This function provides an opportunity to
-				 *  modify the Tween object to change the value of the property before it is set.
-				 */
-				step: function (value) {
-				$(this).text(Math.ceil(value));
-				}
-			});
-		});
-	};
-	  
-	let a = 0;
-	$(window).scroll(function () {
-		// The .offset() method allows us to retrieve the current position of an element  relative to the document
-		let oTop = $(".numbers").offset().top - window.innerHeight;
-		if (a == 0 && $(window).scrollTop() >= oTop) {
-			a++;
-			nCount(".rect > h1");
-		}
-	});
 
     //=============================================
     // OWL-CAROUSEL
@@ -98,6 +62,33 @@ $(document).ready(function(){
 	sign_in_btn.addEventListener("click", () => {
 		containerSignUpLogin.classList.remove("sign-up-mode");
 	});
+
+	//=============================================
+	// INSTITUTIONS 
+	//=============================================
+
+	$.ajax({
+		url:hiddenRoute+"views/js/institutions.json",
+		type: "GET",
+		cache: false,
+		contentType: false,
+		processData:false,
+		dataType:"json",
+		success: function(reply){
+
+			reply.forEach(institution);
+
+			function institution(item, index){
+
+				var nameInstitution = item.name;
+				var codInstitution = item.code;
+
+				$("#institution").append('<option value="'+codInstitution+'">'+nameInstitution+'</option>');
+			
+			}
+
+		}
+	})
 
 	//=============================================
 	// SHOW AND HIDE THE FORM PASSWORD

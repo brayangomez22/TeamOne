@@ -15,16 +15,18 @@
             SIGN IN  
             ================================================-->
 
-            <form class="sign-in-form">
+            <form method="post" class="sign-in-form">
                 <h2 class="title-text">iniciar sesión</h2>
                 <div class="input-field">
-                    <i class="fas fa-user"></i>
-                    <input type="text" placeholder="Nombre de usuario" />
+                    <i class="fas fa-envelope"></i>
+                    <input type="text" id="ingEmail" name="ingEmail" placeholder="Correo electrónico" />
                 </div>
                 <div class="input-field">
                     <i class="fas fa-lock"></i>
-                    <input type="password" placeholder="Contraseña" />
+                    <input type="password" id="ingPassword" name="ingPassword" placeholder="Contraseña" />
                 </div>
+                <a href="#modalPassword" data-toggle="modal" style="font-size: 14px;position:relative;">olvidaste tu contraseña?</a>
+                
                 <input type="submit" value="iniciar sesión" class="btn solid" />
 
                 <p class="social-text">O inicie sesión con plataformas sociales</p>
@@ -33,15 +35,14 @@
                         <i class="fab fa-facebook-f"></i>
                     </a>
                     <a href="#" class="social-icon">
-                        <i class="fab fa-twitter"></i>
-                    </a>
-                    <a href="#" class="social-icon">
                         <i class="fab fa-google"></i>
                     </a>
-                    <a href="#" class="social-icon">
-                        <i class="fab fa-linkedin-in"></i>
-                    </a>
                 </div>
+
+                <?php
+                    $login = new ControllerUser();
+                    $login -> ctrLoginUser();
+                ?>
             </form>
 
             <!--==============================================
@@ -62,6 +63,14 @@
                     <i class="fas fa-lock"></i>
                     <input type="password" id="regPassword" name="regPassword" placeholder="Contraseña" />
                 </div>
+                <div class="input-field">
+                    <i class="fas fa-lock"></i>
+                    <select name="institution" id="institution">
+                    </select>
+                </div>
+
+                <!--------------->
+
                 <div class="contenedor-condiciones">
                     <div class="custom-control custom-checkbox mr-5" style="font-size: 12px;">
                         <input type="checkbox" name="" id="regPoliticas" class="custom-control-input">
@@ -84,13 +93,7 @@
                         <i class="fab fa-facebook-f"></i>
                     </a>
                     <a href="#" class="social-icon">
-                        <i class="fab fa-twitter"></i>
-                    </a>
-                    <a href="#" class="social-icon">
                         <i class="fab fa-google"></i>
-                    </a>
-                    <a href="#" class="social-icon">
-                        <i class="fab fa-linkedin-in"></i>
                     </a>
                 </div>
             </form>
@@ -126,6 +129,38 @@
                 </button>
             </div>
             <img src="<?php $url; ?>views/images/signUpLogin/register.svg" class="image" alt="" />
+        </div>
+    </div>
+</div>
+
+<!--==============================================
+ MODAL WINDOW FOR PASSWORD FORGETTING  
+================================================-->
+
+<div class="modal fade" id="modalPassword" role="dialog">
+    <div class="modal-content modal-dialog">
+        <div class="modal-body modalTitulo">
+
+			<h2 class="text-center">NUEVA CONTRASEÑA</h2>
+			<button type="button" class="close" data-dismiss="modal">&times;</button>
+
+			<!------- FORGOT PASSWORD -------->
+
+			<form method="post">
+				<label class="text-center text-muted mt-2" style="font-size: 15px;">Escribe el correo electronico con el que estas registrado y alli te enviaremos tu nueva ontraseña:</label>
+
+                <div class="form-group">
+                    <div class="input-group">
+                        <input type="text" class="form-control input-lg" id="passEmail" name="passEmail" required>
+                    </div>
+                </div>
+
+				<input type="submit" class="btn btn-secondary btn-block" value="Enviar" style="font-size: 20px;">	
+
+				<br>
+				
+			</form>
+
         </div>
     </div>
 </div>

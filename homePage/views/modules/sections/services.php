@@ -11,7 +11,7 @@
 <section class="services container" id="services">
     <div class="row wow zoomIn delay-1s" style="margin-top: 40px;">
         <div class="col-12 col-lg-6">
-            <img src="<?php echo $url; ?>views/images/illustrative-img/11.svg" class="img-fluid">
+            <img src="<?php echo $url; ?>views/images/services/services.svg" class="img-fluid">
         </div>
         <div class="col-12 col-lg-6">
             <div class="content-description">

@@ -18,7 +18,8 @@ class ControllerUser{
 
 				$encryptEmail = md5($_POST["regEmail"]);
 	
-				$data = array("id_institucion"=>0,
+				$data = array("id_institucion"=>$_POST["institution"],
+								"acceso"=>0,
 								"nombre"=>$_POST["regUser"],
 								"labor"=>"",
 								"grupo"=>"",
@@ -33,7 +34,7 @@ class ControllerUser{
 
 				$table = "usuarios";
 
-				$reply = ModeloUsuarios::mdlRegistroUsuario($table, $data);
+				$reply = ModelUsers::mdlRegistryUser($table, $data);
 	
 					if($reply == "ok"){
 	
@@ -43,7 +44,7 @@ class ControllerUser{
 	
 						date_default_timezone_set("America/Bogota");
 	
-						$url = Ruta::ctrRuta();	
+						$url = Route::ctrRoute();	
 	
 						$mail = new PHPMailer;
 	
@@ -51,9 +52,9 @@ class ControllerUser{
 	
 						$mail->isMail();
 	
-						$mail->setFrom('TeamOne.com', 'La realidad deja mucho a tu imaginacion');
+						$mail->setFrom('TeamOne.com', 'La realidad deja mucho a tu imaginación');
 	
-						$mail->addReplyTo('TeamOne.com', 'La realidad deja mucho a tu imaginacion');
+						$mail->addReplyTo('TeamOne.com', 'La realidad deja mucho a tu imaginación');
 	
 						$mail->Subject = "Por favor verifique su dirección de correo electrónico";
 	
@@ -180,11 +181,11 @@ class ControllerUser{
 	 MOSTRAR USUARIOS 
 	/*=============================================*/
 
-	static public function ctrMostrarUsuario($item, $valor){
+	static public function ctrShowUsers($item, $valor){
 
 		$table = "usuarios";
 
-		$reply = ModeloUsuarios::mdlMostrarUsuario($table, $item, $valor);
+		$reply = ModelUsers::mdlShowUsers($table, $item, $valor);
 
 		return $reply;
 
@@ -194,11 +195,11 @@ class ControllerUser{
 	  ACTULIZAR USUARIO 
 	/*=============================================*/
 
-	static public function ctrActualizarUsuario($id, $item, $valor){
+	static public function ctrUpdateUser($id, $item, $valor){
 
 		$table = "usuarios";
 
-		$reply = ModeloUsuarios::mdlActualizarUsuario($table, $id, $item, $valor);
+		$reply = ModelUsers::mdlUpdateUser($table, $id, $item, $valor);
 
 		return $reply;
 
@@ -208,7 +209,7 @@ class ControllerUser{
 	 INGRESO DE USUARIOS 
 	/*=============================================*/
 
-	public function ctrIngresoUsuario(){
+	public function ctrLoginUser(){
 
 		if(isset($_POST["ingEmail"])){
 
@@ -221,7 +222,7 @@ class ControllerUser{
 				$item = "email";
 				$valor = $_POST["ingEmail"];
 
-				$reply = ModeloUsuarios::mdlMostrarUsuario($table, $item, $valor);
+				$reply = ModelUsers::mdlShowUsers($table, $item, $valor);
 
 				if($reply["email"] == $_POST["ingEmail"] && $reply["password"] == $encrypt){
 
@@ -249,6 +250,8 @@ class ControllerUser{
 
 						$_SESSION["validarSesion"] = "ok";
 						$_SESSION["id"] = $reply["id"];
+						$_SESSION["id_institucion"] = $reply["id_institucion"];
+						$_SESSION["acceso"] = $reply["acceso"];
 						$_SESSION["nombre"] = $reply["nombre"];
 						$_SESSION["labor"] = $reply["labor"];
 						$_SESSION["grupo"] = $reply["grupo"];
@@ -257,12 +260,13 @@ class ControllerUser{
 						$_SESSION["password"] = $reply["password"];
 						$_SESSION["modo"] = $reply["modo"];
 
+						$url = Route::ctrRoute();
+
 						echo '<script>
 							
-							window.location = localStorage.getItem("rutaActual");
+							window.location = localStorage.getItem("'.$url.'");
 
 						</script>';
-
 					}
 
 				}else{
@@ -354,7 +358,7 @@ class ControllerUser{
 				$item1 = "email";
 				$valor1 = $_POST["passEmail"];
 
-				$reply1 = ModeloUsuarios::mdlMostrarUsuario($table, $item1, $valor1);
+				$reply1 = ModelUsers::mdlMostrarUsuario($table, $item1, $valor1);
 
 				if($reply1){
 
@@ -362,7 +366,7 @@ class ControllerUser{
 					$item2 = "password";
 					$valor2 = $encrypt;
 
-					$reply2 = ModeloUsuarios::mdlActualizarUsuario($table, $id, $item2, $valor2);
+					$reply2 = ModelUsers::mdlActualizarUsuario($table, $id, $item2, $valor2);
 
 					if($reply2  == "ok"){
 
@@ -380,9 +384,9 @@ class ControllerUser{
 
 						$mail->isMail();
 
-						$mail->setFrom('TeamOne.com', 'La realidad deja mucho a tu imaginacion');
+						$mail->setFrom('TeamOne.com', 'La realidad deja mucho a tu imaginación');
 
-						$mail->addReplyTo('TeamOne.com', 'La realidad deja mucho a tu imaginacion');
+						$mail->addReplyTo('TeamOne.com', 'La realidad deja mucho a tu imaginación');
 
 						$mail->Subject = "Solicitud de nueva contraseña";
 
@@ -536,7 +540,7 @@ class ControllerUser{
 		$valor = $data["email"];
 		$emailRepetido = false;
 
-		$reply0 = ModeloUsuarios::mdlMostrarUsuario($table, $item, $valor);
+		$reply0 = ModelUsers::mdlMostrarUsuario($table, $item, $valor);
 
 		if($reply0){
 
@@ -569,13 +573,13 @@ class ControllerUser{
 
 		}else{
 
-			$reply1 = ModeloUsuarios::mdlRegistroUsuario($table, $data);
+			$reply1 = ModelUsers::mdlRegistroUsuario($table, $data);
 
 		}
 
 		if($emailRepetido || $reply1 == "ok"){
 
-			$reply2 = ModeloUsuarios::mdlMostrarUsuario($table, $item, $valor);
+			$reply2 = ModelUsers::mdlMostrarUsuario($table, $item, $valor);
 
 			if($reply2["modo"] == "facebook"){
 
@@ -613,84 +617,6 @@ class ControllerUser{
 
 				echo "";
 				
-			}
-
-		}
-
-	}
-
-	/*==============================================
-	 ACTUALIZAR CAMPO DE LABOR PARA EL MODO FACEBOOK Y GOOGLE 
-	/*=============================================*/
-
-	static public function ctrActualizarLabor($item1, $valor1){
-
-		if(isset($_POST["laborRedes"])){
-
-			$reply = ControladorCodigo::ctrMostrarCodigo();
-
-			$codigo = $reply["codigo"];
-
-			if($codigo != $_POST["codigoRedes"] && $_POST["laborRedes"] == "profesor"){
-
-				echo '<script> 
-
-					swal({
-						title: "¡ERROR!",
-						text: "¡Error codigo de seguridad invalido!",
-						type:"error",
-						confirmButtonText: "Cerrar",
-						closeOnConfirm: false
-						},
-
-						function(isConfirm){
-
-							if(isConfirm){
-								history.back();
-							}
-
-					});
-
-				</script>';
-
-			}else{
-
-				$table = "usuarios";
-				$item2 = "labor";
-				$valor2 = $_POST["laborRedes"];
-				$item3 = "grupo";
-
-				if($_POST["laborRedes"] == "profesor"){
-					$valor3 = "null";	
-				}else{
-					$valor3 = $_POST["grupoRedes"];	
-				}
-
-				$reply = ModeloUsuarios::mdlActualizarLabor($table, $item1, $valor1, $item2, $valor2,  $item3, $valor3);
-
-				if($reply == "ok"){
-
-					echo '<script> 
-
-						swal({
-								title: "¡OK!",
-								text: "¡Gracias, ahora puedes entrar tranquilamente a tu perfil!",
-								type:"success",
-								confirmButtonText: "Cerrar",
-								closeOnConfirm: false
-							},
-
-							function(isConfirm){
-
-								if(isConfirm){
-									history.back();
-								}
-						});
-
-					</script>';
-
-				}
-
 			}
 
 		}

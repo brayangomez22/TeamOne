@@ -107,13 +107,13 @@ if($cliente->getAccessToken()){
                     <a href="#" class="nav-link">Inicio</a>
                 </li>
                 <li class="nav-item">
-                    <a href="#about" class="nav-link">Acerca de</a>
-                </li>
-                <li class="nav-item">
-                    <a href="#portfolio" class="nav-link">Portafolio</a>
+                    <a href="#about" class="nav-link">Nosotros</a>
                 </li>
                 <li class="nav-item">
                     <a href="#services" class="nav-link">Servicios</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#lms" class="nav-link">Lms</a>
                 </li>
                 <li class="nav-item">
                     <a href="#contact" class="nav-link">Contacto</a>
@@ -133,7 +133,7 @@ if($cliente->getAccessToken()){
                         $item = "email";
                         $valor = $_SESSION["email"];
                     
-                        $respuesta = ModeloUsuarios::mdlMostrarUsuario($tabla, $item, $valor);	
+                        $respuesta = ModelUsers::mdlShowUsers($tabla, $item, $valor);	
 
                         if($_SESSION["validarSesion"] == "ok"){
 
@@ -143,19 +143,38 @@ if($cliente->getAccessToken()){
 
                             if($_SESSION["modo"] == "directo"){
 
-                                // if($_SESSION["foto"] != ""){
-                                //     echo '<li>
-                                //         <img class="img-circle" src="'.$urlServidor.$_SESSION["foto"].'" width="10%" loading="lazy">
-                                //     </li>';
-                                // }else{
-                                //     echo '<li>
-                                //         <img class="img-circle" src="'.$url.'views/images/default/anonymous.jpg" loading="lazy">
-                                //     </li>';
-                                // }
-                                
+                                if($_SESSION["acceso"] == 0){
+                                    echo '
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="waitingRoom">Panel</a>
+                                        </li>  
+                                    ';
+                                }else{
+                                    echo '
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="'.$urlServidor.'">Panel</a>
+                                        </li>  
+                                    ';
+                                }
+
                                 echo '
-                                <li class="nav-item"><a class="nav-link" href="'.$urlServidor.'">Panel</a></li>  
-                                <li class="nav-item"><a class="nav-link" href="'.$url.'salir">Salir</a></li>';
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="'.$url.'leave">Salir</a>
+                                    </li>
+                                ';
+
+                                if($_SESSION["foto"] != ""){
+                                    echo '
+                                        <li>
+                                            <img class="img-circle" src="'.$urlServidor.$_SESSION["foto"].'" width="10%" loading="lazy">
+                                        </li>
+                                    ';
+                                }else{
+                                    echo '
+                                    <li>
+                                        <img style="width:600px;border-radius:50%;" src="'.$url.'views/images/default/anonymous.jpg" loading="lazy">
+                                    </li>';
+                                }
 
                             }
 
@@ -165,23 +184,20 @@ if($cliente->getAccessToken()){
                             
                             if($_SESSION["modo"] == "facebook"){
 
-                                if($respuesta["labor"] == "null"){
-                                    echo '
+                                echo '
                                     <li>
                                         <img class="img-circle" src="'.$_SESSION["foto"].'" width="10%" loading="lazy">
                                     </li>
-                                    <li class="nav-item"><a class="nav-link" href="#perfil" data-toggle="modal">Panel</a></li>
-                                    <li class="nav-item"><a class="nav-link" href="'.$url.'salir" class="salir">Salir</a></li>'; 
-                                }else{
-                                    // echo '<li>
-                                    //     <img class="img-circle" src="'.$_SESSION["foto"].'" width="10%" loading="lazy">
-                                    // </li>';
-                                    
-                                    echo '
-                                    <li class="nav-item"><a class="nav-link" href="'.$urlServidor.'">Panel</a></li>
-                                    <li class="nav-item"><a class="nav-link" href="'.$url.'salir">Salir</a></li>';
+                                ';
 
-                                }
+                                echo '
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="'.$urlServidor.'">Panel</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="'.$url.'leave">Salir</a>
+                                    </li>
+                                ';
 
                             }
                             
@@ -191,23 +207,20 @@ if($cliente->getAccessToken()){
 
                             if($_SESSION["modo"] == "google"){
 
-                                if($respuesta["labor"] == "null"){
-                                    echo '<li>
+                                echo '
+                                    <li>
                                         <img class="img-circle" src="'.$_SESSION["foto"].'" width="10%" loading="lazy">
                                     </li>
-
-                                    <li class="nav-item"><a class="nav-link" href="#perfil" data-toggle="modal">Panel</a></li>
-                                    <li class="nav-item"><a class="nav-link" href="'.$url.'salir" class="salir">Salir</a></li>';  
-                                }else{
-                                    // echo '<li>
-                                    //     <img class="img-circle" src="'.$_SESSION["foto"].'" width="10%" loading="lazy">
-                                    // </li>';
+                                ';
                                     
-                                    echo '
-                                    <li class="nav-item"><a class="nav-link" href="'.$urlServidor.'">Panel</a></li>
-                                    <li class="nav-item"><a class="nav-link" href="'.$url.'salir">Salir</a></li>';
-
-                                }
+                                echo '
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="'.$urlServidor.'">Panel</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="'.$url.'leave">Salir</a>
+                                    </li>
+                                ';
 
                             }
 

@@ -62,7 +62,7 @@
     <link rel="stylesheet" href="<?php echo $url; ?>views/css/header.css">
     <link rel="stylesheet" href="<?php echo $url; ?>views/css/hero.css">
     <link rel="stylesheet" href="<?php echo $url; ?>views/css/about.css">
-    <link rel="stylesheet" href="<?php echo $url; ?>views/css/portfolio.css">
+    <link rel="stylesheet" href="<?php echo $url; ?>views/css/features.css">
     <link rel="stylesheet" href="<?php echo $url; ?>views/css/brand-area.css">
     <link rel="stylesheet" href="<?php echo $url; ?>views/css/services.css">
     <link rel="stylesheet" href="<?php echo $url; ?>views/css/testimonials.css">
@@ -70,10 +70,9 @@
     <link rel="stylesheet" href="<?php echo $url; ?>views/css/footer.css">
     <link rel="stylesheet" href="<?php echo $url; ?>views/css/signUpLogin.css">
     <link rel="stylesheet" href="<?php echo $url; ?>views/css/responsive.css">
-    <link rel="stylesheet" href="<?php echo $url; ?>views/css/template.css">
-    <link rel="stylesheet" href="<?php echo $url; ?>views/css/panelPreview.css">
+    <link rel="stylesheet" href="<?php echo $url; ?>views/css/prices.css">
     <link rel="stylesheet" href="<?php echo $url; ?>views/css/error404.css">
-    <link rel="stylesheet" href="<?php echo $url; ?>views/css/productQuote.css">
+    <link rel="stylesheet" href="<?php echo $url; ?>views/css/template.css">
 
     <!--==============================================
      PLUGINS OF JAVASCRIPT  
@@ -118,7 +117,7 @@ if(isset($_GET["route"])){
         include "modules/section.php";
         include "modules/footer.php";
 
-    }else if($routes[0] == "signUpLogin" || $routes[0] == "productQuote" || $routes[0] == "verify" || $routes[0] == "leave"){
+    }else if($routes[0] == "signUpLogin" || $routes[0] == "verify" || $routes[0] == "leave" || $routes[0] == "waitingRoom"){
 
         include "modules/".$routes[0].".php";
 

@@ -3,24 +3,24 @@
 ======================================-->
 <?php
 
-	$usuarioVerificado = false;
+	$userVerify = false;
 	
 	$item = "EmailEncriptado";
-	$valor =  $rutas[1];
+	$valor =  $routes[1];
 
-	$respuesta = ControladorUsuario::ctrMostrarUsuario($item, $valor);
+	$reply = ControllerUser::ctrShowUsers($item, $valor);
 
-	if($valor == $respuesta["emailEncriptado"]){
+	if($valor == $reply["emailEncriptado"]){
 
-		$id = $respuesta["id"];
+		$id = $reply["id"];
 		$item2 = "verificacion";
 		$valor2 = 0;
 	
-		$respuesta2 = ControladorUsuario::ctrActualizarUsuario($id, $item2, $valor2);
+		$replyTwo = ControllerUser::ctrUpdateUser($id, $item2, $valor2);
 	
-		if($respuesta2 == "ok"){
+		if($replyTwo == "ok"){
 	
-			$usuarioVerificado = true;
+			$userVerify = true;
 	
 		}
 
@@ -28,40 +28,52 @@
 
 ?>
 
-<div class="container d-flex justify-content-center mt-2">
-	
-	<div class="row">
-	 
-		<div class="col-xs-12 text-center verificar">
-			
+<div class="containerVerify">
+
+	<div id="containerBoxVerify">
+        <div class="content">
+        
 			<?php
 
-				if($usuarioVerificado){
+				$url = Route::ctrRoute();
 
-					echo '<h3>Gracias</h3>
-						<h2><small>¡Hemos verificado su correo electrónico, ya puede ingresar al sistema!</small></h2>
+				if($userVerify){
 
-						<br>
+					echo '
+						<h3>Gracias</h3>
+						<h4>Ahora eres uno de nosotros</h4>
+						<p>¡Hemos verificado su correo electrónico, ya puede ingresar al sistema!</p>
 
-						<a href="#modalIngreso" data-toggle="modal"><button class="btn btn-secondary btn-lg">INGRESAR</button></a>';
+						<a href="'.$url.'signUpLogin">INGRESAR</a>
+					';
 				
 				}else{
 
-					echo '<h3>Error</h3>    
+					echo '
+						<h3>Error</h3> 
+						<h4>Lo sentimos</h4>   
 
-					<h2><small>¡No se ha podido verificar el correo electrónico,  vuelva a registrarse!</small></h2>
+						<p>¡No se ha podido verificar el correo electrónico,  vuelva a registrarse!</p>
 
-					<br>
-
-					<a href="#modalRegistro" data-toggle="modal"><button class="btn btn-default backColor btn-lg">REGISTRO</button></a>';
-
+						<a href="'.$url.'signUpLogin">Registrarse</a>
+					';
 
 				}
 
 			?>
 
 		</div>
+    </div>
 
-	</div>
+	<script type="text/javascript">
+        var containerBoxVerify = document.getElementById('containerBoxVerify');
+        window.onmousemove = function(e){
+            var x = e.clientX/5,
+                y = e.clientY/5;
+
+            containerBoxVerify.style.backgroundPositionX = x + 'px';
+            containerBoxVerify.style.backgroundPositionY = y + 'px';
+        }
+    </script>
 
 </div>
