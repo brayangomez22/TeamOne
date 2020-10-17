@@ -13,6 +13,7 @@ class AjaxChatGroup{
     public $comment;
     public $group;
     public $id;
+    public $idInstitucion;
 
     public function ajaxCrearComentario(){
 
@@ -22,7 +23,8 @@ class AjaxChatGroup{
                        "photo"=>$this->photo,
                        "comment"=>$this->comment,
                        "group"=>$this->group,
-                       "id"=>$this->id);
+                       "id"=>$this->id,
+                       "idInstitucion"=>$this->idInstitucion);
 
         $respuesta = ModeloChatGroup::mdlCrearComentario($tabla, $datos);
 
@@ -44,6 +46,7 @@ if(isset($_POST["name"])){
     $createComment -> comment = $_POST["comment"];
     $createComment -> group = $_POST["group"];
     $createComment -> id = $_POST["id"];
+    $createComment -> idInstitucion = $_POST["idInstitucion"];
     $createComment -> ajaxCrearComentario();
 
 }

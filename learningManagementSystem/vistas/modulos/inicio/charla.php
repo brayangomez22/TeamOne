@@ -1,5 +1,7 @@
 <?php
 
+    $urlLMS = Ruta::ctrRutaLMS();
+
     require "vistas/modulos/funciones.php";
 
     $item = "id";
@@ -8,10 +10,21 @@
     $usuario = ControladorUsuarios::ctrMostrarUsuarios($item, $valor);
 
     echo '
-    <input type="hidden" name="nameUserChatGroup" id="nameUserChatGroup" value="'.$usuario["nombre"].'">
-    <input type="hidden" name="photoUserChatGroup" id="photoUserChatGroup" value="'.$usuario["foto"].'">
-    <input type="hidden" name="groupChatGroup" id="groupChatGroup" value="'.$usuario["grupo"].'">
-    <input type="hidden" name="idUserChatGroup" id="idUserChatGroup" value="'.$usuario["id"].'">';
+    <input type="hidden" name="nameUserChatGroup" id="nameUserChatGroup" value="'.$usuario["nombre"].'">';
+
+    if($usuario["foto"] != ""){
+        echo '
+            <input type="hidden" name="photoUserChatGroup" id="photoUserChatGroup" value="'.$usuario["foto"].'">
+        ';
+    }else{
+        echo '
+            <input type="hidden" name="photoUserChatGroup" id="photoUserChatGroup" value="assets/img/default/anonymous.jpg">
+        ';
+    }
+
+    echo '<input type="hidden" name="groupChatGroup" id="groupChatGroup" value="'.$usuario["grupo"].'">
+    <input type="hidden" name="idUserChatGroup" id="idUserChatGroup" value="'.$usuario["id"].'">
+    <input type="hidden" name="idInstitucion" id="idInstitucion" value="'.$usuario["id_institucion"].'">';
 
 ?>
 
@@ -33,10 +46,13 @@
     <div class="box-body chat direct-chat-warning" id="chat-box">
 
         <?php
-        
+
             $item = "grupo";
             $valor = $_SESSION["grupo"];
-            $chat = ControladorChatGroup::ctrMostrarChatGroup($item, $valor);
+
+            $item2 = "id_institucion";
+            $valor2 = $_SESSION["id_institucion"];
+            $chat = ControladorChatGroup::ctrMostrarChatGroup($item, $valor, $item2, $valor2);
 
             foreach($chat as $key => $value){
 
@@ -55,9 +71,15 @@
                                 echo '<span class="direct-chat-name pull-left">'.$value["nombre"].'</span>
                                 <span class="direct-chat-timestamp pull-right">';echo fecha($value["fecha"]);'</span>';
                             }
-                        echo '</div>
-                        <img class="direct-chat-img" src="'.$value["foto"].'" alt="message user image">
-                        <div class="direct-chat-text">'.$value["informacion"].'</div>
+                        echo '</div>';
+
+                        if($value["foto"] != ""){
+                            echo '<img class="direct-chat-img" src="'.$urlLMS.$value["foto"].'" alt="message user image">';
+                        }else{
+                            echo '<img class="direct-chat-img" src="'.$urlLMS.'assets/img/default/anonymous.jpg" alt="message user image">';
+                        }
+                       
+                        echo '<div class="direct-chat-text">'.$value["informacion"].'</div>
                     </div>';
         
             }

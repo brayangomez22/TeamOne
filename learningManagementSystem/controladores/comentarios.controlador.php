@@ -18,16 +18,17 @@ class ControladorComentarios{
 			if($respuesta["foto"] != ""){
 				$foto = $respuesta["foto"];
 			}else{
-				$foto = "http://localhost/TeamOne/backend/vistas/img/default/anonymous.png";
+				$foto = "assets/img/default/anonymous.jpg";
 			}
 		
 			$tabla2 = "comentarios";
 		
-			$datos = array("id_usuario"=>$respuesta["id"],
-									"nombre"=>$respuesta["nombre"],
-									"me_gustas"=>0,
-									"comentarios"=>$_POST["mensaje"],
-									"foto"=>$foto);
+			$datos = array("id_institucion"=>$respuesta["id_institucion"],
+							"id_usuario"=>$respuesta["id"],
+							"nombre"=>$respuesta["nombre"],
+							"me_gustas"=>0,
+							"comentarios"=>$_POST["mensaje"],
+							"foto"=>$foto);
 		
 			$respuesta2 = ModeloComentarios::mdlPeticionComentarios($tabla2, $datos);		
 
@@ -57,11 +58,11 @@ class ControladorComentarios{
 	 MOSTRAR COMENTARIOS 
 	/*=============================================*/
 
-	public function ctrMostrarComentarios(){
+	public function ctrMostrarComentarios($item2, $valor2){
 
 		$tabla = "comentarios";
 
-		$respuesta = ModeloComentarios::mdlMostrarComentarios($tabla);
+		$respuesta = ModeloComentarios::mdlMostrarComentarios($tabla, $item2, $valor2);
 
 		return $respuesta;
 
@@ -82,17 +83,7 @@ class ControladorComentarios{
 			$item = "email";
 			$valor = $_SESSION["email"];
 		
-			$respuesta = ControladorUsuarios::ctrMostrarUsuarios($item, $valor);	
-
-			if($respuesta["foto"] != ""){
-
-				$foto = $respuesta["foto"];
-
-			}else{
-
-				$foto = "http://localhost/TeamOne/frontend/vistas/img/default/anonymous.png";
-
-			}
+			$respuesta = ControladorUsuarios::ctrMostrarUsuarios($item, $valor);
 
 			/*==============================================
 			 TRAER ID_COMENTARIOS  
@@ -122,10 +113,9 @@ class ControladorComentarios{
 			/*=============================================*/
 			
 			$datos = array("id_usuario"=>$respuesta["id"],
-									"id_comentario"=>$respuesta2["id"],
-									"nombre"=>$respuesta["nombre"],
-									"comentario"=>$_POST["respuesta_comentario"],
-									"foto"=>$foto);
+							"id_comentario"=>$respuesta2["id"],
+							"nombre"=>$respuesta["nombre"],
+							"comentario"=>$_POST["respuesta_comentario"]);
 
 			$tabla3 = "respuestas_comentarios";
 		

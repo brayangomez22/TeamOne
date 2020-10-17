@@ -8,7 +8,7 @@
     <div class="container wow zoomIn delay-1s">
         <div class="contentFooter">
             <div class="site-logo text-center py-4">
-                <a href="#"><img src="<?php echo $url; ?>views/images/logo.png" class="logo-footer" alt="logo"></a>
+                <a href="#"><img src="<?php echo $url; ?>assets/images/logo.png" class="logo-footer" alt="logo"></a>
             </div>
             <div class="social text-center">
                 <h5 class="text-uppercase">Síguenos en nuestras redes sociales</h5>
@@ -29,10 +29,3 @@
         <span><i class="fas fa-arrow-circle-up fa-4x"></i></span>
     </div>
 </footer>
-
-<!--==============================================
- CURSOR  
-================================================-->
-
-<div class="cursor"></div>
-<div class="cursor2"></div>

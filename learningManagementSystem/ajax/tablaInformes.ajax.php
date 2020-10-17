@@ -17,13 +17,19 @@ class TablaInformes{
 
             $item = "email";
             $valor = $_POST["email"];
-            $informes = ControladorInformes::ctrMostrarInformes($item, $valor);
+
+            $item2 = "id_institucion";
+            $valor2 = $_POST["id_institucion"];
+            $informes = ControladorInformes::ctrMostrarInformes($item, $valor, $item2, $valor2);
 
         }else{
 
             $item = "grupo";
             $valor = $_POST["grupo"];
-            $informes = ControladorInformes::ctrMostrarInformes($item, $valor);
+
+            $item2 = "id_institucion";
+            $valor2 = $_POST["id_institucion"];
+            $informes = ControladorInformes::ctrMostrarInformes($item, $valor, $item2, $valor2);
 
         }
 
@@ -61,18 +67,18 @@ class TablaInformes{
 
 
                         if($_POST["labor"] == "profesor"){
-                            $acciones = "<div class='btn-group'><button class='btn btn-warning btnEditarInformes' idInformes='".$informes[$i]["id"]."' data-toggle='modal' data-target='#modalEditarInformes'><i class='fas fa-pencil-alt'></i></button><button class='btn btn-danger btnEliminarInformes' idInformes='".$informes[$i]["id"]."'><i class='fa fa-times'></i></button>";
+                            $acciones = "<div class='btn-group'><button class='btn btn-warning btnEditarInformes' idInformes='".$informes[$i]["id"]."' id_institucion='".$informes[$i]["id_institucion"]."' data-toggle='modal' data-target='#modalEditarInformes'><i class='fas fa-pencil-alt'></i></button><button class='btn btn-danger btnEliminarInformes' idInformes='".$informes[$i]["id"]."'><i class='fa fa-times'></i></button>";
 
                             if($informes[$i]["archivo"] != ""){
-                                $acciones .= "<a href='vistas/tareas/".$informes[$i]["archivo"]."' class='btn btn-primary btnDescargarInforme' download='".$informes[$i]["archivo"]."' idInforme='".$informes[$i]["id"]."'><i class='fas fa-download'></i></a>";
+                                $acciones .= "<a href='assets/tareas/".$informes[$i]["archivo"]."' class='btn btn-primary btnDescargarInforme' download='".$informes[$i]["archivo"]."' idInforme='".$informes[$i]["id"]."'><i class='fas fa-download'></i></a>";
                             }
                             $acciones .= "</div>";
 
                         }else{
-                            $acciones = "<div class='btn-group'><button class='btn btn-warning btnVerInformes' idInformes='".$informes[$i]["id"]."' data-toggle='modal' data-target='#modalVerInforme'><i class='fas fa-eye'></i></button>";
+                            $acciones = "<div class='btn-group'><button class='btn btn-warning btnVerInformes' idInformes='".$informes[$i]["id"]."' id_institucion='".$informes[$i]["id_institucion"]."' data-toggle='modal' data-target='#modalVerInforme'><i class='fas fa-eye'></i></button>";
 
                             if($informes[$i]["archivo"] != ""){
-                                $acciones .= "<a href='vistas/tareas/".$informes[$i]["archivo"]."' class='btn btn-primary btnDescargarInforme' download='".$informes[$i]["archivo"]."' idInforme='".$informes[$i]["id"]."'><i class='fas fa-download'></i></a>";
+                                $acciones .= "<a href='assets/tareas/".$informes[$i]["archivo"]."' class='btn btn-primary btnDescargarInforme' download='".$informes[$i]["archivo"]."' idInforme='".$informes[$i]["id"]."'><i class='fas fa-download'></i></a>";
                             }
                             $acciones .= "</div>";
 

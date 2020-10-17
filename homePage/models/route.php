@@ -23,22 +23,22 @@ class Route{
     }
 
     /*==============================================
-     ROUT OF BLOG 
-    /*=============================================*/
-
-    public function ctrRouteBlog(){
-
-        return "http://localhost/TeamOne/blog/";
-
-    }
-
-    /*==============================================
      ROUTE OF PRESENTATION 
     /*=============================================*/
 
     public function ctrRoutePresentation(){
 
         return "http://localhost/TeamOne/presentation_project/";
+
+    }
+
+    /*==============================================
+     ROUTE OF CONTROL PANEL
+    /*=============================================*/
+
+    public function ctrRouteControlPanel(){
+
+        return "http://localhost/TeamOne/controlPanel/";
 
     }
 

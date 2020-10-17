@@ -58,6 +58,7 @@
 	<script src="<?php echo $url; ?>assets/js/script.js" type="text/javascript"></script>
 	<script src="<?php echo $url; ?>assets/js/tableUsers.js" type="text/javascript"></script>
 	<script src="<?php echo $url; ?>assets/js/tableInstitutions.js" type="text/javascript"></script>
+	<script src="<?php echo $url; ?>assets/js/tableRequests.js" type="text/javascript"></script>
 	<script src="<?php echo $url; ?>assets/js/tableInbox.js" type="text/javascript"></script>
 	<script src="<?php echo $url; ?>assets/js/tableUploadTasks.js" type="text/javascript"></script>
 	<script src="<?php echo $url; ?>assets/js/tableChatGroup.js" type="text/javascript"></script>

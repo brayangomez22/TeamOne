@@ -8,7 +8,7 @@ class Ruta{
 
     }
 
-    public function ctrRutaServidor(){
+    public function ctrRutaLMS(){
 
         return "http://localhost/TeamOne/learningManagementSystem/";
 

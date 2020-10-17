@@ -7,6 +7,7 @@
         Enviados
         </h1>
         <input type="hidden" id="emailUser" value="<?php echo $_SESSION["email"]?>">
+        <input type="hidden" id="id_institucion" value="<?php echo $_SESSION["id_institucion"]?>">
         <ol class="breadcrumb">
         <li><a href="#"><i class="fas fa-home"></i> Inicio</a></li>
         <li class="active">Enviados</li>
@@ -18,49 +19,49 @@
         <div class="row">
             <div class="col-md-12">
                 <a href="componer" class="btn btn-primary margin-bottom">Componer</a>
-
-                <div class="box box-solid">
-                <div class="box-header with-border">
-                    <h3 class="box-title">Carpetas</h3>
-
-                    <div class="box-tools">
-                    <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
-                    </button>
-                    </div>
-                </div>
-                <div class="box-body no-padding">
-                    <ul class="nav nav-pills nav-stacked">
-                        <li class="active"><a href="#"><i class="fa fa-inbox"></i> Buzón
-                            <span class="label label-primary pull-right">12</span></a></li>
-                        <li><a href="#"><i class="fa fa-envelope"></i> Expedido</a></li>
-                    </ul>
-                </div>
-                <!-- /.box-body -->
-                </div>
-            
             </div>
             <!-- /.col -->
             <div class="col-md-12">
                 <div class="box">
                     <div class="box-body">
-                        <table class="table table-bordered table-striped tablaEnviados dt-responsive" width="100%">
+                      <?php
 
-                        <thead>
-                            <tr>
+                        $item = "de";
+                        $valor = $_SESSION["email"];
 
-                            <th>#</th>
-                            <th>Para</th>
-                            <th>Email</th>
-                            <th>Labor</th>
-                            <th>Informacion</th>
-                            <th>Archivo</th>
-                            <th>Fecha de Envio</th>
-                            <th>Acciones</th>
+                        $item2 = "id_institucion";
+                        $valor2 = $_SESSION["id_institucion"];
 
-                            </tr>
-                        </thead>
+                        $cantidadEmails = ControladorEmails::ctrMostrarEmails($item, $valor, $item2, $valor2);
 
-                    </table>
+                        $totalEmails = count($cantidadEmails);
+
+                        if($totalEmails >= 1){
+                          echo '
+                          <table class="table table-bordered table-striped tablaEnviados dt-responsive" width="100%">
+
+                            <thead>
+                                <tr>
+
+                                <th>#</th>
+                                <th>Para</th>
+                                <th>Labor</th>
+                                <th>Informacion</th>
+                                <th>Archivo</th>
+                                <th>Fecha de Envio</th>
+                                <th>Acciones</th>
+
+                                </tr>
+                            </thead>
+
+                          </table>
+                          ';
+                        }else{
+                          echo '<span>No tienes emails enviados</span>';
+                        }
+
+                      ?>
+                        
                     </div>
 
                 </div>
@@ -134,13 +135,12 @@
                 </select>
             </div>
 
-
             <hr>
             <div class="form-group">
               <div  class="adjunto" style="display: none;">
                 <div class="btn btn-default btn-file">
                     <i class="fa fa-paperclip"></i> Adjunto archivo
-                    <input type="file" id="editarArchivoEmail[]" name="editarArchivoEmail[]" multiple="">
+                    <input type="file" id="editarArchivoEmail" name="editarArchivoEmail">
                 </div>
                 <p class="help-block">Por favor que el nombre de su archivo no tenga espaciados entre cada palabra.</p>
                 <p class="help-block">Maximo. 32MB</p>
@@ -169,7 +169,7 @@
 
 <?php
 
-    $delete = new ControladorEmails();
-    $delete -> ctrEliminarEmail();
+  $delete = new ControladorEmails();
+  $delete -> ctrEliminarEmail();
 
 ?>

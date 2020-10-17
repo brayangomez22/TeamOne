@@ -6,11 +6,11 @@ class ControladorInformes{
      MOSTRAR LOS INFORMES 
     /*=============================================*/
 
-    static public function ctrMostrarInformes($item, $valor){
+    static public function ctrMostrarInformes($item, $valor, $item2, $valor2){
 
         $tabla = "subir_tareas";
 
-        $respuesta = ModeloInformes::mdlMostrarInformes($tabla, $item, $valor);
+        $respuesta = ModeloInformes::mdlMostrarInformes($tabla, $item, $valor, $item2, $valor2);
 
         return $respuesta;
 
@@ -28,13 +28,15 @@ class ControladorInformes{
      
                 $archivo_temporal = $_FILES["archivo"]["tmp_name"];
                 $nombre_archivo = $_FILES["archivo"]["name"];
-                $subir_carpeta = move_uploaded_file($archivo_temporal, 'vistas/tareas/' .$nombre_archivo);
+                $subir_carpeta = move_uploaded_file($archivo_temporal, 'assets/tareas/' .$nombre_archivo);
      
             }else{
                 $nombre_archivo = "";
             }
 
-            $datos = array("nombreMaestro"=>$_SESSION["nombre"],
+            $datos = array("id_institucion"=>$_SESSION["id_institucion"],
+                            "id_usuario"=>$_SESSION["id"],
+                            "nombreMaestro"=>$_SESSION["nombre"],
                             "email"=>$_SESSION["email"],
                             "tituloTarea"=>$_POST["tituloTarea"],
                             "materia"=>$_POST["materia"],
@@ -171,6 +173,20 @@ class ControladorInformes{
             }
 
         }
+
+    }
+
+    /*==============================================
+      MOSTRAR EL TOTAL DE INFORMES 
+    /*=============================================*/
+
+    static public function ctrMostrarTotalInformes($item, $valor, $item2, $valor2){
+
+        $tabla = "subir_tareas";
+
+        $respuesta = ModeloInformes::mdlMostrarTotalInformes($tabla, $item, $valor, $item2, $valor2);
+
+        return $respuesta;
 
     }
 

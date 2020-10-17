@@ -12,10 +12,10 @@
             <div class="course-text">
                 <h1>Detalles de <br>normalización.</h1>
                 <span class="square"></span>
-                <p>Los detalles de esta normalización en la 1FN y 2FN fueron en las tablas de las tareas, el inbox, usuarios e instituciones con el atributo de usuario y en la 3FN se aplico mas que todo a tabla de instituciones haciendo referencia a la tabla de usuarios y ya el resto de las tablas como la de los comentarios, respuestas_comentarios, likes y chat_group, se normalizaron de tal manera que se evitara la repetición de datos haciendo referencia cada una a un usuario en general.</p>
+                <p>Los detalles de esta normalización están en las primeras tres formas normales, en todas las tablas de nuestra base de datos, esto con el fin de hacer de nuestro proyecto algo más eficaz y óptimo.</p>
             </div>
         </div>
-        <div class="course-right-col">
+        <div class="course-right-col hacker">
             <img src="<?php echo $url; ?>assets/images/normalizacion.png" alt="" style="box-shadow: -1px -1px 10px 10px #333;">
         </div>
     </div>

@@ -18,47 +18,47 @@
                 <div class="first-row row">
                     <div class="col-lg-4 col-md-6 col-sm-6">
                         <div class="single-brand">
-                            <img src="<?php echo $url; ?>views/images/brands/logo1.png" alt="Brand-1 ">
+                            <img src="<?php echo $url; ?>assets/images/brands/logo1.png" alt="Brand-1 ">
                         </div>
                     </div>
                     <div class="col-lg-4 col-md-6 col-sm-6">
                         <div class="single-brand">
-                            <img src="<?php echo $url; ?>views/images/brands/logo2.png" alt="Brand-2 ">
+                            <img src="<?php echo $url; ?>assets/images/brands/logo2.png" alt="Brand-2 ">
                         </div>
                     </div>
                     <div class="col-lg-4 col-md-6 col-sm-6">
                         <div class="single-brand">
-                            <img src="<?php echo $url; ?>views/images/brands/logo3.png" alt="Brand-3 ">
+                            <img src="<?php echo $url; ?>assets/images/brands/logo3.png" alt="Brand-3 ">
                         </div>
                     </div>
                     <div class="col-lg-4 col-md-6 col-sm-6">
                         <div class="single-brand">
-                            <img src="<?php echo $url; ?>views/images/brands/logo4.png" alt="Brand-4">
+                            <img src="<?php echo $url; ?>assets/images/brands/logo4.png" alt="Brand-4">
                         </div>
                     </div>
                     <div class="col-lg-4 col-md-6 col-sm-6">
                         <div class="single-brand">
-                            <img src="<?php echo $url; ?>views/images/brands/logo5.png" alt="Brand-5 ">
+                            <img src="<?php echo $url; ?>assets/images/brands/logo5.png" alt="Brand-5 ">
                         </div>
                     </div>
                     <div class="col-lg-4 col-md-6 col-sm-6">
                         <div class="single-brand">
-                            <img src="<?php echo $url; ?>views/images/brands/logo6.png" alt="Brand-6">
+                            <img src="<?php echo $url; ?>assets/images/brands/logo6.png" alt="Brand-6">
                         </div>
                     </div>
                     <div class="col-lg-4 col-md-6 col-sm-6">
                         <div class="single-brand">
-                            <img src="<?php echo $url; ?>views/images/brands/logo7.png" alt="Brand-7 ">
+                            <img src="<?php echo $url; ?>assets/images/brands/logo7.png" alt="Brand-7 ">
                         </div>
                     </div>
                     <div class="col-lg-4 col-md-6 col-sm-6">
                         <div class="single-brand">
-                            <img src="<?php echo $url; ?>views/images/brands/logo8.png" alt="Brand-8 ">
+                            <img src="<?php echo $url; ?>assets/images/brands/logo8.png" alt="Brand-8 ">
                         </div>
                     </div>
                     <div class="col-lg-4 col-md-6 col-sm-6">
                         <div class="single-brand">
-                            <img src="<?php echo $url; ?>views/images/brands/logo9.png" alt="Brand-9">
+                            <img src="<?php echo $url; ?>assets/images/brands/logo9.png" alt="Brand-9">
                         </div>
                     </div>
                 </div>

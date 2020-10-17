@@ -5,6 +5,7 @@
     <input type="hidden" id="grupo" value="<?php echo $_SESSION["grupo"] ?>">
     <input type="hidden" id="labor" value="<?php echo $_SESSION["labor"] ?>">
     <input type="hidden" id="email" value="<?php echo $_SESSION["email"] ?>">
+    <input type="hidden" id="id_institucion" value="<?php echo $_SESSION["id_institucion"]?>">
     <ol class="breadcrumb">
       <li><a href="inicio"><i class="fas fa-home"></i> Inicio</a></li>
       <li class="active">Gestor Informes</li>
@@ -25,25 +26,61 @@
       ?>
 
       <div class="box-body">
-        <table class="table table-bordered table-striped tablaInformes dt-responsive" width="100%">
+        <?php
 
-          <thead>
-            <tr>
+          if($_SESSION["labor"] == "profesor"){
 
-              <th>#</th>
-              <th>NombreMaestro</th>
-              <th>TituloTarea</th>
-              <th>Materia</th>
-              <th>Descripcion</th>
-              <th>Grupo</th>
-              <th>Archivo</th>
-              <th>FechaDeEntrega</th>
-              <th>Acciones</th>
+            $item = "email";
+            $valor = $_SESSION["email"];
 
-            </tr>
-          </thead>
+            $item2 = "id_institucion";
+            $valor2 = $_SESSION["id_institucion"];
+            $informes = ControladorInformes::ctrMostrarInformes($item, $valor, $item2, $valor2);
 
-        </table>
+          }else{
+
+            $item = "grupo";
+            $valor = $_SESSION["grupo"];
+
+            $item2 = "id_institucion";
+            $valor2 = $_SESSION["id_institucion"];
+            $informes = ControladorInformes::ctrMostrarInformes($item, $valor, $item2, $valor2);
+
+          }
+
+          $totalInformes = count($informes);
+
+          if($totalInformes >= 1){
+            echo '
+            <table class="table table-bordered table-striped tablaInformes dt-responsive" width="100%">
+
+              <thead>
+                <tr>
+    
+                  <th>#</th>';
+                  if($_SESSION["labor"] == "estudiante"){
+                    echo '<th>NombreMaestro</th>';
+                  }else{
+                    echo '<th>MiNombre</th>';
+                  }
+                  echo '<th>TituloTarea</th>
+                  <th>Materia</th>
+                  <th>Descripcion</th>
+                  <th>Grupo</th>
+                  <th>Archivo</th>
+                  <th>FechaDeEntrega</th>
+                  <th>Acciones</th>
+    
+                </tr>
+              </thead>
+    
+            </table>
+            ';
+          }else{
+            echo '<p>No tienes informes</p>';
+          }
+        ?>
+        
       </div>
 
     </div>

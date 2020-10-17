@@ -8,13 +8,14 @@ class ModeloEmails{
      MOSTRAR LOS EMAILS 
     /*=============================================*/
 
-    static public function mdlMostrarEmails($tabla, $item, $valor){
+    static public function mdlMostrarEmails($tabla, $item, $valor, $item2, $valor2){
         
-        if($item != null){
+        if(($item != null) || ($item2 != null)){
 
-            $stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item ORDER BY id DESC");
+            $stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item AND $item2 = :$item2 ORDER BY id DESC");
 
             $stmt->bindParam(":".$item, $valor, PDO::PARAM_STR);
+            $stmt->bindParam(":".$item2, $valor2, PDO::PARAM_INT);
 
             $stmt->execute();
 
@@ -41,8 +42,10 @@ class ModeloEmails{
 
     static public function mdlCrearEmail($tabla, $datos){
 
-        $stmt = Conexion::conectar()->prepare("INSERT INTO $tabla(nombre, labor, para, de, asunto, informacion, archivo, visto) VALUES(:nombre, :labor, :para, :de, :asunto, :informacion, :archivo, :visto)");
+        $stmt = Conexion::conectar()->prepare("INSERT INTO $tabla(id_institucion, id_usuario, nombre, labor, para, de, asunto, informacion, archivo, visto) VALUES(:id_institucion, :id_usuario, :nombre, :labor, :para, :de, :asunto, :informacion, :archivo, :visto)");
 
+        $stmt->bindParam(":id_institucion", $datos["id_institucion"], PDO::PARAM_INT);
+        $stmt->bindParam(":id_usuario", $datos["id_usuario"], PDO::PARAM_INT);
         $stmt->bindParam(":nombre", $datos["nombre"], PDO::PARAM_STR);
         $stmt->bindParam(":labor", $datos["labor"], PDO::PARAM_STR);
         $stmt->bindParam(":para", $datos["para"], PDO::PARAM_STR);
@@ -141,6 +144,25 @@ class ModeloEmails{
 		$stmt-> close();
         $stmt = null;
         
+    }
+
+    /*==============================================
+     MOSTRAR EL TOTAL DE EMAILS 
+    /*=============================================*/
+
+    static public function mdlMostrarTotalEmails($tabla, $item, $valor, $item2, $valor2){
+
+        $stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item AND $item2 = :$item2");
+
+        $stmt->bindParam(":".$item, $valor, PDO::PARAM_INT);
+        $stmt->bindParam(":".$item2, $valor2, PDO::PARAM_STR);
+        $stmt->execute();
+
+        return $stmt->fetchAll();
+
+        $stmt->close();
+        $stmt=null;
+
     }
 
 }

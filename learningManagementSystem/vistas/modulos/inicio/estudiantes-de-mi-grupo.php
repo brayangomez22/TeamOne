@@ -1,8 +1,11 @@
 <?php
-	$item = null;
-	$valor = null;
+	$item = "grupo";
+	$valor = $_SESSION["grupo"];
 
-	$usuarios = ControladorUsuarios::ctrMostrarTotalUsuarios($item, $valor, "fecha");
+	$item2 = "id_institucion";
+	$valor2 = $_SESSION["id_institucion"];
+
+	$usuarios = ControladorUsuarios::ctrMostrarTotalUsuarios($item, $valor, $item2, $valor2, "fecha");
 
 ?>
 
@@ -36,7 +39,8 @@
 
 			<?php
 
-				$urlServidor = Ruta::ctrRutaServidor();
+				$urlHomePage = Ruta::ctrRuta();
+				$urlLMS = Ruta::ctrRutaLMS();
 				
 				if(count($usuarios) > 8){
 					$totalUsuarios = 8;
@@ -45,27 +49,21 @@
 				}
 			
 				for($i = 0; $i < $totalUsuarios; $i++){
-					
-					if($usuarios[$i]["foto"] != ""){
-						if($usuarios[$i]["modo"] != "directo"){
+
+					if($usuarios[$i]["id"] != $_SESSION["id"]){
+						if($usuarios[$i]["foto"] != ""){
 							echo '<li>
-								<img src="'.$usuarios[$i]["foto"].'" alt="User Image" style="width:100%;">
+								<img src="'.$urlLMS.$usuarios[$i]["foto"].'" alt="User Image" style="width:100%;">
 								<a class="users-list-name" href="">'.$usuarios[$i]["nombre"].'</a>
 								<span class="users-list-date">'.$usuarios[$i]["fecha"].'</span>
 							</li>';
 						}else{
 							echo '<li>
-								<img src="'.$urlServidor.$usuarios[$i]["foto"].'" alt="User Image" style="width:100%;">
+								<img src="'.$urlLMS.'assets/img/default/anonymous.jpg" alt="User Image" style="width:100%;">
 								<a class="users-list-name" href="">'.$usuarios[$i]["nombre"].'</a>
 								<span class="users-list-date">'.$usuarios[$i]["fecha"].'</span>
 							</li>';
 						}
-					}else{
-						echo '<li>
-							<img src="'.$urlServidor.'vistas/img/default/anonymous.png" alt="User Image" style="width:100%;">
-							<a class="users-list-name" href="">'.$usuarios[$i]["nombre"].'</a>
-							<span class="users-list-date">'.$usuarios[$i]["fecha"].'</span>
-						</li>';
 					}
 
 				}

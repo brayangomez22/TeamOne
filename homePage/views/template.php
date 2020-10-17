@@ -14,13 +14,13 @@
 
         $url = Route::ctrRoute();
 
-        echo '<link rel="icon" href="'.$url.'views/images/logo.png">';
+        echo '<link rel="icon" href="'.$url.'assets/images/logo.png">';
 
         if(isset($_GET["route"])){
 
             $routes = explode("/", $_GET["route"]); 
 
-            if($routes[0] == "productQuote" || $routes[0] == "verify" || $routes[0] == "home" || $routes[0] == "signUpLogin"){
+            if($routes[0] == "productQuote" || $routes[0] == "verify" || $routes[0] == "home" || $routes[0] == "signUpLogin" || $routes[0] == "waitingRoom"){
 
                 echo '<title>'.$routes[0].'</title>';
 
@@ -44,51 +44,54 @@
      PLUGINS OF CSS  
     ================================================-->
 
-    <link rel="stylesheet" href="<?php echo $url; ?>views/css/plugins/bootstrap.min.css">
-    <link rel="stylesheet" href="<?php echo $url; ?>views/css/plugins/sweetalert.css">
-    <link rel="stylesheet" href="<?php echo $url; ?>views/css/plugins/hint.css">
+    <link rel="stylesheet" href="<?php echo $url; ?>assets/css/plugins/bootstrap.min.css">
+    <link rel="stylesheet" href="<?php echo $url; ?>assets/css/plugins/sweetalert.css">
+    <link rel="stylesheet" href="<?php echo $url; ?>assets/css/plugins/hint.css">
     
     <!-- --- ANIMATE Library ----- -->
-    <link rel="stylesheet" href="<?php echo $url; ?>views/css/plugins/animate/animate.css">
+    <link rel="stylesheet" href="<?php echo $url; ?>assets/css/plugins/animate/animate.css">
 
     <!--  Owl-carousel css file  -->
-    <link rel="stylesheet" href="<?php echo $url; ?>views/css/plugins/owl-carousel/css/owl.carousel.min.css">
-    <link rel="stylesheet" href="<?php echo $url; ?>views/css/plugins/owl-carousel/css/owl.theme.default.min.css">
+    <link rel="stylesheet" href="<?php echo $url; ?>assets/css/plugins/owl-carousel/css/owl.carousel.min.css">
+    <link rel="stylesheet" href="<?php echo $url; ?>assets/css/plugins/owl-carousel/css/owl.theme.default.min.css">
 
     <!--==============================================
      CUSTOM CSS
     ================================================-->
 
-    <link rel="stylesheet" href="<?php echo $url; ?>views/css/header.css">
-    <link rel="stylesheet" href="<?php echo $url; ?>views/css/hero.css">
-    <link rel="stylesheet" href="<?php echo $url; ?>views/css/about.css">
-    <link rel="stylesheet" href="<?php echo $url; ?>views/css/features.css">
-    <link rel="stylesheet" href="<?php echo $url; ?>views/css/brand-area.css">
-    <link rel="stylesheet" href="<?php echo $url; ?>views/css/services.css">
-    <link rel="stylesheet" href="<?php echo $url; ?>views/css/testimonials.css">
-    <link rel="stylesheet" href="<?php echo $url; ?>views/css/contact.css">
-    <link rel="stylesheet" href="<?php echo $url; ?>views/css/footer.css">
-    <link rel="stylesheet" href="<?php echo $url; ?>views/css/signUpLogin.css">
-    <link rel="stylesheet" href="<?php echo $url; ?>views/css/responsive.css">
-    <link rel="stylesheet" href="<?php echo $url; ?>views/css/prices.css">
-    <link rel="stylesheet" href="<?php echo $url; ?>views/css/error404.css">
-    <link rel="stylesheet" href="<?php echo $url; ?>views/css/template.css">
+    <link rel="stylesheet" href="<?php echo $url; ?>assets/css/header.css">
+    <link rel="stylesheet" href="<?php echo $url; ?>assets/css/hero.css">
+    <link rel="stylesheet" href="<?php echo $url; ?>assets/css/about.css">
+    <link rel="stylesheet" href="<?php echo $url; ?>assets/css/features.css">
+    <link rel="stylesheet" href="<?php echo $url; ?>assets/css/brand-area.css">
+    <link rel="stylesheet" href="<?php echo $url; ?>assets/css/services.css">
+    <link rel="stylesheet" href="<?php echo $url; ?>assets/css/testimonials.css">
+    <link rel="stylesheet" href="<?php echo $url; ?>assets/css/contact.css">
+    <link rel="stylesheet" href="<?php echo $url; ?>assets/css/footer.css">
+    <link rel="stylesheet" href="<?php echo $url; ?>assets/css/signUpLogin.css">
+    <link rel="stylesheet" href="<?php echo $url; ?>assets/css/responsive.css">
+    <link rel="stylesheet" href="<?php echo $url; ?>assets/css/prices.css">
+    <link rel="stylesheet" href="<?php echo $url; ?>assets/css/error404.css">
+    <link rel="stylesheet" href="<?php echo $url; ?>assets/css/faqs.css">
+    <link rel="stylesheet" href="<?php echo $url; ?>assets/css/template.css">
 
     <!--==============================================
      PLUGINS OF JAVASCRIPT  
     ================================================-->
 
-    <script src="<?php echo $url; ?>views/js/plugins/jquery-3.2.1.min.js"></script>
-    <script src="<?php echo $url; ?>views/js/plugins/popper/dist/popper.min.js"></script>
-    <script src="<?php echo $url; ?>views/js/plugins/bootstrap.min.js"></script>
-    <script src="<?php echo $url; ?>views/js/plugins/sweetalert.min.js"></script>
-    <script src="<?php echo $url; ?>views/js/plugins/drift.js"></script>
+    <script src="<?php echo $url; ?>assets/js/plugins/jquery-3.2.1.min.js"></script>
+    <script src="<?php echo $url; ?>assets/js/plugins/popper/dist/popper.min.js"></script>
+    <script src="<?php echo $url; ?>assets/js/plugins/bootstrap.min.js"></script>
+    <script src="<?php echo $url; ?>assets/js/plugins/sweetalert.min.js"></script>
+    <script src="<?php echo $url; ?>assets/js/plugins/drift.js"></script>
 
     <!-- WOW js Library -->
-    <script src="<?php echo $url; ?>views/js/plugins/wow/wow.min.js"></script>
+    <script src="<?php echo $url; ?>assets/js/plugins/wow/wow.min.js"></script>
     
     <!--  Owl-carousel js file  -->
-    <script src="<?php echo $url; ?>views/js/plugins/owl-carousel/js/owl.carousel.min.js"></script>
+    <script src="<?php echo $url; ?>assets/js/plugins/owl-carousel/js/owl.carousel.min.js"></script>
+
+    <script src="<?php echo $url; ?>assets/js/plugins/knob.jquery.js"></script>
 
     <!-- Unpkg js Library js Library -->
     <script src="https://unpkg.com/web-animations-js@2.3.2/web-animations.min.js"></script>
@@ -99,6 +102,35 @@
     ================================================-->
 
     <script src="https://kit.fontawesome.com/f3ce059db3.js" crossorigin="anonymous"></script>
+
+    <!-- Start of Async Drift Code -->
+    <script>
+        "use strict";
+
+        !function() {
+        var t = window.driftt = window.drift = window.driftt || [];
+        if (!t.init) {
+            if (t.invoked) return void (window.console && console.error && console.error("Drift snippet included twice."));
+            t.invoked = !0, t.methods = [ "identify", "config", "track", "reset", "debug", "show", "ping", "page", "hide", "off", "on" ], 
+            t.factory = function(e) {
+            return function() {
+                var n = Array.prototype.slice.call(arguments);
+                return n.unshift(e), t.push(n), t;
+            };
+            }, t.methods.forEach(function(e) {
+            t[e] = t.factory(e);
+            }), t.load = function(t) {
+            var e = 3e5, n = Math.ceil(new Date() / e) * e, o = document.createElement("script");
+            o.type = "text/javascript", o.async = !0, o.crossorigin = "anonymous", o.src = "https://js.driftt.com/include/" + n + "/" + t + ".js";
+            var i = document.getElementsByTagName("script")[0];
+            i.parentNode.insertBefore(o, i);
+            };
+        }
+        }();
+        drift.SNIPPET_VERSION = '0.3.1';
+        drift.load('3884r98regwi');
+    </script>
+    <!-- End of Async Drift Code -->
 
 </head>
 <body>
@@ -143,39 +175,13 @@ if(isset($_GET["route"])){
  CUSTOM JAVASCRIPT  
 ================================================-->
 
-<script src="<?php echo $url; ?>views/js/template.js"></script>
-<script src="<?php echo $url; ?>views/js/navigation.js"></script>
-<script src="<?php echo $url; ?>views/js/portfolio.js"></script>
-<script src="<?php echo $url; ?>views/js/contact.js"></script>
-<script src="<?php echo $url; ?>views/js/validations.js"></script>
-<script src="<?php echo $url; ?>views/js/registryUsers.js"></script>
-<script src="<?php echo $url; ?>views/js/registryFacebook.js"></script>
-
-<!--==============================================
- API OF FACEBOOK
-================================================-->
-
-<script>
-  window.fbAsyncInit = function() {
-    FB.init({
-      appId      : '252078975819695',
-      cookie     : true,
-      xfbml      : true,
-      version    : 'v6.0'
-    });
-      
-    FB.AppEvents.logPageView();   
-      
-  };
-
-  (function(d, s, id){
-     var js, fjs = d.getElementsByTagName(s)[0];
-     if (d.getElementById(id)) {return;}
-     js = d.createElement(s); js.id = id;
-     js.src = "https://connect.facebook.net/en_US/sdk.js";
-     fjs.parentNode.insertBefore(js, fjs);
-   }(document, 'script', 'facebook-jssdk'));
-</script>
+<script src="<?php echo $url; ?>assets/js/template.js"></script>
+<script src="<?php echo $url; ?>assets/js/navigation.js"></script>
+<script src="<?php echo $url; ?>assets/js/portfolio.js"></script>
+<script src="<?php echo $url; ?>assets/js/contact.js"></script>
+<script src="<?php echo $url; ?>assets/js/validations.js"></script>
+<script src="<?php echo $url; ?>assets/js/registryUsers.js"></script>
+<script src="<?php echo $url; ?>assets/js/visits.js"></script>
 
 </body>
 </html>

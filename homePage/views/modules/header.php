@@ -1,89 +1,11 @@
+<!--==============================================
+ HEADER 
+================================================-->
+
 <?php
-
-$url = Route::ctrRoute();
-$urlServidor = Route::ctrRouteLearningManagementSystem();
-$urlBlog = Route::ctrRouteBlog();
-$urlPresentation = Route::ctrRoutePresentation();
-
-/*=============================================*/
-/* USER LOGIN */
-/*=============================================*/
-
-if(isset($_SESSION["validarSesion"])){
-
-	if($_SESSION["validarSesion"] == "ok"){
-
-		echo '<script>
-		
-			localStorage.setItem("usuario","'.$_SESSION["id"].'");
-
-		</script>';
-
-	}
-
-}
-
-/*=============================================*/
-/*API OF GOOGLE*/
-/*=============================================*/
-
-/*------- CREATE THE GOOGLE API OBJECT  --------*/
-
-$cliente = new Google_Client();
-$cliente->setAuthConfig('models/api.json');
-$cliente->setAccessType("offline");
-$cliente->setScopes(['profile','email']);
-
-/*------- ROUTE TO GOOGLE LOGIN --------*/
-
-$rutaGoogle = $cliente -> createAuthUrl();
-
-/*=============================================
- WE RECEIVED THE GOOGLE GET VARIABLE CALLED CODE
-=============================================*/
-
-if(isset($_GET["code"])){
-
-	$token = $cliente->authenticate($_GET["code"]);
-
-	$_SESSION['id_token_google'] = $token;
-
-	$cliente->setAccessToken($token);
-
-}
-
-/*=============================================
- WE RECEIVED GOOGLE'S ENCRYPTED DATA IN AN ARRAY
-=============================================*/
-
-if($cliente->getAccessToken()){
-
-    $item = $cliente->verifyIdToken();
-
-    $datos = array("nombre"=>$item["name"],
-    "labor"=>"null",
-    "grupo"=>"null",
-    "email"=>$item["email"],
-    "foto"=>$item["picture"],
-    "password"=>"null",
-    "modo"=>"google",
-    "verificacion"=>0,
-    "emailEncriptado"=>"null");
-
-	$respuesta = ControladorUsuario::ctrRegistroRedesSociales($datos);
-
-	echo '<script>
-		
-	setTimeout(function(){
-
-		window.location = localStorage.getItem("rutaActual");
-
-	},100);
-
- 	</script>';
-	 
-}
-
+    $urlServidor = Route::ctrRouteLearningManagementSystem();
+    $urlPresentation = Route::ctrRoutePresentation();
+    $urlControlPanel = Route::ctrRouteControlPanel();
 ?>
 
 <header class="header_area">
@@ -91,7 +13,7 @@ if($cliente->getAccessToken()){
         <nav>
             <div class="nav-brand">
                 <a href="index.html">
-                    <img src="<?php echo $url; ?>views/images/logo.png" alt="">
+                    <img src="<?php echo $url; ?>assets/images/logo.png" alt="">
                 </a>
             </div>
 
@@ -113,13 +35,10 @@ if($cliente->getAccessToken()){
                     <a href="#services" class="nav-link">Servicios</a>
                 </li>
                 <li class="nav-item">
-                    <a href="#lms" class="nav-link">Lms</a>
+                    <a href="#lms" class="nav-link">Acerca del Lms</a>
                 </li>
                 <li class="nav-item">
                     <a href="#contact" class="nav-link">Contacto</a>
-                </li>
-                <li class="nav-item">
-                    <a href="<?php echo $urlBlog; ?>" target="_blank" class="nav-link">Blog</a>
                 </li>
                 <li class="nav-item">
                     <a href="<?php echo $urlPresentation; ?>" target="_blank" class="nav-link">Presentación</a>
@@ -137,91 +56,37 @@ if($cliente->getAccessToken()){
 
                         if($_SESSION["validarSesion"] == "ok"){
 
-                            /*====================================
-                             DIRECT MODE 
-                            /*===================================*/
-
-                            if($_SESSION["modo"] == "directo"){
-
-                                if($_SESSION["acceso"] == 0){
-                                    echo '
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="waitingRoom">Panel</a>
-                                        </li>  
-                                    ';
-                                }else{
-                                    echo '
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="'.$urlServidor.'">Panel</a>
-                                        </li>  
-                                    ';
-                                }
-
+                            if($_SESSION["acceso"] == 0){
                                 echo '
                                     <li class="nav-item">
-                                        <a class="nav-link" href="'.$url.'leave">Salir</a>
-                                    </li>
+                                        <a class="nav-link" href="waitingRoom">lms</a>
+                                    </li>  
                                 ';
-
-                                if($_SESSION["foto"] != ""){
-                                    echo '
-                                        <li>
-                                            <img class="img-circle" src="'.$urlServidor.$_SESSION["foto"].'" width="10%" loading="lazy">
-                                        </li>
-                                    ';
-                                }else{
-                                    echo '
-                                    <li>
-                                        <img style="width:600px;border-radius:50%;" src="'.$url.'views/images/default/anonymous.jpg" loading="lazy">
-                                    </li>';
-                                }
-
+                            }else{
+                                echo '
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="'.$urlServidor.'">lms</a>
+                                    </li>  
+                                ';
                             }
 
-                            /*====================================
-                             MODE FACEBOOK 
-                            /*===================================*/
-                            
-                            if($_SESSION["modo"] == "facebook"){
+                            echo '
+                                <li class="nav-item">
+                                    <a class="nav-link" href="'.$url.'leave">Salir</a>
+                                </li>
+                            ';
 
+                            if($_SESSION["foto"] != ""){
                                 echo '
                                     <li>
-                                        <img class="img-circle" src="'.$_SESSION["foto"].'" width="10%" loading="lazy">
+                                        <img class="img-circle" src="'.$urlServidor.$_SESSION["foto"].'" style="width:30px;" loading="lazy">
                                     </li>
                                 ';
-
+                            }else{
                                 echo '
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="'.$urlServidor.'">Panel</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="'.$url.'leave">Salir</a>
-                                    </li>
-                                ';
-
-                            }
-                            
-                            /*====================================
-                             MODE GOOGLE 
-                            /*===================================*/
-
-                            if($_SESSION["modo"] == "google"){
-
-                                echo '
-                                    <li>
-                                        <img class="img-circle" src="'.$_SESSION["foto"].'" width="10%" loading="lazy">
-                                    </li>
-                                ';
-                                    
-                                echo '
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="'.$urlServidor.'">Panel</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="'.$url.'leave">Salir</a>
-                                    </li>
-                                ';
-
+                                <li>
+                                    <img style="width:60px;border-radius:50%;" src="'.$url.'assets/images/default/anonymous.jpg" loading="lazy">
+                                </li>';
                             }
 
                         }
@@ -235,6 +100,6 @@ if($cliente->getAccessToken()){
 
                 ?>      
             </ul>
-        </nav>
+        </nav> 
     </div>
 </header>

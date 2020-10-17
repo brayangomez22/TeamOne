@@ -8,7 +8,7 @@
 
 <div class="normalizacion" id="diagrama">
     <div class="container course-row">
-        <div class="course-left-col">
+        <div class="course-left-col hacker">
             <img src="<?php echo $url; ?>assets/images/diagrama.png" alt="" style="width:100%;box-shadow: -1px -1px 10px 10px #333;">
         </div>
         <div class="course-right-col">

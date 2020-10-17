@@ -12,12 +12,12 @@
     <div class="container">
         <div class="row wow zoomInDown delay-1s">
             <div class="col-12 col-lg-6">
-                <img src="<?php echo $url; ?>views/images/illustrative-img/7.svg" class="img-fluid">
+                <img src="<?php echo $url; ?>assets/images/illustrative-img/7.svg" class="img-fluid">
             </div>
             <div class="col-12 col-lg-6">
                 <div class="content-description">
                     <h1 class="title title-text text-center">Sobre nosotros</h1>
-                    <p class="mt-4 d-flex justify-content-center">Somos una empresa de desarrollo de software, orientada a servirle a toda la comunidad en general. Con inicios en una idea de solucionar el gran problema que se presentan en personas productivas y emprendedoras. Este problema es la dificultad de crear y publicar una página web al mundo virtual. Buscamos satisfacer la necesidad de nuestros clientes lo mejor posible, sin fallas ni demoras y con la mayor calidad del mercado. Tenemos experiencia en proyectos de resolución de problemáticas sociales comunes en el país y mucho más.</p>
+                    <p class="mt-4 d-flex justify-content-center">TeamOne es una corporación dedicada a prestar el servicio de educación en forma virtual por medio de una plataforma LMS, en la cual los profesores, coordinadores,  directivos y estudiantes pueden acceder para revisar y editar tareas, trabajos y actividades, enviar y recibir correos personalizados, chatear con el grupo y con los compañeros individualmente, publicar  pensamientos y estado en una  sección de red publica, editar tu perfil, agregar información personal a la cual los directivos de la institución pueden acceder en caso de ser necesario, todo esto y mucho más.</p>
                 </div>
             </div>
         </div>
@@ -26,24 +26,24 @@
             <div class="about-grid-item star-gazing wow zoomInLeft delay-1s">
                 <i class="fas fa-star"></i>
                 <h1>Misión</h1>
-                <p>Nuestra misión como empresa es crear las mejores plataformas y aplicaciones web, con el fin de solucionar las necesidades de nuestros clientes.</p>
+                <p>Implementar la virtualidad y la educación por medio de la tecnología en todas las instituciones del país y posteriormente las del mundo.</p>
             </div>
 
             <div class="about-grid-item hiking wow zoomIn delay-1s">
                 <i class="fas fa-hiking"></i>
                 <h1>Objetivos</h1>
                 <ul>
-                    <p>Realizar las mejores plataformas y aplicaciones web del mercado</p>
-                    <p>Ayudar a la resolución de problemáticas sociales.</p>
-                    <p>Atender a nuestros clientes de la mejor manera posible.<pi>
-                    <p>Satisfacer a todos nuestros clientes.</p>
+                    <p>Educar por medio de la tecnología.</p>
+                    <p>Ser la mas grande plataforma de educación virtual.</p>
+                    <p>Solucionar el problema de la educación en internet.<p>
+                    <p>Dar una vista buena de la educación virtual.</p>
                 </ul>
             </div>
 
             <div class="about-grid-item camping wow zoomInRight delay-1s">
                 <i class="fas fa-star"></i>
                 <h1>Visión</h1>
-                <p>Para el 2030, se planea ser una empresa con reconocimientos a nivel mundial por la gran eficiencia y calidad de nuestros productos y servicios, en la que cada cliente se sienta totalmente satisfech@ con el servicio que se le ofrecio.</p>
+                <p>Para el año 2025, ser una corporación bastante grande con mas de 20 instituciones utilizando nuestros servicios educativos.</p>
             </div>
         </div>
     </div>

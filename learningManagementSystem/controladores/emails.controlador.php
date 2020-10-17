@@ -6,11 +6,11 @@ class ControladorEmails{
      MOSTRAR LOS EMAILS 
     /*=============================================*/
 
-    static public function ctrMostrarEmails($item, $valor){
+    static public function ctrMostrarEmails($item, $valor, $item2, $valor2){
 
         $tabla = "bandeja_de_entrada";
 
-        $respuesta = ModeloEmails::mdlMostrarEmails($tabla, $item, $valor);
+        $respuesta = ModeloEmails::mdlMostrarEmails($tabla, $item, $valor, $item2, $valor2);
 
         return $respuesta;
 
@@ -31,7 +31,7 @@ class ControladorEmails{
 
                     $archivo_temporal = trim($_FILES["attachment"]["tmp_name"]);
                     $nombre_archivo = trim($_FILES["attachment"]["name"]);
-                    $subir_carpeta = move_uploaded_file($archivo_temporal, 'vistas/archivos_emails/' .$nombre_archivo);
+                    $subir_carpeta = move_uploaded_file($archivo_temporal, 'assets/archivos_emails/' .$nombre_archivo);
 
                 }else{
                     $nombre_archivo = "";
@@ -40,16 +40,20 @@ class ControladorEmails{
                 $mensajeEmail = htmlspecialchars($_POST["mensajeEmail"]);
 
                 $tabla = "bandeja_de_entrada";
-                $datos = array("nombre"=>$_SESSION["nombre"],
-                                        "labor"=>$_SESSION["labor"],
-                                        "para"=>$_POST["nombreEmailUsuario"],
-                                        "de"=>$_SESSION["email"],
-                                        "asunto"=>$_POST["asunto"],
-                                        "informacion"=>$mensajeEmail,
-                                        "archivo"=>$nombre_archivo,
-                                        "visto"=>"fa");
+                $datos = array("id_institucion"=>$_SESSION["id_institucion"],
+                                "id_usuario"=>$_SESSION["id"],
+                                "nombre"=>$_SESSION["nombre"],
+                                "labor"=>$_SESSION["labor"],
+                                "para"=>$_POST["nombreEmailUsuario"],
+                                "de"=>$_SESSION["email"],
+                                "asunto"=>$_POST["asunto"],
+                                "informacion"=>$mensajeEmail,
+                                "archivo"=>$nombre_archivo,
+                                "visto"=>"fa");
 
                 $respuesta = ModeloEmails::mdlCrearEmail($tabla, $datos);
+
+                var_dump($respuesta);
 
                 if($respuesta == "ok"){
                     echo '<script> 
@@ -98,16 +102,16 @@ class ControladorEmails{
 
             if(preg_match('/^[^0-9][a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[@][a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[.][a-zA-Z]{2,4}$/', $_POST["editarParaEmails"]) && preg_match('/^[,\\.\\a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/', $_POST["editarInformacion"])){
 
+                $nombre_archivo = $_POST["archivoAntiguo"];
+                
                 if(isset($_FILES["editarArchivoEmail"]["tmp_name"]) && !empty($_FILES["editarArchivoEmail"]["tmp_name"])){
 
-                    unlink('vistas/archivos_emails/'.$_POST["archivoAntiguo"]);
+                    unlink('assets/archivos_emails/'.$_POST["archivoAntiguo"]);
         
                     $archivo_temporal = $_FILES["editarArchivoEmail"]["tmp_name"];
                     $nombre_archivo = $_FILES["editarArchivoEmail"]["name"];
-                    $subir_carpeta = move_uploaded_file($archivo_temporal, 'vistas/archivos_emails/' .$nombre_archivo);
+                    $subir_carpeta = move_uploaded_file($archivo_temporal, 'assets/archivos_emails/' .$nombre_archivo);
         
-                }else{
-                    $nombre_archivo = $_POST["archivoAntiguo"];
                 }
 
                 $datos = array("para"=>$_POST["editarParaEmails"],
@@ -189,6 +193,20 @@ class ControladorEmails{
             }
 
         }
+
+    }
+
+    /*==============================================
+      MOSTRAR EL TOTAL DE EMAILS 
+    /*=============================================*/
+
+    static public function ctrMostrarTotalEmails($item, $valor, $item2, $valor2){
+
+        $tabla = "bandeja_de_entrada";
+
+        $respuesta = ModeloEmails::mdlMostrarTotalEmails($tabla, $item, $valor, $item2, $valor2);
+
+        return $respuesta;
 
     }
 

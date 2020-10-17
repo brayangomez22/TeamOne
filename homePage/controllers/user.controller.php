@@ -17,20 +17,23 @@ class ControllerUser{
 				$encrypt = crypt($_POST["regPassword"], '$2a$07$asxx54ahjppf45sd87a5a4dDDGsystemdev$');
 
 				$encryptEmail = md5($_POST["regEmail"]);
+
+				if($_POST["labor"] == "grupo"){
+					$labor = "";
+				}else{
+					$labor = $_POST["labor"];
+				}
 	
 				$data = array("id_institucion"=>$_POST["institution"],
-								"acceso"=>0,
-								"nombre"=>$_POST["regUser"],
-								"labor"=>"",
-								"grupo"=>"",
-								"password"=> $encrypt,
-								"email"=> $_POST["regEmail"],
-								"foto"=>"",
-								"modo"=> "directo",
-								"verificacion"=> 1,
-								"emailEncriptado"=>$encryptEmail,
-								"session_actual"=>0,
-								"en_linea"=>0);
+							  "acceso"=>0,
+							  "nombre"=>$_POST["regUser"],
+							  "labor"=>$labor,
+							  "grupo"=>$_POST["grupo"],
+							  "password"=> $encrypt,
+							  "email"=> $_POST["regEmail"],
+							  "foto"=>"",
+							  "verificacion"=> 1,
+							  "emailEncriptado"=>$encryptEmail);
 
 				$table = "usuarios";
 
@@ -260,11 +263,9 @@ class ControllerUser{
 						$_SESSION["password"] = $reply["password"];
 						$_SESSION["modo"] = $reply["modo"];
 
-						$url = Route::ctrRoute();
-
 						echo '<script>
 							
-							window.location = localStorage.getItem("'.$url.'");
+							window.location = localStorage.getItem("hiddenRoute");
 
 						</script>';
 					}
@@ -273,21 +274,22 @@ class ControllerUser{
 
 					echo'<script>
 
-							swal({
-								  title: "¡ERROR AL INGRESAR!",
-								  text: "¡Por favor revise que el email exista o la contraseña coincida con la registrada!",
-								  type: "error",
-								  confirmButtonText: "Cerrar",
-								  closeOnConfirm: false
-							},
+						swal({
+							title: "¡ERROR AL INGRESAR!",
+							text: "¡Por favor revise que el email exista o la contraseña coincida con la registrada!",
+							type: "error",
+							confirmButtonText: "Cerrar",
+							closeOnConfirm: false
+						},
 
 							function(isConfirm){
-									 if (isConfirm) {	   
-									    window.location = localStorage.getItem("rutaActual");
-									  } 
-							});
+								if (isConfirm) {	   
+									history.back();
+								} 
+							}
+						);
 
-							</script>';
+					</script>';
 
 				}
 
@@ -322,11 +324,11 @@ class ControllerUser{
 	 OLVIDO DE CONTRASEÑA DEL USUARIO 
 	/*=============================================*/
 
-	public function ctrOlvidoPassword(){
+	public function ctrForgotPassword(){
 
-		if(isset($_POST["passEmail"])){
+		if(isset($_POST["forgotPassword"])){
 
-			if(preg_match('/^[^0-9][a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[@][a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[.][a-zA-Z]{2,4}$/', $_POST["passEmail"])){
+			if(preg_match('/^[^0-9][a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[@][a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[.][a-zA-Z]{2,4}$/', $_POST["forgotPassword"])){
 
 				/*=============================================
 				GENERAR CONTRASEÑA ALEATORIA
@@ -356,9 +358,9 @@ class ControllerUser{
 				$table = "usuarios";
 				
 				$item1 = "email";
-				$valor1 = $_POST["passEmail"];
+				$valor1 = $_POST["forgotPassword"];
 
-				$reply1 = ModelUsers::mdlMostrarUsuario($table, $item1, $valor1);
+				$reply1 = ModelUsers::mdlShowUsers($table, $item1, $valor1);
 
 				if($reply1){
 
@@ -366,7 +368,7 @@ class ControllerUser{
 					$item2 = "password";
 					$valor2 = $encrypt;
 
-					$reply2 = ModelUsers::mdlActualizarUsuario($table, $id, $item2, $valor2);
+					$reply2 = ModelUsers::mdlUpdateUser($table, $id, $item2, $valor2);
 
 					if($reply2  == "ok"){
 
@@ -376,7 +378,7 @@ class ControllerUser{
 
 						date_default_timezone_set("America/Bogota");
 
-						$url = Ruta::ctrRuta();	
+						$url = Route::ctrRoute();	
 
 						$mail = new PHPMailer;
 
@@ -390,7 +392,7 @@ class ControllerUser{
 
 						$mail->Subject = "Solicitud de nueva contraseña";
 
-						$mail->addAddress($_POST["passEmail"]);
+						$mail->addAddress($_POST["forgotPassword"]);
 
 						$mail->msgHTML('<div style="width:100%; background:#eee; position:relative; font-family:sans-serif; padding-bottom:40px">
 	
@@ -438,7 +440,7 @@ class ControllerUser{
 
 								swal({
 									  title: "¡ERROR!",
-									  text: "¡Ha ocurrido un problema enviando cambio de contraseña a '.$_POST["passEmail"].$mail->ErrorInfo.'!",
+									  text: "¡Ha ocurrido un problema enviando cambio de contraseña a '.$_POST["forgotPassword"].$mail->ErrorInfo.'!",
 									  type:"error",
 									  confirmButtonText: "Cerrar",
 									  closeOnConfirm: false
@@ -459,7 +461,7 @@ class ControllerUser{
 
 								swal({
 									  title: "¡OK!",
-									  text: "¡Por favor revise la bandeja de entrada o la carpeta de SPAM de su correo electrónico '.$_POST["passEmail"].' para su cambio de contraseña!",
+									  text: "¡Por favor revise la bandeja de entrada o la carpeta de SPAM de su correo electrónico '.$_POST["forgotPassword"].' para su cambio de contraseña!",
 									  type:"success",
 									  confirmButtonText: "Cerrar",
 									  closeOnConfirm: false
@@ -528,112 +530,18 @@ class ControllerUser{
 		}
 
 	}
-
-	/*=============================================
-	REGISTRO CON REDES SOCIALES
-	=============================================*/
-
-	static public function ctrRegistroRedesSociales($data){
-
-		$table = "usuarios";
-		$item = "email";
-		$valor = $data["email"];
-		$emailRepetido = false;
-
-		$reply0 = ModelUsers::mdlMostrarUsuario($table, $item, $valor);
-
-		if($reply0){
-
-			if($reply0["modo"] != $data["modo"]){
-
-				echo '<script> 
-
-						swal({
-							  title: "¡ERROR!",
-							  text: "¡El correo electrónico '.$data["email"].', ya está registrado en el sistema con un método diferente a Google!",
-							  type:"error",
-							  confirmButtonText: "Cerrar",
-							  closeOnConfirm: false
-							},
-
-							function(isConfirm){
-
-								if(isConfirm){
-									history.back();
-								}
-						});
-
-				</script>';
-
-				$emailRepetido = false;
-
-			}
-
-			$emailRepetido = true;
-
-		}else{
-
-			$reply1 = ModelUsers::mdlRegistroUsuario($table, $data);
-
-		}
-
-		if($emailRepetido || $reply1 == "ok"){
-
-			$reply2 = ModelUsers::mdlMostrarUsuario($table, $item, $valor);
-
-			if($reply2["modo"] == "facebook"){
-
-				session_start();
-
-				$_SESSION["validarSesion"] = "ok";
-				$_SESSION["id"] = $reply2["id"];
-				$_SESSION["nombre"] = $reply2["nombre"];
-				$_SESSION["labor"] = $reply2["labor"];
-				$_SESSION["grupo"] = $reply2["grupo"];
-				$_SESSION["foto"] = $reply2["foto"];
-				$_SESSION["email"] = $reply2["email"];
-				$_SESSION["password"] = $reply2["password"];
-				$_SESSION["modo"] = $reply2["modo"];
-
-				echo "ok";
-
-			}else if($reply2["modo"] == "google"){
-
-				$_SESSION["validarSesion"] = "ok";
-				$_SESSION["id"] = $reply2["id"];
-				$_SESSION["nombre"] = $reply2["nombre"];
-				$_SESSION["labor"] = $reply2["labor"];
-				$_SESSION["grupo"] = $reply2["grupo"];
-				$_SESSION["foto"] = $reply2["foto"];
-				$_SESSION["email"] = $reply2["email"];
-				$_SESSION["password"] = $reply2["password"];
-				$_SESSION["modo"] = $reply2["modo"];
-
-				echo "<span style='color:white'>ok</span>";
-
-			}
-
-			else{
-
-				echo "";
-				
-			}
-
-		}
-
-	}
 	
 	/*=============================================
 	FORMULARIO CONTACTENOS
 	=============================================*/
 
-	public function ctrFormularioContactenos(){
+	public function ctrFormContact(){
 
-		if(isset($_POST['mensajeContactenos'])){
+		if(isset($_POST['messageContact'])){
 
-			if(preg_match('/^[a-zA-ZñÑáéíóúÁÉÍÓÚ ]+$/', $_POST["nombreContactenos"]) &&
-			preg_match('/^[,\\.\\a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/', $_POST["mensajeContactenos"]) &&
-			preg_match('/^[^0-9][a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[@][a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[.][a-zA-Z]{2,4}$/', $_POST["emailContactenos"])){
+			if(preg_match('/^[a-zA-ZñÑáéíóúÁÉÍÓÚ ]+$/', $_POST["nameContact"]) &&
+			preg_match('/^[,\\.\\a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/', $_POST["messageContact"]) &&
+			preg_match('/^[^0-9][a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[@][a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[.][a-zA-Z]{2,4}$/', $_POST["emailContact"])){
 
 				/*=============================================
 				ENVÍO CORREO ELECTRÓNICO
@@ -641,7 +549,7 @@ class ControllerUser{
 
 					date_default_timezone_set("America/Bogota");
 
-					$url = Ruta::ctrRuta();	
+					$url = Route::ctrRoute();	
 
 					$mail = new PHPMailer;
 
@@ -673,11 +581,11 @@ class ControllerUser{
 
 							<hr style="width:80%; border:1px solid #ccc">
 
-							<h4 style="font-weight:100; color:#999; padding:0px 20px; text-transform:uppercase">'.$_POST["nombreContactenos"].'</h4>
+							<h4 style="font-weight:100; color:#999; padding:0px 20px; text-transform:uppercase">'.$_POST["nameContact"].'</h4>
 
-							<h4 style="font-weight:100; color:#999; padding:0px 20px;">De: '.$_POST["emailContactenos"].'</h4>
+							<h4 style="font-weight:100; color:#999; padding:0px 20px;">De: '.$_POST["emailContact"].'</h4>
 
-							<h4 style="font-weight:100; color:#999; padding:0px 20px">'.$_POST["mensajeContactenos"].'</h4>
+							<h4 style="font-weight:100; color:#999; padding:0px 20px">'.$_POST["messageContact"].'</h4>
 
 							<hr style="width:80%; border:1px solid #ccc">
 
@@ -750,7 +658,7 @@ class ControllerUser{
 							  } 
 					});
 
-					</script>';
+				</script>';
 
 
 			}

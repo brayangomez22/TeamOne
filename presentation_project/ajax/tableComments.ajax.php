@@ -24,6 +24,7 @@ class TableComments{
     
                         $datosJson .= '[
                             "'.($i+1).'",
+                            "'.$institutions[$i]["id_institucion"].'",
                             "'.$institutions[$i]["id_usuario"].'",
                             "'.$institutions[$i]["nombre"].'",
                             "'.$institutions[$i]["me_gustas"].'",

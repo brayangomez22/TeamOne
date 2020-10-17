@@ -11,7 +11,7 @@
 <section class="services container" id="services">
     <div class="row wow zoomIn delay-1s" style="margin-top: 40px;">
         <div class="col-12 col-lg-6">
-            <img src="<?php echo $url; ?>views/images/services/services.svg" class="img-fluid">
+            <img src="<?php echo $url; ?>assets/images/services/services.svg" class="img-fluid">
         </div>
         <div class="col-12 col-lg-6">
             <div class="content-description">
@@ -24,7 +24,7 @@
     <div class="contenedor" style="margin-top: 60px;">
         <div class="card wow zoomInLeft delay-1s">
             <div class="imgBx" data-text="Diseño">
-                <img src="<?php echo $url; ?>views/images/services/sketch.png" alt="">
+                <img src="<?php echo $url; ?>assets/images/services/sketch.png" alt="">
             </div>
             <div class="content">
                 <div>
@@ -35,7 +35,7 @@
         </div>
         <div class="card wow zoomInRight delay-1s">
             <div class="imgBx" data-text="Desarrollo">
-                <img src="<?php echo $url; ?>views/images/services/data.png" alt="">
+                <img src="<?php echo $url; ?>assets/images/services/data.png" alt="">
             </div>
             <div class="content">
                 <div>
@@ -46,7 +46,7 @@
         </div>
         <div class="card wow zoomInLeft delay-1s">
             <div class="imgBx" data-text="Aplicaciones Móviles">
-                <img src="<?php echo $url; ?>views/images/services/app.png" alt="">
+                <img src="<?php echo $url; ?>assets/images/services/app.png" alt="">
             </div>
             <div class="content">
                 <div>
@@ -57,7 +57,7 @@
         </div>
         <div class="card wow zoomInRight delay-1s">
             <div class="imgBx" data-text="Gestión">
-                <img src="<?php echo $url; ?>views/images/services/team-management.png" alt="">
+                <img src="<?php echo $url; ?>assets/images/services/team-management.png" alt="">
             </div>
             <div class="content">
                 <div>

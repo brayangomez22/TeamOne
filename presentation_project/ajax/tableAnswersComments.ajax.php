@@ -28,7 +28,6 @@ class TableAnswersComments{
                             "'.$institutions[$i]["id_comentario"].'",
                             "'.$institutions[$i]["nombre"].'",
                             "'.$institutions[$i]["comentario"].'",
-                            "'.$institutions[$i]["foto"].'",
                             "'.$institutions[$i]["fecha"].'"
                         ],';
 

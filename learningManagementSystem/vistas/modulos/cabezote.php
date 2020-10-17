@@ -1,13 +1,13 @@
 <?php
     $url = Ruta::ctrRuta();
-    $urlPanel = Ruta::ctrRutaServidor();
+    $urlPanel = Ruta::ctrRutaLMS();
 ?>
 
 <header class="main-header">
     <!-- Logo -->
     <a href="<?php echo $url; ?>" class="logo">
       <!-- mini logo for sidebar mini 50x50 pixels -->
-      <img class="logo-mini" src="<?php echo $urlPanel; ?>vistas/img/logo.png" alt="" width="40px" height="40px" style="margin:5px -11px;">
+      <img class="logo-mini" src="<?php echo $urlPanel; ?>assets/img/logo.png" alt="" width="40px" height="40px" style="margin:5px -11px;">
       <!-- logo for regular state and mobile devices -->
       <span class="logo-lg"><b>Team</b>One</span>
     </a>
@@ -22,7 +22,6 @@
             <ul class="nav navbar-nav">
    
                 <?php
-                    include "cabezote/notificaciones.php";
                     include "cabezote/usuario.php";
                 ?>
 

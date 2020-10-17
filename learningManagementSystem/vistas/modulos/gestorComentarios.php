@@ -9,7 +9,6 @@
     <section class="content-header">
         <h1>
         Gestor Comentarios
-        <small>Elemento de formulario avanzado</small>
         </h1>
         <ol class="breadcrumb">
         <li><a href="#"><i class="fas fa-home"></i> Inicio</a></li>
@@ -74,12 +73,6 @@
         <div class="col">
           <ul class="timeline">
 
-            <li class="time-label">
-              <span class="bg-red">
-                10 de febrero  
-              </span>
-            </li>
-
             <?php
 
                 $tabla3 = "usuarios";
@@ -94,21 +87,20 @@
                 TRAER EL TOTAL DE COMENTARIOS 
                 /*=============================================*/
 
-                $tabla = "comentarios";
-                $item = "";
-                $valor = "";
+                $item2 = "id_institucion";
+                $valor2 = $_SESSION["id_institucion"];
 
-                $total_comentarios = ModeloComentarios::mdlSeleccionarComentario($tabla, $item, $valor);
+                $traerComentarios = ControladorComentarios::ctrMostrarComentarios($item2, $valor2);
+
+                $totalComents = count($traerComentarios);
 
                 echo '
-                <h2 class="text-center">'.$total_comentarios.' Publicaciones</h2>';
-
-                /*==============================================
-                TRAER TODOS LOS DATOS DE LOS COMENTARIOS 
-                /*=============================================*/
-
-                $traerComentarios = ControladorComentarios::ctrMostrarComentarios();
-
+                  <li class="time-label">
+                    <span class="bg-green">
+                      '.$totalComents.' Publicaciones
+                    </span>
+                  </li>
+                ';
                 
                 foreach($traerComentarios as $key => $value){
 
@@ -130,10 +122,10 @@
                   echo '
                   <!-- PUBLICACIONES -->
                   <li class="publicaciones">
-                    <i class="fa fa-envelope bg-blue"></i>
+                    <i class="fa fa-comments bg-yellow"></i>
       
                     <div class="timeline-item">
-                      <span class="time"><i class="fa fa-clock-o"></i> 12:05</span>
+                      <span class="time"><i class="fa fa-clock-o" style="margin-right:10px;"></i>'.fecha($value["fecha"]).'</span>
       
                       <div style="display:flex;">
                         <a href="#" class="foto">';
@@ -141,7 +133,7 @@
                           if($value["foto"] != ""){
                             echo '<img src="'.$value["foto"].'" alt="" width="100%" class="img-circle">';
                           }else{
-                            echo '<img src="vistas/img/default/anonymous.png" alt="" width="100%" class="img-circle">';
+                            echo '<img src="assets/img/default/anonymous.jpg" alt="" width="100%" class="img-circle">';
                           }
                           
                         echo '</a>
@@ -180,21 +172,11 @@
       
                       <div style="display:flex;">
                         <a href="#" class="foto">';
-                          if($_SESSION["modo"] == "directo"){
-                              if($_SESSION["foto"] != ""){
-                                  echo '<img src="'.$_SESSION["foto"].'" width="100%" class="img-circle">';
-                              }else{
-                                  echo '<img src="'.$url.'vistas/img/default/anonymous.png" class="img-circle">';
-                              }
-                          }
-
-                          if($_SESSION["modo"] == "facebook"){
-                              echo '<img src="'.$_SESSION["foto"].'" alt="" class="img-circle">';
-                          }
-
-                          if($_SESSION["modo"] == "google"){
-                              echo '<img src="'.$_SESSION["foto"].'" alt="" class="img-circle">';
-                          }
+                          if($_SESSION["foto"] != ""){
+                            echo '<img src="'.$_SESSION["foto"].'" width="100%" class="img-circle">';
+                          }else{
+                            echo '<img src="assets/img/default/anonymous.jpg" class="img-circle" width="100%">';
+                          }                  
                         echo '</a>
                         <h3 class="timeline-header" style="text-align:center;"><a href="#">Hola!</a> da una respuesta a este comentario</h3>
                       </div>
@@ -217,14 +199,11 @@
                     foreach($respuestaComentarios as $key => $value2){
                       if($value2["id_comentario"] == $value["id"]){
                         echo '<div class="timeline-item brayan'.$value["id"].'" style="display:none;">
-                          <span class="time"><i class="fa fa-clock-o"></i> 12:05</span>
+                          <span class="time"><i class="fa fa-clock-o" style="margin-right:10px;"></i>'.fecha($value2["fecha"]).'</span>
                           <h3 class="timeline-header"><a href="#">'.$value2["nombre"].'</a> respondio a este comentario</h3>
   
                           <div class="timeline-body">
-                              '.$value2["comentario"].'
-                          </div>
-                          <div class="timeline-footer">
-                            <a class="btn btn-primary btn-xs">Leer mas</a>
+                            '.$value2["comentario"].'
                           </div>
                           <hr>
                         </div>';

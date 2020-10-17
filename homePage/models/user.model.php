@@ -8,9 +8,9 @@ class ModelUsers{
 	REGISTRO DE USUARIO
     =============================================*/
 
-    public function mdlRegistryUser($table, $data){
+    static public function mdlRegistryUser($table, $data){
 
-        $stmt = Connection::connect()->prepare("INSERT INTO $table(id_institucion, acceso, nombre, labor, grupo, password, email, foto, modo, verificacion, emailEncriptado, session_actual, en_linea) VALUES (:id_institucion, :acceso, :nombre, :labor, :grupo, :password, :email, :foto, :modo, :verificacion, :emailEncriptado, :session_actual, :en_linea)");
+        $stmt = Connection::connect()->prepare("INSERT INTO $table(id_institucion, acceso, nombre, labor, grupo, password, email, foto, verificacion, emailEncriptado) VALUES (:id_institucion, :acceso, :nombre, :labor, :grupo, :password, :email, :foto, :verificacion, :emailEncriptado)");
 
         $stmt->bindParam(":id_institucion", $data["id_institucion"], PDO::PARAM_INT);
         $stmt->bindParam(":acceso", $data["acceso"], PDO::PARAM_INT);
@@ -20,11 +20,8 @@ class ModelUsers{
         $stmt->bindParam(":password", $data["password"], PDO::PARAM_STR);
         $stmt->bindParam(":email", $data["email"], PDO::PARAM_STR);
         $stmt->bindParam(":foto", $data["foto"], PDO::PARAM_STR);
-        $stmt->bindParam(":modo", $data["modo"], PDO::PARAM_STR);
         $stmt->bindParam(":verificacion", $data["verificacion"], PDO::PARAM_INT);
         $stmt->bindParam(":emailEncriptado", $data["emailEncriptado"], PDO::PARAM_STR);
-        $stmt->bindParam(":session_actual", $data["session_actual"], PDO::PARAM_INT);
-        $stmt->bindParam(":en_linea", $data["en_linea"], PDO::PARAM_INT);
 
         if($stmt->execute()){
             return "ok";
@@ -138,6 +135,6 @@ class ModelUsers{
 		$stmt-> close();
 		$stmt = null;
 
-	}
+    }
 
 }

@@ -31,6 +31,20 @@ class ControllerUser{
     }
 
     /*==============================================
+     MOSTRAR LAS SOLICITUDES LMS 
+    /*=============================================*/
+
+    static public function ctrShowTableRequests($item, $valor){
+
+        $tabla = "solicitudes_lms";
+
+        $reply = ModelUser::mdlShowTableRequests($tabla, $item, $valor);
+
+        return $reply;
+
+    }
+
+    /*==============================================
      MOSTRAR LA BANDEJA DE ENTRADA 
     /*=============================================*/
 

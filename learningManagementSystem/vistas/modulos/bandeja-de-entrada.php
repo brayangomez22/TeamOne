@@ -8,6 +8,7 @@
         <small>13 nuevos mensajes</small>
         </h1>
         <input type="hidden" id="emailUser" value="<?php echo $_SESSION["email"]?>">
+        <input type="hidden" id="id_institucion" value="<?php echo $_SESSION["id_institucion"]?>">
         <ol class="breadcrumb">
         <li><a href="#"><i class="fas fa-home"></i> Inicio</a></li>
         <li class="active">Buzón</li>
@@ -18,51 +19,51 @@
     <section class="content">
         <div class="row">
             <div class="col-md-12">
-                <a href="componer" class="btn btn-primary margin-bottom">Componer</a>
-
-                <div class="box box-solid">
-                <div class="box-header with-border">
-                    <h3 class="box-title">Carpetas</h3>
-
-                    <div class="box-tools">
-                    <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
-                    </button>
-                    </div>
-                </div>
-                <div class="box-body no-padding">
-                    <ul class="nav nav-pills nav-stacked">
-                        <li class="active"><a href="#"><i class="fa fa-inbox"></i> Buzón
-                            <span class="label label-primary pull-right">12</span></a></li>
-                        <li><a href="#"><i class="fa fa-envelope"></i> Expedido</a></li>
-                    </ul>
-                </div>
-                <!-- /.box-body -->
-                </div>
-            
+                <a href="componer" class="btn btn-primary margin-bottom">Componer</a>   
             </div>
             <!-- /.col -->
             <div class="col-md-12">
                 <div class="box">
                     <div class="box-body">
-                        <table class="table table-bordered table-striped tablaEmail dt-responsive" width="100%">
 
-                        <thead>
-                            <tr>
+                        <?php
 
-                            <th>#</th>
-                            <th>Visto</th>
-                            <th>Nombres</th>
-                            <th>Email</th>
-                            <th>Labor</th>
-                            <th>Informacion</th>
-                            <th>Archivo</th>
-                            <th>Fecha de Envio</th>
-                            <th>Acciones</th>
+                            $item = "para";
+                            $valor = $_SESSION["email"];
 
-                            </tr>
-                        </thead>
+                            $item2 = "id_institucion";
+                            $valor2 = $_SESSION["id_institucion"];
 
-                    </table>
+                            $cantidadEmails = ControladorEmails::ctrMostrarEmails($item, $valor, $item2, $valor2);
+
+                            $totalEmails = count($cantidadEmails);
+
+                            if($totalEmails >= 1){
+                                echo '
+                                <table class="table table-bordered table-striped tablaEmail dt-responsive" width="100%">
+
+                                    <thead>
+                                        <tr>
+        
+                                        <th>#</th>
+                                        <th>Visto</th>
+                                        <th>Nombres</th>
+                                        <th>Email</th>
+                                        <th>Labor</th>
+                                        <th>Informacion</th>
+                                        <th>Archivo</th>
+                                        <th>Fecha de Envio</th>
+                                        <th>Acciones</th>
+        
+                                        </tr>
+                                    </thead>
+        
+                                </table>
+                                ';
+                            }else{
+                                echo '<span>No tienes emails</span>';
+                            }
+                        ?>
                     </div>
 
                 </div>

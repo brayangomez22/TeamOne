@@ -15,8 +15,11 @@ class TablaEmails{
         
         $item = "para";
         $valor = $_POST["emailUser"];
+
+        $item2 = "id_institucion";
+        $valor2 = $_POST["id_institucion"];
         
-        $emails = ControladorEmails::ctrMostrarEmails($item, $valor);
+        $emails = ControladorEmails::ctrMostrarEmails($item, $valor, $item2, $valor2);
 
         $datosJson = '
             {
@@ -54,10 +57,10 @@ class TablaEmails{
                          ACCIONES 
                         /*=============================================*/
 
-                        $acciones = "<div class='btn-group'><button class='btn btn-warning btnverEmails' idEmails='".$emails[$i]["id"]."' data-toggle='modal' data-target='#modalVerEmail'><i class='fas fa-eye'></i></button><button class='btn btn-danger btnEliminarEmails' idEmails='".$emails[$i]["id"]."' rutaArchivo='vistas/archivos_emails/".$emails[$i]["archivo"]."'><i class='fa fa-times'></i></button>";
+                        $acciones = "<div class='btn-group'><button class='btn btn-warning btnverEmails' idEmails='".$emails[$i]["id"]."' idInstitucion='".$emails[$i]["id_institucion"]."' data-toggle='modal' data-target='#modalVerEmail'><i class='fas fa-eye'></i></button><button class='btn btn-danger btnEliminarEmails' idEmails='".$emails[$i]["id"]."' rutaArchivo='assets/archivos_emails/".$emails[$i]["archivo"]."'><i class='fa fa-times'></i></button>";
                         
                         if($emails[$i]["archivo"] != ""){
-                            $acciones .= "<a href='vistas/archivos_emails/".$emails[$i]["archivo"]."' class='btn btn-primary btnDescargarEmails' download='".$emails[$i]["archivo"]."' idEmails='".$emails[$i]["id"]."'><i class='fas fa-download'></i></a>";
+                            $acciones .= "<a href='assets/archivos_emails/".$emails[$i]["archivo"]."' class='btn btn-primary btnDescargarEmails' download='".$emails[$i]["archivo"]."' idEmails='".$emails[$i]["id"]."'><i class='fas fa-download'></i></a>";
                         }
                         
                         $acciones .= "</div>";

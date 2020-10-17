@@ -17,23 +17,6 @@
         <div class="row">
             <div class="col-md-12">
                 <a href="bandeja-de-entrada" class="btn btn-primary margin-bottom">De regreso a la bandeja de entrada</a>
-
-                <div class="box box-solid">
-                    <div class="box-header with-border">
-                        <h3 class="box-title">Carpetas</h3>
-
-                        <div class="box-tools">
-                            <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
-                        </div>
-                    </div>
-                    <div class="box-body no-padding">
-                        <ul class="nav nav-pills nav-stacked">
-                            <li class="active"><a href="#"><i class="fa fa-inbox"></i> Buzón
-                                <span class="label label-primary pull-right">12</span></a></li>
-                            <li><a href="#"><i class="fa fa-envelope"></i> Expedido</a></li>
-                        </ul>
-                    </div>
-                </div>
             </div>
             <!-- /.col -->
             <div class="col-md-12">

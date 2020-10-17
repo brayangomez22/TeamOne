@@ -10,13 +10,17 @@ class AjaxEmails{
     /*=============================================*/
 
     public $idEmails;
+    public $idInstitucion;
 
     public function ajaxVerEmails(){
 
         $item = "id";
         $valor = $this -> idEmails;
 
-        $respuesta = ControladorEmails::ctrMostrarEmails($item, $valor);
+        $item2 = "id_institucion";
+        $valor2 = $this -> idInstitucion;
+
+        $respuesta = ControladorEmails::ctrMostrarEmails($item, $valor, $item2, $valor2);
 
         echo json_encode($respuesta);
 
@@ -27,13 +31,17 @@ class AjaxEmails{
     /*=============================================*/
 
     public $idEditarEmails;
+    public $id_institucion;
 
     public function ajaxEditarEmails(){
 
         $item = "id";
         $valor = $this -> idEditarEmails;
 
-        $respuesta = ControladorEmails::ctrMostrarEmails($item, $valor);
+        $item2 = "id_institucion";
+        $valor2 = $this -> id_institucion;
+
+        $respuesta = ControladorEmails::ctrMostrarEmails($item, $valor, $item2, $valor2);
 
         echo json_encode($respuesta);
 
@@ -68,6 +76,7 @@ class AjaxEmails{
 if(isset($_POST["idEmails"])){
     $verEmails = new AjaxEmails();
     $verEmails -> idEmails = $_POST["idEmails"];
+    $verEmails -> idInstitucion = $_POST["idInstitucion"];
     $verEmails -> ajaxVerEmails();
 }
 
@@ -78,6 +87,7 @@ if(isset($_POST["idEmails"])){
 if(isset($_POST["idEditarEmails"])){
     $editarEmails = new AjaxEmails();
     $editarEmails -> idEditarEmails = $_POST["idEditarEmails"];
+    $editarEmails -> id_institucion = $_POST["id_institucion"];
     $editarEmails -> ajaxEditarEmails();
 }
 

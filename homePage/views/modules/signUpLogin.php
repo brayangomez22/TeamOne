@@ -5,6 +5,26 @@
 <?php
 
     $url = Route::ctrRoute();
+    $urlServidor = Route::ctrRouteLearningManagementSystem();
+    $urlPresentation = Route::ctrRoutePresentation();
+
+    /*=============================================*/
+    /* USER LOGIN */
+    /*=============================================*/
+
+    if(isset($_SESSION["validarSesion"])){
+
+        if($_SESSION["validarSesion"] == "ok"){
+
+            echo '<script>
+            
+                localStorage.setItem("usuario","'.$_SESSION["id"].'");
+
+            </script>';
+
+        }
+
+    }
 
 ?>
 
@@ -25,19 +45,12 @@
                     <i class="fas fa-lock"></i>
                     <input type="password" id="ingPassword" name="ingPassword" placeholder="Contraseña" />
                 </div>
+
+                <input type="hidden" name="routeHidden" value="<?php echo $url; ?>">
+
                 <a href="#modalPassword" data-toggle="modal" style="font-size: 14px;position:relative;">olvidaste tu contraseña?</a>
                 
                 <input type="submit" value="iniciar sesión" class="btn solid" />
-
-                <p class="social-text">O inicie sesión con plataformas sociales</p>
-                <div class="social-media">
-                    <a href="#" class="social-icon">
-                        <i class="fab fa-facebook-f"></i>
-                    </a>
-                    <a href="#" class="social-icon">
-                        <i class="fab fa-google"></i>
-                    </a>
-                </div>
 
                 <?php
                     $login = new ControllerUser();
@@ -64,8 +77,29 @@
                     <input type="password" id="regPassword" name="regPassword" placeholder="Contraseña" />
                 </div>
                 <div class="input-field">
-                    <i class="fas fa-lock"></i>
+                    <i class="fas fa-school"></i>
                     <select name="institution" id="institution">
+                        <option value="0">Institución Educativa</option>
+                    </select>
+                </div>
+                <div class="input-field">
+                    <i class="fas fa-globe"></i>
+                    <select name="labor" id="labor" class="labor">
+                        <option value="labor">Labor</option>
+                        <option value="profesor">Profesor</option>
+                        <option value="estudiante">Estudiante</option>
+                        <option value="rector">Rector</option>
+                        <option value="coordinador">Coordinador</option>
+                    </select>
+                </div>
+                <div class="input-field grupo" style="display:none;">
+                    <i class="fas fa-globe"></i>
+                    <select name="grupo" id="grupo">
+                        <option value="grupo">Grupo</option>
+                        <option value="10-3">10-3</option>
+                        <option value="9-2">9-2</option>
+                        <option value="3-2">3-2</option>
+                        <option value="11-1">11-1</option>
                     </select>
                 </div>
 
@@ -86,16 +120,6 @@
                 ?>
 
                 <input type="submit" class="btn" value="Regístrate" />
-
-                <p class="social-text">O regístrese con las plataformas sociales</p>
-                <div class="social-media">
-                    <a href="#" class="social-icon">
-                        <i class="fab fa-facebook-f"></i>
-                    </a>
-                    <a href="#" class="social-icon">
-                        <i class="fab fa-google"></i>
-                    </a>
-                </div>
             </form>
         </div>
     </div>
@@ -115,7 +139,7 @@
                 Regístrate
                 </button>
             </div>
-            <img src="<?php $url; ?>views/images/signUpLogin/log.svg" class="image" alt="" />
+            <img src="<?php $url; ?>assets/images/signUpLogin/log.svg" class="image" alt="" />
         </div>
 
         <div class="panel right-panel">
@@ -128,7 +152,7 @@
                 iniciar sesión
                 </button>
             </div>
-            <img src="<?php $url; ?>views/images/signUpLogin/register.svg" class="image" alt="" />
+            <img src="<?php $url; ?>assets/images/signUpLogin/register.svg" class="image" alt="" />
         </div>
     </div>
 </div>
@@ -151,9 +175,14 @@
 
                 <div class="form-group">
                     <div class="input-group">
-                        <input type="text" class="form-control input-lg" id="passEmail" name="passEmail" required>
+                        <input type="text" class="form-control input-lg" id="forgotPassword" name="forgotPassword" required>
                     </div>
                 </div>
+
+                <?php
+                    $forgotPassword = new ControllerUser();
+                    $forgotPassword -> ctrForgotPassword();
+                ?>
 
 				<input type="submit" class="btn btn-secondary btn-block" value="Enviar" style="font-size: 20px;">	
 

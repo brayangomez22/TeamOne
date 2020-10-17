@@ -25,17 +25,15 @@ class TableUsers{
                         $datosJson .= '[
                             "'.($i+1).'",
                             "'.$usuarios[$i]["id_institucion"].'",
+                            "'.$usuarios[$i]["acceso"].'",
                             "'.$usuarios[$i]["nombre"].'",
                             "'.$usuarios[$i]["labor"].'",
                             "'.$usuarios[$i]["grupo"].'",
                             "'.$usuarios[$i]["password"].'",
                             "'.$usuarios[$i]["email"].'",
-                            "'.$usuarios[$i]["modo"].'",
                             "'.$usuarios[$i]["foto"].'",
                             "'.$usuarios[$i]["verificacion"].'",
                             "'.$usuarios[$i]["emailEncriptado"].'",
-                            "'.$usuarios[$i]["session_actual"].'",
-                            "'.$usuarios[$i]["en_linea"].'",
                             "'.$usuarios[$i]["fecha"].'"
                         ],';
 

@@ -1,0 +1,115 @@
+.container-faqs{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 70vh;
+}
+
+.wrapper{
+  max-width: 730px;
+  padding: 0 20px;
+}
+
+.wrapper .parent-tab,
+.wrapper .child-tab{
+  margin-bottom: 8px;
+  border-radius: 3px;
+  box-shadow: 0px 0px 15px rgba(0,0,0,0.18);
+}
+
+.wrapper .parent-tab label,
+.wrapper .child-tab label{
+  background: rgba(72,56,149,0.8);
+  padding: 10px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+  border-radius: 3px;
+  position: relative;
+  z-index: 99;
+  transition: all 0.3s ease;
+}
+
+.wrapper .parent-tab label:hover{
+  background: rgba(72,56,149,0.8);
+}
+
+.parent-tab input:checked ~ label,
+.child-tab input:checked ~ label{
+  border-radius: 3px 3px 0 0;
+  background: rgba(72,56,149,0.8);
+}
+
+.wrapper label span{
+  color: #fff;
+  font-size: 18px;
+  font-weight: 500;
+  text-shadow: 0 -1px 1px rgba(72,56,149,0.8);
+}
+
+.wrapper .child-tab label span{
+  font-size: 17px;
+}
+
+.parent-tab label .icon{
+  position: relative;
+  height: 30px;
+  width: 30px;
+  font-size: 15px;
+  color: rgba(72,56,149,0.8);
+  display: block;
+  background: #fff;
+  border-radius: 50%;
+  text-shadow: 0 -1px 1px rgba(72,56,149,0.8);
+}
+
+.wrapper .child-tab label .icon{
+  height: 27px;
+  width: 27px;
+}
+
+.parent-tab label .icon i{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.parent-tab input:checked ~ label .icon i:before,
+.child-tab input:checked ~ label .icon i:before{
+  content: '\f068';
+}
+
+.wrapper .parent-tab .content,
+.wrapper .child-tab .sub-content{
+  max-height: 0px;
+  overflow: hidden;
+  background: #fff;
+  border-radius: 0 0 3px 3px;
+  transition: all 0.4s ease;
+}
+
+.parent-tab input:checked ~ .content,
+.child-tab input:checked ~ .sub-content{
+  max-height: 100vh;
+}
+
+.tab-3 input:checked ~ .content{
+  padding: 15px 20px;
+}
+
+.parent-tab .content p,
+.child-tab .sub-content p{
+  padding: 15px 20px;
+  font-size: 16px;
+}
+
+.child-tab .sub-content p{
+  font-size: 15px;
+}
+
+input[type="radio"],
+input[type="checkbox"]{
+  display: none;
+}

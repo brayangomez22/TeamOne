@@ -10,8 +10,9 @@ class ModeloComentarios{
 
     static public function mdlPeticionComentarios($tabla, $datos){
 
-        $stmt = Conexion::conectar()->prepare("INSERT INTO $tabla(id_usuario, nombre, me_gustas, comentarios, foto) VALUES (:id_usuario, :nombre, :me_gustas, :comentarios, :foto)");
+        $stmt = Conexion::conectar()->prepare("INSERT INTO $tabla(id_institucion, id_usuario, nombre, me_gustas, comentarios, foto) VALUES (:id_institucion, :id_usuario, :nombre, :me_gustas, :comentarios, :foto)");
 
+        $stmt->bindParam(":id_institucion", $datos["id_institucion"], PDO::PARAM_INT);
         $stmt->bindParam(":id_usuario", $datos["id_usuario"], PDO::PARAM_INT);
         $stmt->bindParam(":nombre", $datos["nombre"], PDO::PARAM_STR);
         $stmt->bindParam(":me_gustas", $datos["me_gustas"], PDO::PARAM_INT);
@@ -37,16 +38,29 @@ class ModeloComentarios{
 	 MOSTRAR COMENTARIOS 
     /*=============================================*/
     
-    static public function mdlMostrarComentarios($tabla){
+    static public function mdlMostrarComentarios($tabla, $item, $valor){
 
-        $stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla ORDER BY id DESC");
+        if($item != null){
 
-        $stmt->execute();
+			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item ORDER BY id DESC");
 
-        return $stmt -> fetchAll();
+			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_INT);
+
+			$stmt -> execute();
+
+			return $stmt -> fetchAll();
+
+		}else{
+
+			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla");
+
+			$stmt -> execute();
+
+			return $stmt -> fetchAll();
+
+		}
 
         $stmt -> close();
-
         $stmt = null;
 
     }
@@ -57,28 +71,15 @@ class ModeloComentarios{
     
     static public function mdlSeleccionarComentario($tabla2, $item, $valor){
 
-        if($item != ""){
-        
-            $stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla2 WHERE $item = :$item");
+        $stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla2 WHERE $item = :$item");
 
-            $stmt->bindParam(":".$item, $valor, PDO::PARAM_INT);
-    
-            $stmt->execute();
-    
-            return $stmt->fetch();
+        $stmt->bindParam(":".$item, $valor, PDO::PARAM_INT);
 
-        }else{
+        $stmt->execute();
 
-            $stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla2");
-    
-            $stmt->execute();
-    
-            return $stmt->rowCount();
-
-        }
+        return $stmt->fetch();
 
         $stmt->close();
-
         $stmt = null;
 
     }
@@ -89,13 +90,12 @@ class ModeloComentarios{
 
     static public function mdlRespuestasComentarios($tabla, $datos){
 
-        $stmt = Conexion::conectar()->prepare("INSERT INTO $tabla(id_usuario, id_comentario, nombre, comentario, foto) VALUES (:id_usuario, :id_comentario, :nombre, :comentario, :foto)");
+        $stmt = Conexion::conectar()->prepare("INSERT INTO $tabla(id_usuario, id_comentario, nombre, comentario) VALUES (:id_usuario, :id_comentario, :nombre, :comentario)");
         
         $stmt->bindParam(":id_usuario", $datos["id_usuario"], PDO::PARAM_INT);
         $stmt->bindParam(":id_comentario", $datos["id_comentario"], PDO::PARAM_INT);
         $stmt->bindParam(":nombre", $datos["nombre"], PDO::PARAM_STR);
         $stmt->bindParam(":comentario", $datos["comentario"], PDO::PARAM_STR);
-        $stmt->bindParam(":foto", $datos["foto"], PDO::PARAM_STR);
 
         if($stmt->execute()){
 
@@ -178,63 +178,10 @@ class ModeloComentarios{
 
     static public function mdlActualizarTablaRespuestasComentarios($tabla3, $datos){
 
-        $stmt = Conexion::conectar()->prepare("UPDATE $tabla3 SET nombre = :nombre, foto = :foto WHERE id_usuario = :id_usuario");
+        $stmt = Conexion::conectar()->prepare("UPDATE $tabla3 SET nombre = :nombre WHERE id_usuario = :id_usuario");
 
 		$stmt -> bindParam(":nombre", $datos["nombre"], PDO::PARAM_STR);
-		$stmt -> bindParam(":foto", $datos["foto"], PDO::PARAM_STR);
 		$stmt -> bindParam(":id_usuario", $datos["id"], PDO::PARAM_INT);
-
-		if($stmt -> execute()){
-
-			return "ok";
-
-		}else{
-
-			return "error";
-
-		}
-
-		$stmt-> close();
-
-		$stmt = null;
-
-    }
-
-    /*=============================================
-	ELIMINAR LOS COMENTARIOS DEL USUARIO ELIMINADO
-	=============================================*/
-
-	static public function mdlEliminarComentarios($tabla, $id){
-
-		$stmt = Conexion::conectar()->prepare("DELETE FROM $tabla WHERE id_usuario = :id_usuario");
-
-		$stmt -> bindParam(":id_usuario", $id, PDO::PARAM_INT);
-
-		if($stmt -> execute()){
-
-			return "ok";
-
-		}else{
-
-			return "error";
-
-		}
-
-		$stmt-> close();
-
-		$stmt = null;
-
-    }
-    
-    /*=============================================
-	ELIMINAR LAS RESPUESTAS DE LOS COMENTARIOS DEL USUARIO ELIMINADO
-	=============================================*/
-
-	static public function mdlEliminarRespuestasComentarios($tabla, $id){
-
-		$stmt = Conexion::conectar()->prepare("DELETE FROM $tabla WHERE id_usuario = :id_usuario");
-
-		$stmt -> bindParam(":id_usuario", $id, PDO::PARAM_INT);
 
 		if($stmt -> execute()){
 

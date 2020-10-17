@@ -6,11 +6,11 @@ class ControladorUsuarios{
      MOSTRAR EL TOTAL DE USUARIOS 
     /*=============================================*/
 
-    static public function ctrMostrarTotalUsuarios($item, $valor, $orden){
+    static public function ctrMostrarTotalUsuarios($item, $valor, $item2, $valor2, $orden){
 
         $tabla = "usuarios";
 
-        $respuesta = ModeloUsuarios::mdlMostrarTotalUsuarios($tabla, $item, $valor, $orden);
+        $respuesta = ModeloUsuarios::mdlMostrarTotalUsuarios($tabla, $item, $valor, $item2, $valor2, $orden);
 
         return $respuesta;
 
@@ -46,7 +46,7 @@ class ControladorUsuarios{
 
 				/*------- PRIMERO PREGUNTAMOS SI EXISTE UNA IMAGEN EN LA BASE DE DTOS --------*/
 
-				$directorio = "vistas/img/usuarios/".$_POST["idUsuario"];
+				$directorio = "assets/img/users/".$_POST["idUsuario"];
 
 				if(!empty($_POST["fotoUsuario"])){
 
@@ -69,7 +69,7 @@ class ControladorUsuarios{
 
 				if($_FILES["datosImagen"]["type"] == "image/jpeg"){
 
-					$ruta = "vistas/img/usuarios/".$_POST["idUsuario"]."/".$aleatorio.".jpg";
+					$ruta = "assets/img/users/".$_POST["idUsuario"]."/".$aleatorio.".jpg";
 
 					/*------- MOFICAMOS TAMAÑO DE LA FOTO --------*/
 
@@ -85,7 +85,7 @@ class ControladorUsuarios{
 
 				if($_FILES["datosImagen"]["type"] == "image/png"){
 
-					$ruta = "vistas/img/usuarios/".$_POST["idUsuario"]."/".$aleatorio.".png";
+					$ruta = "assets/img/users/".$_POST["idUsuario"]."/".$aleatorio.".png";
 
 					/*------- MOFICAMOS TAMAÑO DE LA FOTO --------*/
 
@@ -145,7 +145,15 @@ class ControladorUsuarios{
 
 			$respuesta3 = ModeloComentarios::mdlActualizarTablaRespuestasComentarios($tabla3, $datos);
 
-			if($respuesta == "ok" && $respuesta2 == "ok" && $respuesta3 == "ok"){
+			/*==============================================
+			 ACTUALIZAR LA TABLA DE CHAT GROUP 
+			/*=============================================*/
+
+			$tabla4 = "chat_group";
+
+			$respuesta4 = ModeloChatGroup::mdlActualizarPerfil($tabla4, $datos);
+
+			if($respuesta == "ok" && $respuesta2 == "ok" && $respuesta3 == "ok" && $respuesta4 == "ok"){
 
 				$_SESSION["validarSesion"] = "ok";
 				$_SESSION["id"] = $datos["id"];
@@ -153,7 +161,6 @@ class ControladorUsuarios{
 				$_SESSION["foto"] = $datos["foto"];
 				$_SESSION["email"] = $datos["email"];
 				$_SESSION["password"] = $datos["password"];
-				$_SESSION["modo"] = $_POST["modoUsuario"];
 
 				echo '<script> 
 					swal({
@@ -184,32 +191,25 @@ class ControladorUsuarios{
 		if(isset($_GET["id"])){
 
 			$tabla1 = "usuarios";		
-			$tabla2 = "comentarios";
-			$tabla3 = "respuestas_comentarios";
 
 			$id = $_GET["id"];
 
 			if($_GET["foto"] != ""){
 
 				unlink($_GET["foto"]);
-				rmdir('vistas/img/usuarios/'.$_GET["id"]);
 
 			}
 
 			$respuesta = ModeloUsuarios::mdlEliminarUsuario($tabla1, $id);
-			
-			ModeloComentarios::mdlEliminarComentarios($tabla2, $id);
-
-			ModeloComentarios::mdlEliminarRespuestasComentarios($tabla3, $id);
 
 			if($respuesta == "ok"){
 
-		    	$url = Ruta::ctrRutaServidor();
+		    	$url = Ruta::ctrRutaLMS();
 
 		    	echo'<script>
 
 					swal({
-						title: "¡SU CUENTA HA SIDO BORRADA!",
+						title: "¡LA CUENTA HA SIDO BORRADA!",
 						text: "¡Debe registrarse nuevamente si desea ingresar!",
 						type: "success",
 						confirmButtonText: "Cerrar",

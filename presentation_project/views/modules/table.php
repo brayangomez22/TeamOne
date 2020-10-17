@@ -23,17 +23,15 @@
 
                         <th>Id</th>
                         <th>Id_institucion</th>
+                        <th>Acceso</th>
                         <th>Nombre</th>
                         <th>Labor</th>
                         <th>Grupo</th>
                         <th>password</th>
                         <th>Email</th>
-                        <th>Modo</th>
                         <th>Foto</th>
                         <th>Verificacion</th>
                         <th>EmailEncriptado</th>
-                        <th>Session_actual</th>
-                        <th>En_linea</th>
                         <th>Fecha</th>
 
                     </tr>
@@ -65,6 +63,37 @@
                         <th>Departamento</th>
                         <th>Ciudad</th>
                         <th>ubicacion</th>
+                        <th>Fecha</th>
+
+                    </tr>
+                    </thead>
+
+                </table>
+            </div>
+        </div>	
+    </div>
+
+<!--==============================================
+        TABLA DE BANDEJA DE ENTRADA 
+    ================================================-->
+
+    <div class="content">
+        <div class="box">
+            <div class="box-header">
+                <h3>Solicitudes LMS</h3>
+            </div>
+            <div class="box-body">
+                <table class="table table-bordered table-striped tableRequests dt-responsive" width="100%">
+
+                    <thead>
+                    <tr>
+
+                        <th>Id</th>
+                        <th>Id_usuario</th>
+                        <th>Id_institucion</th>
+                        <th>Nombre</th>
+                        <th>labor</th>
+                        <th>Mensaje</th>
                         <th>Fecha</th>
 
                     </tr>
@@ -192,6 +221,7 @@
                     <tr>
 
                         <th>Id</th>
+                        <th>Id_institucion</th>
                         <th>Id_usuario</th>
                         <th>Nombre</th>
                         <th>Me_gustas</th>
@@ -228,7 +258,6 @@
                         <th>id_comentario</th>
                         <th>Nombre</th>
                         <th>Comentario</th>
-                        <th>Foto</th>
                         <th>Fecha</th>
 
                     </tr>

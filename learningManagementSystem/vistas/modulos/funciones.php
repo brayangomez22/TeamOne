@@ -22,6 +22,6 @@ function fecha($fecha){
 
 	$hm =  date('g:i a', strtotime($fecha));
 
-	return $fecha;
+	return $fecha . " --- " . $hm;
 
 }

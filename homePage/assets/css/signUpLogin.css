@@ -1,0 +1,249 @@
+/*==============================================
+  SIGN UP AND LOGIN  
+/*=============================================*/
+
+.containerSignUpLogin {
+  position: relative;
+  width: 100%;
+  background-color: #fff;
+  min-height: 100vh;
+  overflow: hidden;
+}
+
+.containerSignUpLogin .forms-container {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+}
+
+.containerSignUpLogin .signin-signup {
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  left: 75%;
+  width: 50%;
+  transition: 1s 0.7s ease-in-out;
+  display: grid;
+  grid-template-columns: 1fr;
+  z-index: 5;
+}
+
+.containerSignUpLogin form {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  padding: 0rem 5rem;
+  transition: all 0.2s 0.7s;
+  overflow: hidden;
+  grid-column: 1 / 2;
+  grid-row: 1 / 2;
+}
+
+.containerSignUpLogin form.sign-up-form {
+  opacity: 0;
+  z-index: 1;
+}
+
+.containerSignUpLogin form.sign-in-form {
+  z-index: 2;
+}
+
+.containerSignUpLogin .input-field {
+  max-width: 380px;
+  width: 100%;
+  background-color: #f0f0f0;
+  margin: 10px 0;
+  height: 55px;
+  border-radius: 55px;
+  display: grid;
+  grid-template-columns: 15% 85%;
+  padding: 0 0.4rem;
+  position: relative;
+}
+
+.containerSignUpLogin .input-field i {
+  text-align: center;
+  line-height: 55px;
+  color: #acacac;
+  transition: 0.5s;
+  font-size: 1.1rem;
+}
+
+.containerSignUpLogin .input-field input,
+.containerSignUpLogin .input-field select {
+  background: none;
+  outline: none;
+  border: none;
+  line-height: 5.7;
+  font-weight: 600;
+  font-size: 1.1rem;
+  color: #333;
+}
+
+.containerSignUpLogin .input-field input::placeholder,
+.containerSignUpLogin .input-field select::placeholder {
+  color: #aaa;
+  font-weight: 500;
+  font-family: var(--openSans);
+  font-size: 18px;
+}
+
+.containerSignUpLogin .contenedor-condiciones {
+  max-width: 380px;
+  position: relative;
+  left: 1%;
+  top: 3%;
+}
+
+.containerSignUpLogin .contenedor-condiciones label{
+  font-size: 14px;
+  margin-bottom: 10px;
+}
+
+.containerSignUpLogin .btn {
+  width: 150px;
+  background: linear-gradient(135deg, rgba(49,23,131,0.9) 0%, rgba(72,56,149,0.8) 100%);
+  border: none;
+  outline: none;
+  height: 49px;
+  border-radius: 49px;
+  color: #fff;
+  text-transform: uppercase;
+  font-weight: 600;
+  font-size: 14px;
+  margin: 10px 0;
+  cursor: pointer;
+  transition: 0.5s;
+  font-family: var(--openSans);
+  margin-top: 40px;
+}
+
+.containerSignUpLogin .btn:hover {
+  background: linear-gradient(135deg, rgba(72,56,149,0.8) 100%, rgba(49,23,131,0.9) 0%);
+}
+
+.containerSignUpLogin .panels-container {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.containerSignUpLogin:before {
+  content: "";
+  position: absolute;
+  height: 2000px;
+  width: 2000px;
+  top: -10%;
+  right: 48%;
+  transform: translateY(-50%);
+  background: linear-gradient(135deg, rgba(49,23,131,0.9) 0%, rgba(72,56,149,0.8) 100%);
+  transition: 1.8s ease-in-out;
+  border-radius: 50%;
+  z-index: 6;
+}
+
+.containerSignUpLogin .image {
+  width: 100%;
+  transition: transform 1.1s ease-in-out;
+  transition-delay: 0.4s;
+}
+
+.containerSignUpLogin .panel {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: space-around;
+  text-align: center;
+  z-index: 6;
+}
+
+.containerSignUpLogin .left-panel {
+  pointer-events: all;
+  padding: 3rem 17% 2rem 12%;
+}
+
+.containerSignUpLogin .right-panel {
+  pointer-events: none;
+  padding: 3rem 12% 2rem 17%;
+}
+
+.containerSignUpLogin .panel .content {
+  color: #fff;
+  transition: transform 0.9s ease-in-out;
+  transition-delay: 0.6s;
+}
+
+.containerSignUpLogin .panel h3 {
+  font-weight: 600;
+  line-height: 1;
+  font-size: 3.1rem;
+  font-family: var(--openSans);
+}
+
+.containerSignUpLogin .panel p {
+  font-size: 1.5rem;
+  padding: 0.7rem 0;
+  font-family: var(--openSans);
+}
+
+.containerSignUpLogin .btn.transparent {
+  margin: 0;
+  background: none;
+  border: 2px solid #fff;
+  width: 130px;
+  height: 41px;
+  font-weight: 600;
+  font-size: 1.4rem;
+  font-family: var(--openSans);
+}
+
+.containerSignUpLogin .right-panel .image,
+.containerSignUpLogin .right-panel .content {
+  transform: translateX(800px);
+}
+
+/* ANIMATION */
+
+.containerSignUpLogin.sign-up-mode:before {
+  transform: translate(100%, -50%);
+  right: 52%;
+}
+
+.containerSignUpLogin.sign-up-mode .left-panel .image,
+.containerSignUpLogin.sign-up-mode .left-panel .content {
+  transform: translateX(-800px);
+}
+
+.containerSignUpLogin.sign-up-mode .signin-signup {
+  left: 25%;
+}
+
+.containerSignUpLogin.sign-up-mode form.sign-up-form {
+  opacity: 1;
+  z-index: 2;
+}
+
+.containerSignUpLogin.sign-up-mode form.sign-in-form {
+  opacity: 0;
+  z-index: 1;
+}
+
+.containerSignUpLogin.sign-up-mode .right-panel .image,
+.containerSignUpLogin.sign-up-mode .right-panel .content {
+  transform: translateX(0%);
+}
+
+.containerSignUpLogin.sign-up-mode .left-panel {
+  pointer-events: none;
+}
+
+.containerSignUpLogin.sign-up-mode .right-panel {
+  pointer-events: all;
+}
