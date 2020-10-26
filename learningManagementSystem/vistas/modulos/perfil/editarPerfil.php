@@ -83,14 +83,13 @@
 
                     </form>
 
-                    <button class="btn btn-danger btn-md mb-5 pull-right" style="margin: 10px;" id="eliminarUsuario">Eliminar cuenta</button>
+                    <!-- <button class="btn btn-danger btn-md mb-5 pull-right" style="margin: 10px;" id="eliminarUsuario">Eliminar cuenta</button> -->
 
                     <?php
                         $borrarUsuario = new ControladorUsuarios();
                         $borrarUsuario -> ctrEliminarUsuario();
                     ?>	
                 </div>
-                <!-- /.box-body -->
             </div>
         </div>
     </div>

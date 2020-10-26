@@ -32,7 +32,7 @@ $("#datosImagen").change(function(){
 		  function(isConfirm){
 
             if(isConfirm){
-                window.location = rutaOculta+"perfil";
+                window.location = "verPerfil";
             }
 
         });
@@ -58,7 +58,7 @@ $("#datosImagen").change(function(){
 		  function(isConfirm){
 
 			if(isConfirm){
-				window.location = rutaOculta+"perfil";
+				window.location = "verPerfil";
 			}
 			
         });
@@ -94,7 +94,7 @@ $("#eliminarUsuario").click(function(){
 	}
 
 	swal({
-		title: "¿Esta usted seguro(a) de elimar su cuenta?",
+		title: "Esta usted seguro(a) de elimar su cuenta?",
 		text: "¡Si borra esta cuenta ya no se puede recuperar los datos!",
 		type: "warning",
 		showCancelButton: true,
@@ -102,10 +102,10 @@ $("#eliminarUsuario").click(function(){
 		confirmButtonText: "¡Si, borrar cuenta!",
 		closeOnConfirm: false
 	  },
-	function(isConfirm){
-		if (isConfirm) {	   
-			window.location = "index.php?ruta=verPerfil&id="+id+"&foto="+foto;
-		} 
-	});
+	  function(isConfirm){
+			   if (isConfirm) {	   
+				  window.location = "index.php?ruta=verPerfil&id="+id+"&foto="+foto;
+				} 
+	  });
 
 })

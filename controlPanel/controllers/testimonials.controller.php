@@ -145,7 +145,7 @@ class ControladorTestimonios{
 
         if(isset($_POST["editarTestimonio"])){
 
-            if(preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/', $_POST["editarTestimonio"]) && preg_match('/^[,\\.\\a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/', $_POST["opinion"]) ){
+            if(preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/', $_POST["editarTestimonio"]) || preg_match('/^[,\\.\\a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/', $_POST["opinion"]) ){
 
 				/*=============================================
 				VALIDAR IMAGEN PORTADA
@@ -258,8 +258,6 @@ class ControladorTestimonios{
 						  })
 
 			  	</script>';
-
-			  	return;
 
 			}
 

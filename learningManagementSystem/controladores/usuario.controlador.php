@@ -190,7 +190,7 @@ class ControladorUsuarios{
 
 		if(isset($_GET["id"])){
 
-			$tabla1 = "usuarios";		
+			$tabla1 = "usuarios";			
 
 			$id = $_GET["id"];
 

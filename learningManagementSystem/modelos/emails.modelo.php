@@ -117,7 +117,6 @@ class ModeloEmails{
 		$stmt -> close();
 		$stmt = null;
 
-
     }
 
     /*==============================================
