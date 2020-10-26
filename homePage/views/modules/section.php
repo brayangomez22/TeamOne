@@ -11,7 +11,7 @@
         include "sections/brand-area.php";
         include "sections/visits.php";
         include "sections/testimonials.php";
-        include "sections/faqs.php";
+        // include "sections/faqs.php";
         include "sections/contact.php";
     
     ?>

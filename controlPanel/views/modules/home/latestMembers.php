@@ -13,7 +13,7 @@
 ======================================-->
 
 <!-- USERS LIST -->
-<div class="col-md-8">
+<div class="col-md-6">
     <div class="box box-danger">
 
         <!-- box-header -->
@@ -51,13 +51,13 @@
                         
                         if($usuarios[$i]["foto"] != ""){
                             echo '<li>
-                                <img src="'.$urlLMS.$usuarios[$i]["foto"].'" alt="User Image" style="width:100%;height:130px;">
+                                <img src="'.$urlLMS.$usuarios[$i]["foto"].'" alt="User Image" style="width:100%;height:110px;">
                                 <a class="users-list-name" href="">'.$usuarios[$i]["nombre"].'</a>
                                 <span class="users-list-date">'.$usuarios[$i]["fecha"].'</span>
                             </li>';
                         }else{
                             echo '<li>
-                                <img src="'.$urlLMS.'assets/img/default/anonymous.jpg" alt="User Image" style="width:100%;height:130px;">
+                                <img src="'.$urlLMS.'assets/img/default/anonymous.jpg" alt="User Image" style="width:100%;height:110px;">
                                 <a class="users-list-name" href="">'.$usuarios[$i]["nombre"].'</a>
                                 <span class="users-list-date">'.$usuarios[$i]["fecha"].'</span>
                             </li>';

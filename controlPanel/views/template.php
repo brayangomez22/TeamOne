@@ -12,6 +12,9 @@
 
     <?php
       $url = Route::ctrRouteControlPanel();
+      $urlHomePage = Route::ctrRoute();
+
+      echo '<link rel="icon" href="'.$urlHomePage.'assets/images/logo.png">';
     ?>
 
     <!-- Bootstrap 3.3.7 -->

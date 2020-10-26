@@ -261,7 +261,6 @@ class ControllerUser{
 						$_SESSION["foto"] = $reply["foto"];
 						$_SESSION["email"] = $reply["email"];
 						$_SESSION["password"] = $reply["password"];
-						$_SESSION["modo"] = $reply["modo"];
 
 						echo '<script>
 							
