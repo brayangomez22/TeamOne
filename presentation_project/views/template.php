@@ -43,6 +43,7 @@
 		include "modules/hero.php";
 		include "modules/actors.php";
 		include "modules/table.php";
+		include "modules/objective.php";
 		include "modules/normalize.php";
 		include "modules/diagram.php";
 		include "modules/backend.php";

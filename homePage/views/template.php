@@ -30,6 +30,10 @@
 
             }
 
+        }else{
+
+            echo '<title>TeamOne</title>';
+
         }
 
     ?>
